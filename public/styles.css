@@ -43,7 +43,7 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .portrait-frame figcaption { padding: .85rem .2rem .15rem; font-family: Georgia, serif; font-size: .9rem; color: var(--muted); }
 .portrait-number { position: absolute; z-index: 1; top: -2.6rem; right: .5rem; font-family: Georgia, serif; color: var(--terracotta); font-size: 4rem; }
 .section-marker { display: flex; align-items: center; gap: .75rem; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.section-marker span { color: var(--terracotta); }
+.section-marker span { color: var(--terracotta-dark); }
 .manifesto, .resume { width: min(var(--max), calc(100% - 64px)); margin: auto; padding: clamp(5rem, 10vw, 9rem) 0; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; border-top: 1px solid var(--line); }
 .manifesto h2, .resume h2 { max-width: 900px; font-size: clamp(2.8rem, 5.5vw, 5.4rem); line-height: 1.03; }
 .lead { max-width: 920px; font-family: Georgia, serif; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.5; }
@@ -51,6 +51,7 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .story-grid a { color: var(--terracotta-dark); }
 .work { background: var(--night); color: var(--ivory); padding: clamp(5rem, 10vw, 9rem) max(32px, calc((100% - var(--max)) / 2)); }
 .section-marker.light { color: var(--night-muted); }
+.section-marker.light span { color: #ed8969; }
 .section-heading { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; margin-bottom: 4rem; }
 .section-heading h2 { max-width: 860px; font-size: clamp(2.8rem, 5.5vw, 5.4rem); line-height: 1.03; }
 .project { display: grid; grid-template-columns: 60px 1fr 1.3fr auto; gap: 2rem; align-items: center; min-height: 138px; border-top: 1px solid #3a3935; text-decoration: none; transition: color .2s, padding .2s; }
@@ -70,7 +71,7 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .facts dd { margin: .25rem 0 0; font-family: Georgia, serif; font-size: 1.2rem; }
 .resume-actions { grid-column: 2; }
 .contact { text-align: center; padding: clamp(6rem, 13vw, 12rem) 32px; background: var(--terracotta); color: white; }
-.contact .eyebrow { justify-content: center; color: #f4d8cf; }
+.contact .eyebrow { justify-content: center; color: #fff; }
 .contact .eyebrow span { background: white; }
 .contact h2 { max-width: 900px; margin: 1.5rem auto 2.5rem; font-size: clamp(3rem, 7vw, 7rem); line-height: .95; }
 .contact > a { font-family: Georgia, serif; font-size: clamp(1.15rem, 2.5vw, 2rem); }
