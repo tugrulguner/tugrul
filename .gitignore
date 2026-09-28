@@ -1,3 +1,4 @@
 node_modules/
 .wrangler/
+lighthouse*.json
 .DS_Store
