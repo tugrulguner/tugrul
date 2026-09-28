@@ -1,0 +1,18 @@
+# Tugrul Guner
+
+Canonical profile: https://tugrul.modepot.io/
+
+Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He builds production AI systems and open-source developer infrastructure. He created ModePot, a family of projects exploring clear boundaries between deterministic software and agentic decisions.
+
+## Work
+
+- Dexpot: https://dexpot.modepot.io/
+- Intpot: https://intpot.modepot.io/
+- Summonpot: https://summonpot.modepot.io/
+- LifePot: https://lifepot.modepot.io/
+
+## Verified profiles
+
+- GitHub: https://github.com/tugrulguner
+- LinkedIn: https://www.linkedin.com/in/tugrulguner/
+- X: https://x.com/Tugrul_Guner
