@@ -1,0 +1,13 @@
+{
+  "name": "tugrul-site",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "check": "node scripts/check-site.mjs",
+    "preview": "wrangler dev",
+    "deploy": "npm run check && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.143.0"
+  }
+}
