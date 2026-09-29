@@ -8,7 +8,7 @@ He created ModePot, an open-source family of frameworks, tools, engines, and gam
 
 ## Story
 
-AI was part of Tugrul's work before it became his profession. He began coding and working with machine learning during his master's degree in 2012, learned traditional machine-learning approaches, participated in Kaggle competitions, and practiced feature engineering. He later used deep learning for computer vision with microscope images during his first postdoctoral appointment and for image reconstruction during his second. His interest expanded from models into backends, productionization, infrastructure, and the challenge of building robust, scalable production systems. That path led him into MLOps and production AI.
+Tugrul began coding and working with machine learning during his master's degree in 2012, learned traditional machine-learning approaches, participated in Kaggle competitions, and practiced feature engineering. He later used deep learning for computer vision with microscope images during his first postdoctoral appointment and for image reconstruction during his second. As the models became more capable, he became increasingly interested in the backends, deployment, infrastructure, and operating practices required to make AI reliable beyond an experiment. That path led him into MLOps and production AI.
 
 ModePot is where he builds tools and systems he wants to exist. Passionately Curious makes difficult scientific ideas accessible to broad audiences. His personal essays examine ambition, mortality, curiosity, and the future behind his work.
 
@@ -21,7 +21,7 @@ ModePot is where he builds tools and systems he wants to exist. Passionately Cur
 
 ## Leadership ambition
 
-As a manager, Tugrul is ambitious about creating high-performing teams where talented people take ownership and raise the standard for one another. He wants to give people enough context to make good decisions, make ownership explicit, and establish reliable ways of working without removing autonomy. His goal is to help people grow into harder problems, challenge one another with evidence, and ship work they are proud of at increasing organizational scale while he remains technically close to the work.
+As a manager, Tugrul is ambitious about creating high-performing teams where talented people take ownership and raise the standard for one another. He gives people the context and authority to make good decisions, with explicit ownership and standards that make autonomy work. As he takes on greater organizational scope, he wants to stay close enough to the technology to make sound decisions while helping people grow into harder problems and challenge ideas with evidence.
 
 ## Education and research
 
