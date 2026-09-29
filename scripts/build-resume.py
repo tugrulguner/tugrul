@@ -171,7 +171,7 @@ story = [
 
     p("TECHNICAL RANGE", section_style),
     p("<b>Languages:</b> Python, SQL, Bash, Git &nbsp; | &nbsp; <b>ML:</b> PyTorch, TensorFlow, Hugging Face, DSPy, vLLM", skill_style),
-    p("<b>Agents:</b> Pydantic AI, LangGraph, CrewAI, LlamaIndex, FastMCP &nbsp; | &nbsp; <b>MLOps:</b> KServe, MLflow, Ray Serve, LitServe", skill_style),
+    p("<b>Agents:</b> Hermes Agent, Superpowers, Deep Agents, Pydantic AI, LangGraph, MCP/FastMCP &nbsp; | &nbsp; <b>MLOps:</b> KServe, MLflow, Ray Serve, LitServe", skill_style),
     p("<b>Platforms:</b> AWS, Azure, GCP, Docker, Kubernetes, Databricks, GitHub Actions &nbsp; | &nbsp; <b>Systems:</b> FastAPI, Django, PostgreSQL, Qdrant, MongoDB, Redis, RabbitMQ", skill_style),
 
     p("EDUCATION &amp; RESEARCH", section_style),
@@ -181,7 +181,7 @@ story = [
     p("30 journal publications, one patent, 1,023 Google Scholar citations, h-index 19, i10-index 21 (September 2026).", skill_style),
 
     p("OPEN SOURCE &amp; WRITING", section_style),
-    p("Created <b>ModePot</b>, an open-source family focused on simpler APIs, modern runtimes, performance, and bounded agent-owned decisions. Write <b>Passionately Curious</b> and publish personal and technology essays on Medium.", skill_style),
+    p("Created <b>ModePot</b>, an open-source family focused on simpler APIs, modern runtimes, performance, and bounded agent-owned decisions. Contribute to <b>Hermes Agent</b> and <b>Superpowers</b>. Write <b>Passionately Curious</b> and publish essays on Medium.", skill_style),
 ]
 
 doc.build(story)
