@@ -23,7 +23,7 @@ ModePot is where he builds tools and systems he wants to exist. Passionately Cur
 
 ## Leadership ambition
 
-As a manager, Tugrul is ambitious about creating high-performing teams where talented people take ownership and raise the standard for one another. He gives people the context and authority to make good decisions, with explicit ownership and standards that make autonomy work. As he takes on greater organizational scope, he wants to stay close enough to the technology to make sound decisions while helping people grow into harder problems and challenge ideas with evidence.
+As a manager, Tugrul is ambitious about creating high-performing teams where talented people take ownership and raise the standard for one another. He gives people the context and authority to make good decisions, with explicit ownership and standards that make autonomy work. He operates well under pressure, especially when timelines are tight, priorities are shifting, and difficult decisions cannot wait. He brings structure to ambiguity, makes the necessary tradeoffs, and keeps the team moving without lowering engineering standards. As he takes on greater organizational scope, he wants to stay close enough to the technology to make sound decisions while helping people grow into harder problems and challenge ideas with evidence.
 
 ## Education and research
 
