@@ -44,8 +44,8 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .portrait-number { position: absolute; z-index: 1; top: -2.6rem; right: .5rem; font-family: Georgia, serif; color: var(--terracotta); font-size: 4rem; }
 .section-marker { display: flex; align-items: center; gap: .75rem; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .section-marker span { color: var(--terracotta-dark); }
-.manifesto, .resume { width: min(var(--max), calc(100% - 64px)); margin: auto; padding: clamp(5rem, 10vw, 9rem) 0; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; border-top: 1px solid var(--line); }
-.manifesto h2, .resume h2 { max-width: 900px; font-size: clamp(2.8rem, 5.5vw, 5.4rem); line-height: 1.03; }
+.manifesto, .resume, .credentials, .skills, .writing { width: min(var(--max), calc(100% - 64px)); margin: auto; padding: clamp(5rem, 10vw, 9rem) 0; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; border-top: 1px solid var(--line); }
+.manifesto h2, .resume h2, .credentials h2, .skills h2, .writing h2 { max-width: 900px; font-size: clamp(2.8rem, 5.5vw, 5.4rem); line-height: 1.03; }
 .lead { max-width: 920px; font-family: Georgia, serif; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.5; }
 .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 900px; color: var(--muted); }
 .story-grid a { color: var(--terracotta-dark); }
@@ -61,20 +61,43 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .project-name { font-family: Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.4rem); }
 .project-description { color: var(--night-muted); font-size: .95rem; }
 .arrow { font-size: 1.4rem; }
-.resume-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem, 7vw, 7rem); }
-.resume h2 { font-size: clamp(2.6rem, 4.5vw, 4.4rem); }
-.resume-layout p { color: var(--muted); max-width: 650px; }
-.facts { margin: 0; }
-.facts div { padding: 1rem 0; border-top: 1px solid var(--line); }
-.facts div:last-child { border-bottom: 1px solid var(--line); }
-.facts dt { color: var(--muted); text-transform: uppercase; font-size: .67rem; font-weight: 750; letter-spacing: .11em; }
-.facts dd { margin: .25rem 0 0; font-family: Georgia, serif; font-size: 1.2rem; }
-.resume-actions { grid-column: 2; }
+.resume h2, .credentials h2, .skills h2, .writing h2 { font-size: clamp(2.6rem, 4.5vw, 4.4rem); }
+.resume-intro > p, .credentials-content > p, .skills-content > p, .writing-content > p { color: var(--muted); max-width: 760px; }
+.timeline { margin-top: 4rem; border-top: 1px solid var(--line); }
+.timeline-item { display: grid; grid-template-columns: 150px minmax(190px, .75fr) 1.25fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--line); }
+.timeline-meta { display: flex; flex-direction: column; gap: .25rem; color: var(--muted); font-size: .72rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.timeline h3, .education-grid h3 { margin: 0; font-family: Georgia, serif; font-size: 1.45rem; font-weight: 400; line-height: 1.2; }
+.organization { margin: .25rem 0 0; color: var(--terracotta-dark); font-size: .82rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.timeline ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.timeline li + li { margin-top: .45rem; }
+.resume-actions { margin-top: 2.5rem; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 3rem 0 1rem; background: var(--line); border: 1px solid var(--line); }
+.metrics div { min-height: 150px; padding: 1.4rem; background: var(--ivory); display: flex; flex-direction: column; justify-content: space-between; }
+.metrics strong { font-family: Georgia, serif; font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 400; color: var(--terracotta-dark); }
+.metrics span { color: var(--muted); font-size: .72rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.metric-note { font-size: .8rem; }
+.education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 3rem 0; background: var(--line); border: 1px solid var(--line); }
+.education-grid article { min-height: 190px; padding: 1.5rem; background: var(--paper); }
+.education-grid article > span { color: var(--terracotta-dark); font-size: .72rem; font-weight: 750; letter-spacing: .08em; }
+.education-grid p { color: var(--muted); }
+.text-link { display: inline-block; color: var(--terracotta-dark); font-family: Georgia, serif; font-size: 1.2rem; }
+.skills { background: var(--ivory); width: 100%; padding-inline: max(32px, calc((100% - var(--max)) / 2)); grid-template-columns: minmax(160px, 220px) minmax(0, 1fr); }
+.skill-groups { display: grid; grid-template-columns: 1fr 1fr; margin: 3rem 0 0; }
+.skill-groups div { padding: 1.4rem 1.4rem 1.4rem 0; border-top: 1px solid var(--line); }
+.skill-groups dt { color: var(--terracotta-dark); font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.skill-groups dd { margin: .45rem 0 0; color: var(--muted); }
+.writing-kicker { color: var(--terracotta-dark) !important; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+.issue-list { margin: 3rem 0; border-top: 1px solid var(--line); }
+.issue-list a { display: grid; grid-template-columns: 130px 1fr auto; gap: 1.5rem; align-items: center; min-height: 84px; border-bottom: 1px solid var(--line); text-decoration: none; }
+.issue-list span { color: var(--muted); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
+.issue-list strong { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; }
+.issue-list i { color: var(--terracotta); font-style: normal; }
 .contact { text-align: center; padding: clamp(6rem, 13vw, 12rem) 32px; background: var(--terracotta); color: white; }
 .contact .eyebrow { justify-content: center; color: #fff; }
 .contact .eyebrow span { background: white; }
 .contact h2 { max-width: 900px; margin: 1.5rem auto 2.5rem; font-size: clamp(3rem, 7vw, 7rem); line-height: .95; }
-.contact > a { font-family: Georgia, serif; font-size: clamp(1.15rem, 2.5vw, 2rem); }
+.contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.contact-links a { font-family: Georgia, serif; font-size: clamp(1.15rem, 2.5vw, 2rem); }
 footer { min-height: 120px; padding: 2rem max(32px, calc((100% - var(--max)) / 2)); background: var(--night); color: var(--night-muted); display: flex; justify-content: space-between; align-items: center; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
 footer div { display: flex; gap: 1.5rem; }
 
@@ -84,12 +107,16 @@ footer div { display: flex; gap: 1.5rem; }
   .hero { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; min-height: auto; padding-top: 4rem; }
   h1 { font-size: clamp(3.5rem, 15vw, 6rem); }
   .portrait-frame { width: min(100%, 520px); margin: 2rem auto 0; }
-  .manifesto, .resume { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; }
-  .section-heading, .resume-layout { grid-template-columns: 1fr; }
+  .manifesto, .resume, .credentials, .skills, .writing { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; }
+  .skills { width: 100%; padding-inline: 16px; }
+  .section-heading { grid-template-columns: 1fr; }
   .story-grid { grid-template-columns: 1fr; gap: .5rem; }
   .project { grid-template-columns: 42px 1fr auto; gap: 1rem; padding: 1.5rem 0; }
   .project-description { grid-column: 2 / 4; }
-  .resume-actions { grid-column: 1; }
+  .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+  .timeline-meta { flex-direction: row; justify-content: space-between; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .education-grid, .skill-groups { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -100,7 +127,10 @@ footer div { display: flex; gap: 1.5rem; }
   .button { width: 100%; }
   .work { padding-inline: 16px; }
   .project-name { font-size: 2.1rem; }
+  .issue-list a { grid-template-columns: 1fr auto; gap: .35rem 1rem; padding: 1rem 0; }
+  .issue-list span { grid-column: 1 / -1; }
   footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  footer div { flex-wrap: wrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {

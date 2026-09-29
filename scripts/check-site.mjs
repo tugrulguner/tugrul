@@ -11,12 +11,17 @@ const required = [
   'https://lifepot.modepot.io/',
   'id="story"',
   'id="work"',
-  'id="resume"',
+  'id="career"',
+  'id="research"',
+  'id="writing"',
+  '/tugrul-guner-resume.pdf',
+  'https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en',
+  'https://tugrulguner.beehiiv.com/',
 ];
 for (const token of required) {
   if (!html.includes(token)) throw new Error(`Missing required site content: ${token}`);
 }
-for (const path of ['../public/styles.css', '../public/favicon.svg', '../public/robots.txt', '../public/sitemap.xml', '../public/llms.txt', '../public/tugrul-guner.jpg', '../public/social-card.png']) {
+for (const path of ['../public/styles.css', '../public/favicon.svg', '../public/robots.txt', '../public/sitemap.xml', '../public/llms.txt', '../public/tugrul-guner.jpg', '../public/social-card.png', '../public/tugrul-guner-resume.pdf']) {
   await access(new URL(path, import.meta.url));
 }
-console.log(`Site checks passed (${required.length} content assertions, 7 required assets).`);
+console.log(`Site checks passed (${required.length} content assertions, 8 required assets).`);

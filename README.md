@@ -1,6 +1,6 @@
 # Tugrul Guner
 
-Source for [tugrul.modepot.io](https://tugrul.modepot.io/): Tugrul Guner’s personal story, selected open-source work, and professional profile.
+Source for [tugrul.modepot.io](https://tugrul.modepot.io/): Tugrul Guner’s professional chronology, open-source work, research record, newsletter, and downloadable resume.
 
 ## Local development
 
@@ -10,13 +10,11 @@ npm run check
 npm run preview
 ```
 
-## Resume updates
+## Profile sources
 
-The initial site links to Tugrul’s verified LinkedIn profile. When a PDF resume is ready:
-
-1. Add it as `public/tugrul-guner-resume.pdf`.
-2. Add a “Download resume” link in the `#resume` section of `public/index.html`.
-3. Update the professional chronology and rerun `npm run check`.
+- Resume: `public/tugrul-guner-resume.pdf`
+- Google Scholar: `https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en`
+- Newsletter: `https://tugrulguner.beehiiv.com/`
 
 ## Deployment
 
