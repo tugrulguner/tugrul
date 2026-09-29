@@ -126,15 +126,15 @@ story = [
     p("Toronto, ON, Canada &nbsp; | &nbsp; tugrulgunr@gmail.com &nbsp; | &nbsp; (514) 585-3990 &nbsp; | &nbsp; linkedin.com/in/tugrulguner", contact_style),
 
     p("PROFILE", section_style),
-    p("AI engineering leader with an MBA, a Ph.D., more than five years of AI and MLOps experience, and a decade of Python expertise. I directly manage four people, provide technical and cross-functional leadership across two pods, and oversee seven projects. I combine portfolio-level strategy and stakeholder leadership with hands-on work in architecture, prototypes, shared platforms, and production delivery."),
+    p("AI engineering leader with an MBA, a Ph.D., more than five years of AI and MLOps experience, and a decade of Python expertise. I directly manage four people, provide technical and cross-functional leadership across two pods, and manage a portfolio of more than six products. I combine portfolio-level strategy and stakeholder leadership with hands-on work in architecture, prototypes, shared platforms, and production delivery."),
 
     p("EXPERIENCE", section_style),
     job(
         "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
             "Directly manage four people and provide cross-functional and technical leadership across two separate pods of five and seven people.",
-            "Oversee seven projects across the portfolio, aligning priorities, dependencies, architecture, stakeholders, and delivery.",
-            "Led one pod to a 2.5x increase in delivery velocity, leading to responsibility for a second pod; helped the team launch three products, including a recommendation system that improved menu-item attachment rate by 4x.",
+            "In under six months, led one pod to a 2.5x increase in delivery velocity and helped the team launch three products, including a recommendation system that improved menu-item attachment rate by 4x.",
+            "The first pod's delivery improvement led to responsibility for the separate second pod; now manage a portfolio of more than six products across both, aligning priorities, architecture, stakeholders, and delivery.",
             "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
             "Started the company's AI &amp; Science channel and continuously share developments across both fields; co-host the company-wide AI Center of Excellence meeting with the enterprise architect.",
             "Lead stakeholders at every level and build high-performing teams around ownership, strong engineering standards, and fast delivery.",

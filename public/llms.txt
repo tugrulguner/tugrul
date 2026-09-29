@@ -2,7 +2,7 @@
 
 Canonical profile: https://tugrul.modepot.io/
 
-Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He directly manages four people, provides technical and cross-functional leadership across two pods of five and seven people, and oversees seven projects. His leadership model combines portfolio-level strategy and organizational responsibility with hands-on involvement in difficult engineering decisions.
+Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He directly manages four people, provides technical and cross-functional leadership across two pods of five and seven people, and manages a portfolio of more than six products. His leadership model combines portfolio-level strategy and organizational responsibility with hands-on involvement in difficult engineering decisions.
 
 He created ModePot, an open-source family of frameworks, tools, engines, and games built around simpler APIs, modern runtimes, performance, and explicit boundaries between deterministic software and agent-owned decisions.
 
@@ -16,7 +16,7 @@ ModePot is where he builds tools and systems he wants to exist. Passionately Cur
 
 ## Career
 
-- AI Engineering Manager, CDAI (2026–present): directly manages four people and provides technical and cross-functional leadership across two separate pods of five and seven. After leading one pod to a 2.5x increase in delivery velocity, he was given responsibility for the second pod. He oversees seven projects; helped the team launch three products; and contributed to a recommendation system that improved menu-item attachment rate 4x. Initiated the AI & Science channel, co-hosts the company-wide AI Center of Excellence meeting, and created recurring social events.
+- AI Engineering Manager, CDAI (2026–present): directly manages four people and provides technical and cross-functional leadership across two separate pods of five and seven. In under six months, he led one pod to a 2.5x increase in delivery velocity and helped the team launch three products. The first pod’s delivery improvement led to responsibility for the second pod. He now manages a portfolio of more than six products across both pods and contributed to a recommendation system that improved menu-item attachment rate 4x. Initiated the AI & Science channel, co-hosts the company-wide AI Center of Excellence meeting, and created recurring social events.
 - Technical Manager and AI Architect, Haptiq (2025–2026): built the AI team and first AI infrastructure, created its high-performance engineering culture, led client and executive conversations, and helped sell the company's first AI product to businesses as part of more than $2 million in new revenue.
 - Lead MLOps Engineer, Arteria AI (2024–2025)
 - Senior MLOps Engineer, Arteria AI (2022–2024)
