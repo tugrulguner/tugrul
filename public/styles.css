@@ -42,6 +42,12 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .portrait-frame img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; filter: saturate(.78) contrast(1.03); display: block; }
 .portrait-frame figcaption { padding: .85rem .2rem .15rem; font-family: Georgia, serif; font-size: .9rem; color: var(--muted); }
 .portrait-number { position: absolute; z-index: 1; top: -2.6rem; right: .5rem; font-family: Georgia, serif; color: var(--terracotta); font-size: 4rem; }
+.newsletter-spotlight { width: min(var(--max), calc(100% - 64px)); margin: 0 auto clamp(5rem, 9vw, 8rem); padding: 2rem; display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 2rem; align-items: center; background: var(--night); color: var(--ivory); border-left: 6px solid var(--terracotta); box-shadow: 0 1.5rem 4rem rgba(23, 23, 20, .12); }
+.newsletter-spotlight > div { display: grid; gap: .35rem; }
+.newsletter-spotlight > div span { color: #ed8969; font-size: .7rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+.newsletter-spotlight strong { font-family: Georgia, serif; font-size: clamp(1.35rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.2; }
+.newsletter-spotlight p { margin: 0; color: var(--night-muted); line-height: 1.55; }
+.newsletter-spotlight > a { white-space: nowrap; padding-bottom: .35rem; color: #ed8969; font-size: .75rem; font-weight: 750; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; border-bottom: 1px solid #ed8969; }
 .section-marker { display: flex; align-items: center; gap: .75rem; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .section-marker span { color: var(--terracotta-dark); }
 .manifesto, .resume, .credentials, .skills, .writing { width: min(var(--max), calc(100% - 64px)); margin: auto; padding: clamp(5rem, 10vw, 9rem) 0; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; border-top: 1px solid var(--line); }
@@ -92,6 +98,7 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .issue-list span { color: var(--muted); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
 .issue-list strong { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; }
 .issue-list i { color: var(--terracotta); font-style: normal; }
+.writing-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .contact { text-align: center; padding: clamp(6rem, 13vw, 12rem) 32px; background: var(--terracotta); color: white; }
 .contact .eyebrow { justify-content: center; color: #fff; }
 .contact .eyebrow span { background: white; }
@@ -107,6 +114,8 @@ footer div { display: flex; gap: 1.5rem; }
   .hero { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; min-height: auto; padding-top: 4rem; }
   h1 { font-size: clamp(3.5rem, 15vw, 6rem); }
   .portrait-frame { width: min(100%, 520px); margin: 2rem auto 0; }
+  .newsletter-spotlight { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; gap: 1.25rem; }
+  .newsletter-spotlight > a { justify-self: start; }
   .manifesto, .resume, .credentials, .skills, .writing { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; }
   .skills { width: 100%; padding-inline: 16px; }
   .section-heading { grid-template-columns: 1fr; }
