@@ -132,9 +132,9 @@ story = [
     job(
         "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
-            "Directly manage four people and provide cross-functional and technical leadership across two pods of five and seven people.",
+            "Directly manage four people and provide cross-functional and technical leadership across two separate pods of five and seven people.",
             "Oversee seven projects across the portfolio, aligning priorities, dependencies, architecture, stakeholders, and delivery.",
-            "Increased team delivery velocity by 2.5x and launched three products, including a recommendation system that improved menu-item attachment rate by 4x.",
+            "Led one pod to a 2.5x increase in delivery velocity, leading to responsibility for a second pod; helped the team launch three products, including a recommendation system that improved menu-item attachment rate by 4x.",
             "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
             "Started the company's AI &amp; Science channel and continuously share developments across both fields; co-host the company-wide AI Center of Excellence meeting with the enterprise architect.",
             "Lead stakeholders at every level and build high-performing teams around ownership, strong engineering standards, and fast delivery.",
