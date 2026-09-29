@@ -15,7 +15,7 @@ const required = [
   'id="research"',
   'id="writing"',
   'class="newsletter-spotlight"',
-  'Compass Digital · CDAI',
+  '>CDAI<',
   'increasing team delivery velocity by 2.5×',
   'improved menu-item attachment rate by 4×',
   'first AI infrastructure',

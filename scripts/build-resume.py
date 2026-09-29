@@ -130,7 +130,7 @@ story = [
 
     p("EXPERIENCE", section_style),
     job(
-        "AI Engineering Manager", "Compass Digital (CDAI)", "Toronto, ON | Jan 2026 - Present",
+        "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
             "Expanded from leading one cross-functional pod to managing two pods, while increasing team delivery velocity by 2.5x.",
             "Launched three products, including a recommendation system that improved menu-item attachment rate by 4x.",
