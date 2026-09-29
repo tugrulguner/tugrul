@@ -98,6 +98,7 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .issue-list span { color: var(--muted); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
 .issue-list strong { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; }
 .issue-list i { color: var(--terracotta); font-style: normal; }
+.writing-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .contact { text-align: center; padding: clamp(6rem, 13vw, 12rem) 32px; background: var(--terracotta); color: white; }
 .contact .eyebrow { justify-content: center; color: #fff; }
 .contact .eyebrow span { background: white; }

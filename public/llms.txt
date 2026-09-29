@@ -17,6 +17,8 @@ He created ModePot, an open-source family of frameworks, tools, engines, and gam
 
 - MBA, Quantic School of Business and Technology (2025)
 - Ph.D., Materials Science and Engineering, Izmir Institute of Technology (2018)
+- Postdoctoral Fellow, University of Ottawa (2021–2022): applied deep learning to quantum-optics and beam-shaping research and contributed to a CFI project.
+- Postdoctoral Fellow, Institut national de la recherche scientifique (INRS) (2018–2021): operated and maintained ultrafast transmission electron microscopy systems, developed measurement algorithms, and supported MSc and Ph.D. researchers.
 - 30 journal publications and one patent
 - Google Scholar: 1,023 citations, h-index 19, i10-index 21 as of September 2026
 - Publications: https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en
@@ -30,9 +32,12 @@ He created ModePot, an open-source family of frameworks, tools, engines, and gam
 
 ## Writing
 
-Tugrul writes Passionately Curious, an evidence-led science newsletter about physics, AI, and biology for broad audiences.
+Tugrul writes Passionately Curious, an evidence-led science newsletter about physics, AI, and biology for broad audiences. He has also published seven Medium essays about technology, scientific curiosity, ambition, mortality, and building the future. Two personal essays that describe his outlook are “Legacy Is Overrated. I Want to Be Alive for What Comes Next.” and “Nothing Is Waiting For Us. And That’s Why I Care.”
 
 - Newsletter: https://tugrulguner.beehiiv.com/
+- Medium: https://medium.com/@tugrulguner
+- Legacy Is Overrated. I Want to Be Alive for What Comes Next.: https://medium.com/@tugrulguner/legacy-is-overrated-i-want-to-be-alive-for-what-comes-next-1d5f43bf7ae4
+- Nothing Is Waiting For Us. And That’s Why I Care.: https://medium.com/@tugrulguner/nothing-is-waiting-for-us-and-thats-why-i-care-2aa81fc3f42d
 - Resume: https://tugrul.modepot.io/tugrul-guner-resume.pdf
 
 ## Verified profiles
@@ -42,3 +47,4 @@ Tugrul writes Passionately Curious, an evidence-led science newsletter about phy
 - X: https://x.com/Tugrul_Guner
 - Google Scholar: https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en
 - Passionately Curious: https://tugrulguner.beehiiv.com/
+- Medium: https://medium.com/@tugrulguner

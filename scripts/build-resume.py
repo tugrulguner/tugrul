@@ -175,11 +175,13 @@ story = [
     p("<b>Platforms:</b> AWS, Azure, GCP, Docker, Kubernetes, Databricks, GitHub Actions &nbsp; | &nbsp; <b>Systems:</b> FastAPI, Django, PostgreSQL, Qdrant, MongoDB, Redis, RabbitMQ", skill_style),
 
     p("EDUCATION &amp; RESEARCH", section_style),
+    p("<b>Postdoctoral Fellow</b>, University of Ottawa, 2021–2022 — deep learning for quantum optics and beam shaping", skill_style),
+    p("<b>Postdoctoral Fellow</b>, Institut national de la recherche scientifique (INRS), 2018–2021 — ultrafast transmission electron microscopy and measurement algorithms", skill_style),
     p("<b>MBA</b>, Quantic School of Business and Technology, 2025 &nbsp; | &nbsp; <b>Ph.D., Materials Science and Engineering</b>, Izmir Institute of Technology, 2018", skill_style),
     p("30 journal publications, one patent, 1,023 Google Scholar citations, h-index 19, i10-index 21 (September 2026).", skill_style),
 
     p("OPEN SOURCE &amp; WRITING", section_style),
-    p("Created <b>ModePot</b>, an open-source family of frameworks, tools, engines, and games focused on simpler APIs, modern runtimes, performance, and bounded agent-owned decisions. Write <b>Passionately Curious</b>, a science newsletter exploring physics, AI, and biology for broad audiences.", skill_style),
+    p("Created <b>ModePot</b>, an open-source family focused on simpler APIs, modern runtimes, performance, and bounded agent-owned decisions. Write <b>Passionately Curious</b> and publish personal and technology essays on Medium.", skill_style),
 ]
 
 doc.build(story)
