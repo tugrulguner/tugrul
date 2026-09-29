@@ -2,7 +2,7 @@
 
 Canonical profile: https://tugrul.modepot.io/
 
-Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He directly manages four people, provides technical and cross-functional leadership across two pods of five and seven people, and manages a portfolio of more than six products. His leadership model combines portfolio-level strategy and organizational responsibility with hands-on involvement in difficult engineering decisions.
+Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He leads two cross-functional pods across a portfolio of more than six products. He builds high-performing teams and operates well under pressure, bringing structure to ambiguity and making difficult decisions without lowering engineering standards. He remains hands-on building scalable, robust backend, AI, and agentic systems designed to adapt as products, models, and infrastructure change.
 
 He created ModePot, an open-source family of frameworks, tools, engines, and games built around simpler APIs, modern runtimes, performance, and explicit boundaries between deterministic software and agent-owned decisions.
 
@@ -10,7 +10,7 @@ He also contributes to Hermes Agent and Superpowers. His public work includes a 
 
 ## Story
 
-Tugrul began coding and working with machine learning during his master's degree in 2012, learned traditional machine-learning approaches, participated in Kaggle competitions, and practiced feature engineering. He later used deep learning for computer vision with microscope images during his first postdoctoral appointment and for image reconstruction during his second. As the models became more capable, he became increasingly interested in the backends, deployment, infrastructure, and operating practices required to make AI reliable beyond an experiment. That path led him into MLOps and production AI.
+Tugrul began coding and working with machine learning during his master's degree in 2012, learned traditional machine-learning approaches, participated in Kaggle competitions, and practiced feature engineering. He later used deep learning for computer vision with microscope images during his first postdoctoral appointment and for image reconstruction during his second. As the models became more capable, he became increasingly interested in the backends, deployment, infrastructure, and operating practices required to make AI reliable beyond an experiment. That path led him into MLOps and production AI. His earlier research in physics and materials science—30 journal publications, a patent, and more than 1,000 citations—shaped the analytical, evidence-led mindset he brings to innovation and uncertainty; it is not presented as AI research.
 
 ModePot is where he builds tools and systems he wants to exist. Passionately Curious makes difficult scientific ideas accessible to broad audiences. His personal essays examine ambition, mortality, curiosity, and the future behind his work.
 
