@@ -42,11 +42,15 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .portrait-frame img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; filter: saturate(.78) contrast(1.03); display: block; }
 .portrait-frame figcaption { padding: .85rem .2rem .15rem; font-family: Georgia, serif; font-size: .9rem; color: var(--muted); }
 .portrait-number { position: absolute; z-index: 1; top: -2.6rem; right: .5rem; font-family: Georgia, serif; color: var(--terracotta); font-size: 4rem; }
-.leadership-spotlight { width: min(var(--max), calc(100% - 64px)); margin: 0 auto clamp(5rem, 9vw, 8rem); padding: 2rem; display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 2rem; align-items: center; background: var(--night); color: var(--ivory); border-left: 6px solid var(--terracotta); box-shadow: 0 1.5rem 4rem rgba(23, 23, 20, .12); }
+.leadership-spotlight { width: min(var(--max), calc(100% - 64px)); margin: 0 auto clamp(5rem, 9vw, 8rem); padding: 2rem; display: grid; grid-template-columns: 1.35fr 1fr auto; gap: 2rem; align-items: center; background: var(--night); color: var(--ivory); border-left: 6px solid var(--terracotta); box-shadow: 0 1.5rem 4rem rgba(23, 23, 20, .12); }
 .leadership-spotlight > div { display: grid; gap: .35rem; }
 .leadership-spotlight > div span { color: #ed8969; font-size: .7rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
 .leadership-spotlight strong { font-family: Georgia, serif; font-size: clamp(1.35rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.2; }
-.leadership-spotlight p { margin: 0; color: var(--night-muted); line-height: 1.55; }
+.spotlight-context { margin: .55rem 0 0; color: var(--night-muted); font-size: .85rem; line-height: 1.45; }
+.spotlight-metrics { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(100px, 1fr)); gap: 1px; background: #3a3935; border: 1px solid #3a3935; }
+.spotlight-metrics div { min-height: 104px; padding: 1rem .8rem; display: flex; flex-direction: column; justify-content: space-between; background: #232320; }
+.spotlight-metrics dt { font-family: Georgia, serif; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1; color: var(--ivory); }
+.spotlight-metrics dd { margin: .65rem 0 0; color: var(--night-muted); font-size: .62rem; font-weight: 750; letter-spacing: .07em; line-height: 1.35; text-transform: uppercase; }
 .leadership-spotlight > a { white-space: nowrap; padding-bottom: .35rem; color: #ed8969; font-size: .75rem; font-weight: 750; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; border-bottom: 1px solid #ed8969; }
 .section-marker { display: flex; align-items: center; gap: .75rem; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .section-marker span { color: var(--terracotta-dark); }
@@ -149,6 +153,8 @@ footer div { display: flex; gap: 1.5rem; }
   .button { width: 100%; }
   .work { padding-inline: 16px; }
   .project-name { font-size: 2.1rem; }
+  .spotlight-metrics { grid-template-columns: 1fr 1fr; }
+  .spotlight-metrics div:last-child { grid-column: 1 / -1; }
   .issue-list a { grid-template-columns: 1fr auto; gap: .35rem 1rem; padding: 1rem 0; }
   .issue-list span { grid-column: 1 / -1; }
   footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
