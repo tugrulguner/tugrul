@@ -72,6 +72,8 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .project-name { font-family: Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.4rem); }
 .project-description { color: var(--night-muted); font-size: .95rem; }
 .arrow { font-size: 1.4rem; }
+.project-contributions { max-width: 900px; margin: 2.5rem 0 0; color: var(--night-muted); }
+.project-contributions a { color: #ed8969; }
 .resume h2, .credentials h2, .skills h2, .writing h2 { font-size: clamp(2.6rem, 4.5vw, 4.4rem); }
 .resume-intro > p, .credentials-content > p, .skills-content > p, .writing-content > p { color: var(--muted); max-width: 760px; }
 .timeline { margin-top: 4rem; border-top: 1px solid var(--line); }
