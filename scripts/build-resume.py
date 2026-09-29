@@ -122,22 +122,22 @@ doc.addPageTemplates(PageTemplate(id="resume", frames=[frame], onPage=draw_page)
 
 story = [
     p("TUGRUL GUNER", name_style),
-    p("AI Engineering Manager | Hands-on AI Architect | Team Builder", role_style),
+    p("AI Engineering Leader | Portfolio Strategy | Hands-on Architecture", role_style),
     p("Toronto, ON, Canada &nbsp; | &nbsp; tugrulgunr@gmail.com &nbsp; | &nbsp; (514) 585-3990 &nbsp; | &nbsp; linkedin.com/in/tugrulguner", contact_style),
 
     p("PROFILE", section_style),
-    p("AI engineering leader with an MBA, a Ph.D., more than five years of AI and MLOps experience, and a decade of Python expertise. I build high-performing teams and the systems around them: clear ownership, scalable architecture, fast delivery, and a culture of curiosity and accountability. I remain hands-on in prototyping, architecture, shared platforms, and production delivery while managing cross-functional teams and stakeholders at every level."),
+    p("AI engineering leader with an MBA, a Ph.D., more than five years of AI and MLOps experience, and a decade of Python expertise. I directly manage four people, provide technical and cross-functional leadership across two pods, and oversee seven projects. I combine portfolio-level strategy and stakeholder leadership with hands-on work in architecture, prototypes, shared platforms, and production delivery."),
 
     p("EXPERIENCE", section_style),
     job(
         "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
-            "Expanded from leading one cross-functional pod to managing two pods, while increasing team delivery velocity by 2.5x.",
-            "Launched three products, including a recommendation system that improved menu-item attachment rate by 4x.",
+            "Directly manage four people and provide cross-functional and technical leadership across two pods of five and seven people.",
+            "Oversee seven projects across the portfolio, aligning priorities, dependencies, architecture, stakeholders, and delivery.",
+            "Increased team delivery velocity by 2.5x and launched three products, including a recommendation system that improved menu-item attachment rate by 4x.",
             "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
             "Started the company's AI &amp; Science channel and continuously share developments across both fields; co-host the company-wide AI Center of Excellence meeting with the enterprise architect.",
-            "Manage stakeholders at every level and translate business goals into technical initiatives, delivery plans, and production systems.",
-            "Build high-performing teams around ownership, strong engineering standards, and fast delivery; initiated recurring lunches and social events to strengthen the wider culture.",
+            "Lead stakeholders at every level and build high-performing teams around ownership, strong engineering standards, and fast delivery.",
         ],
     ),
     Spacer(1, 3),
