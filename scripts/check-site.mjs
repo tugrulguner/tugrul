@@ -45,6 +45,8 @@ const required = [
   'the backend, deployment, infrastructure, and operating practices that keep AI reliable at scale',
   'My ambition as a manager',
   'Build high-performing teams where talented people take ownership',
+  'I operate well under pressure, especially when timelines are tight',
+  'I bring structure to ambiguity, make the necessary tradeoffs',
   'University of Ottawa · Deep learning for quantum optics',
   'Institut national de la recherche scientifique (INRS)',
   'Legacy Is Overrated. I Want to Be Alive for What Comes Next.',
