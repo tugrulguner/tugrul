@@ -2,13 +2,13 @@
 
 Canonical profile: https://tugrul.modepot.io/
 
-Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He manages two cross-functional engineering pods, leads AI strategy and architecture, and remains hands-on in prototyping and production delivery. He has more than five years of AI and MLOps experience and a decade of Python experience.
+Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He directly manages four people, provides technical and cross-functional leadership across two pods of five and seven people, and oversees seven projects. His leadership model combines portfolio-level strategy, organizational direction, and stakeholder management with hands-on architecture, prototyping, shared platforms, and production delivery.
 
 He created ModePot, an open-source family of frameworks, tools, engines, and games built around simpler APIs, modern runtimes, performance, and explicit boundaries between deterministic software and agent-owned decisions.
 
 ## Career
 
-- AI Engineering Manager, CDAI (2026–present): expanded from one pod to two, increased team velocity 2.5x, launched three products, and delivered a recommendation system that improved menu-item attachment rate 4x. Initiated the AI & Science channel, co-hosts the company-wide AI Center of Excellence meeting, and created recurring social events.
+- AI Engineering Manager, CDAI (2026–present): directly manages four people; provides technical and cross-functional leadership across pods of five and seven; oversees seven projects; increased team velocity 2.5x; launched three products; and delivered a recommendation system that improved menu-item attachment rate 4x. Initiated the AI & Science channel, co-hosts the company-wide AI Center of Excellence meeting, and created recurring social events.
 - Technical Manager and AI Architect, Haptiq (2025–2026): built the AI team and first AI infrastructure, created its high-performance engineering culture, led client and executive conversations, and helped sell the company's first AI product to businesses as part of more than $2 million in new revenue.
 - Lead MLOps Engineer, Arteria AI (2024–2025)
 - Senior MLOps Engineer, Arteria AI (2022–2024)
