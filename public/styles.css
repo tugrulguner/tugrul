@@ -29,7 +29,7 @@ main { overflow: hidden; }
 .eyebrow { display: flex; align-items: center; gap: .75rem; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 750; color: var(--muted); }
 .eyebrow span { width: 30px; height: 1px; background: var(--terracotta); }
 h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.035em; margin: 0; }
-h1 { max-width: 900px; font-size: clamp(3.7rem, 7.3vw, 7.35rem); line-height: .95; }
+h1 { max-width: 900px; font-size: clamp(3.7rem, 6.4vw, 5.8rem); line-height: .95; }
 h1 em { color: var(--terracotta); font-weight: 400; }
 .hero-intro { max-width: 720px; margin: 2.2rem 0 0; font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: var(--muted); line-height: 1.55; }
 .hero-actions, .resume-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.2rem; }
@@ -40,7 +40,9 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .button-secondary { border: 1px solid var(--line); background: var(--ivory); }
 .portrait-frame { position: relative; margin: 0; padding: 1rem; background: var(--ivory); border: 1px solid var(--line); transform: rotate(1.5deg); }
 .portrait-frame img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; filter: saturate(.78) contrast(1.03); display: block; }
-.portrait-frame figcaption { padding: .85rem .2rem .15rem; font-family: Georgia, serif; font-size: .9rem; color: var(--muted); }
+.portrait-evidence { padding: 1rem .2rem .15rem; display: grid; gap: .45rem; color: var(--muted); font-size: .72rem; line-height: 1.45; }
+.portrait-evidence p { margin: 0; }
+.portrait-evidence strong { color: var(--ink); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
 .portrait-number { position: absolute; z-index: 1; top: -2.6rem; right: .5rem; font-family: Georgia, serif; color: var(--terracotta); font-size: 4rem; }
 .leadership-spotlight { width: min(var(--max), calc(100% - 64px)); margin: 0 auto clamp(5rem, 9vw, 8rem); padding: 2rem; display: grid; grid-template-columns: 1.35fr 1fr auto; gap: 2rem; align-items: center; background: var(--night); color: var(--ivory); border-left: 6px solid var(--terracotta); box-shadow: 0 1.5rem 4rem rgba(23, 23, 20, .12); }
 .leadership-spotlight > div { display: grid; gap: .35rem; }
