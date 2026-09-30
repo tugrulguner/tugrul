@@ -106,6 +106,14 @@ const required = [
 for (const token of required) {
   if (!html.includes(token)) throw new Error(`Missing required site content: ${token}`);
 }
+const description = html.match(/<meta name="description" content="([^"]+)">/)?.[1];
+if (!description || description.length > 160) {
+  throw new Error(`Meta description must be present and at most 160 characters; got ${description?.length ?? 0}`);
+}
+const title = html.match(/<title>([^<]+)<\/title>/)?.[1].replaceAll('&amp;', '&');
+if (!title || title.length > 60) {
+  throw new Error(`Page title must be present and at most 60 characters; got ${title?.length ?? 0}`);
+}
 for (const path of ['../public/styles.css', '../public/favicon.svg', '../public/robots.txt', '../public/sitemap.xml', '../public/llms.txt', '../public/tugrul-guner.jpg', '../public/social-card.png', '../public/tugrul-guner-resume.pdf']) {
   await access(new URL(path, import.meta.url));
 }
