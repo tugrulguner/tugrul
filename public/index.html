@@ -88,10 +88,10 @@
     <section class="work" id="work" aria-labelledby="work-title">
       <div class="section-heading"><div class="section-marker light"><span>03</span> Open-source work</div><h2 id="work-title">Ideas I wanted to exist, so I started building them.</h2></div>
       <div class="project-list">
-        <a class="project" href="https://dexpot.modepot.io/"><span class="project-index">01</span><span class="project-name">dexpot</span><span class="project-description">Adaptive synchronous Python APIs for GIL and free-threaded runtimes.</span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="project" href="https://intpot.modepot.io/"><span class="project-index">02</span><span class="project-name">intpot</span><span class="project-description">One typed tool definition, served across CLI, HTTP, and MCP.</span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="project" href="https://summonpot.modepot.io/"><span class="project-index">03</span><span class="project-name">summonpot</span><span class="project-description">Exact operations and bounded agent-owned decisions behind one contract.</span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="project" href="https://lifepot.modepot.io/"><span class="project-index">04</span><span class="project-name">LifePot</span><span class="project-description">An artificial-life world where agent proposals become replayable rules.</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="project ph-no-autocapture" href="https://dexpot.modepot.io/" data-posthog-event="project_clicked" data-posthog-project="dexpot" data-posthog-surface="personal_profile"><span class="project-index">01</span><span class="project-name">dexpot</span><span class="project-description">Adaptive synchronous Python APIs for GIL and free-threaded runtimes.</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="project ph-no-autocapture" href="https://intpot.modepot.io/" data-posthog-event="project_clicked" data-posthog-project="intpot" data-posthog-surface="personal_profile"><span class="project-index">02</span><span class="project-name">intpot</span><span class="project-description">One typed tool definition, served across CLI, HTTP, and MCP.</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="project ph-no-autocapture" href="https://summonpot.modepot.io/" data-posthog-event="project_clicked" data-posthog-project="summonpot" data-posthog-surface="personal_profile"><span class="project-index">03</span><span class="project-name">summonpot</span><span class="project-description">Exact operations and bounded agent-owned decisions behind one contract.</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="project ph-no-autocapture" href="https://lifepot.modepot.io/" data-posthog-event="project_clicked" data-posthog-project="lifepot" data-posthog-surface="personal_profile"><span class="project-index">04</span><span class="project-name">LifePot</span><span class="project-description">An artificial-life world where agent proposals become replayable rules.</span><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
       <p class="project-contributions">Beyond ModePot, I contribute to <a href="https://github.com/NousResearch/hermes-agent/pulls?q=is%3Apr+author%3Atugrulguner">Hermes Agent</a> and <a href="https://github.com/obra/superpowers/pulls?q=is%3Apr+author%3Atugrulguner">Superpowers</a>. My public work includes a <a href="https://github.com/NousResearch/hermes-agent/commit/44665783a936d173aba639ecd74483e0a6a016ce">merged Hermes Kanban reliability fix</a> and submitted improvements across agent skills, harness support, MCP, and tooling.</p>
     </section>
@@ -115,6 +115,18 @@
   </main>
 
   <footer><p>© <span id="year">2026</span> Tugrul Guner</p><div><a href="https://x.com/Tugrul_Guner" rel="me">X @Tugrul_Guner</a><a href="https://www.linkedin.com/in/tugrulguner/" rel="me">LinkedIn</a><a href="https://github.com/tugrulguner">GitHub</a><a href="https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en">Scholar</a><a href="https://tugrulguner.beehiiv.com/">Newsletter</a><a href="https://medium.com/@tugrulguner">Medium</a><a href="https://modepot.io/">ModePot</a></div></footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest('[data-posthog-event]');
+      if (!link || !window.posthog) return;
+      window.posthog.capture(link.dataset.posthogEvent, {
+        project: link.dataset.posthogProject,
+        surface: link.dataset.posthogSurface,
+        destination: link.href,
+      }, { transport: 'sendBeacon', send_instantly: true });
+    });
+  </script>
 </body>
 </html>
