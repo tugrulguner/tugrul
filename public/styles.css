@@ -32,6 +32,9 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; lette
 h1 { max-width: 900px; font-size: clamp(3.7rem, 6.4vw, 5.8rem); line-height: .95; }
 h1 em { color: var(--terracotta); font-weight: 400; }
 .hero-intro { max-width: 720px; margin: 2.2rem 0 0; font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: var(--muted); line-height: 1.55; }
+.hero-social { display: flex; flex-wrap: wrap; gap: .15rem 1.15rem; margin-top: 1rem; }
+.hero-social-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-size: .8rem; font-weight: 700; letter-spacing: .015em; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+.hero-social-link:hover { color: var(--terracotta-dark); }
 .hero-actions, .resume-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.2rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: .75rem 1.25rem; border-radius: 999px; font-size: .78rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; transition: transform .2s, background .2s; }
 .button:hover { transform: translateY(-2px); }
