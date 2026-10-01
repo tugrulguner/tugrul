@@ -1,6 +1,11 @@
 import { readFile, access } from 'node:fs/promises';
 
 const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
+const styles = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
+const headerStyle = styles.match(/\.site-header\s*\{([^}]+)\}/)?.[1];
+if (!headerStyle?.includes('grid-template-columns: auto minmax(0, 1fr) auto auto') || !headerStyle.includes('gap: 1rem')) {
+  throw new Error('The four header elements need four separated desktop grid columns.');
+}
 const required = [
   '<title>Tugrul Guner',
   'rel="canonical" href="https://tugrul.modepot.io/"',
@@ -23,6 +28,7 @@ const required = [
   "transport: 'sendBeacon'",
   'send_instantly: true',
   'data-posthog-event="resume_downloaded" data-posthog-surface="header"',
+  'href="https://modepot.io/" data-posthog-event="modepot_clicked" data-posthog-surface="header">ModePot',
   'data-posthog-event="resume_downloaded" data-posthog-surface="hero"',
   'class="hero-social" aria-label="Profiles and newsletter"',
   'href="https://x.com/Tugrul_Guner" rel="me" data-posthog-event="social_profile_clicked" data-posthog-network="x" data-posthog-surface="hero"',
