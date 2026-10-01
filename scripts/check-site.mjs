@@ -23,6 +23,7 @@ const required = [
   "transport: 'sendBeacon'",
   'send_instantly: true',
   'data-posthog-event="resume_downloaded" data-posthog-surface="header"',
+  'href="https://modepot.io/" data-posthog-event="modepot_clicked" data-posthog-surface="header">ModePot',
   'data-posthog-event="resume_downloaded" data-posthog-surface="hero"',
   'class="hero-social" aria-label="Profiles and newsletter"',
   'href="https://x.com/Tugrul_Guner" rel="me" data-posthog-event="social_profile_clicked" data-posthog-network="x" data-posthog-surface="hero"',
