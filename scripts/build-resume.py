@@ -126,13 +126,13 @@ story = [
     p("Toronto, ON, Canada &nbsp; | &nbsp; tugrulgunr@gmail.com &nbsp; | &nbsp; (514) 585-3990 &nbsp; | &nbsp; linkedin.com/in/tugrulguner", contact_style),
 
     p("PROFILE", section_style),
-    p("AI engineering leader with an MBA, a Ph.D., more than five years of AI and MLOps experience, and a decade of Python expertise. I directly manage four people, provide technical and cross-functional leadership across two pods, and manage a portfolio of more than six products. I combine portfolio-level strategy and stakeholder leadership with hands-on work in architecture, prototypes, shared platforms, and production delivery."),
+    p("AI engineering leader and hands-on architect who builds high-performing teams and scalable, robust backend, AI, and agentic systems. Lead two cross-functional pods across a portfolio of more than six products, combining product direction and stakeholder leadership with architecture and production delivery. Operate well under pressure and make difficult tradeoffs without lowering engineering standards."),
 
     p("EXPERIENCE", section_style),
     job(
         "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
-            "Directly manage four people and provide cross-functional and technical leadership across two separate pods of five and seven people.",
+            "Lead two separate cross-functional pods of five and seven people across a portfolio of more than six products, with responsibility for technical direction, cross-team alignment, and delivery.",
             "In under six months, led one pod to a 2.5x increase in delivery velocity and helped the team launch three products, including a recommendation system that improved menu-item attachment rate by 4x.",
             "The first pod's delivery improvement led to responsibility for the separate second pod; now manage a portfolio of more than six products across both, aligning priorities, architecture, stakeholders, and delivery.",
             "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
