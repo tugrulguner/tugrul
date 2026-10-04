@@ -133,23 +133,30 @@ story = [
         "AI Engineering Manager", "CDAI", "Toronto, ON | Jan 2026 - Present",
         [
             "Lead two separate cross-functional pods of five and seven people across a portfolio of more than six products, with responsibility for technical direction, cross-team alignment, and delivery.",
-            "In under six months, led one pod to a 2.5x increase in delivery velocity and helped the team launch three products, including a recommendation system that improved menu-item attachment rate by 4x.",
-            "The first pod's delivery improvement led to responsibility for the separate second pod; now manage a portfolio of more than six products across both, aligning priorities, architecture, stakeholders, and delivery.",
+            "In under six months, led one pod to a 2.5x increase in delivery velocity and helped the team launch three products. That delivery improvement led to responsibility for the second, separate pod.",
+            "Helped deliver a recommendation system that improved menu-item attachment rate by 4x.",
             "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
-            "Started the company's AI &amp; Science channel and continuously share developments across both fields; co-host the company-wide AI Center of Excellence meeting with the enterprise architect.",
-            "Lead stakeholders at every level and build high-performing teams around ownership, strong engineering standards, and fast delivery.",
+            "Build high-performing teams around ownership and engineering standards; started the AI &amp; Science channel and co-host the company-wide AI Center of Excellence meeting.",
         ],
     ),
     Spacer(1, 3),
     job(
         "Technical Manager, AI Architect", "Haptiq", "Toronto, ON | May 2025 - Jan 2026",
         [
-            "Built Haptiq's AI team and first AI infrastructure, establishing the roadmap, modular architecture, and engineering practices from the ground up.",
-            "Recruited and led a seven-person team across ML engineering, MLOps, and backend development; created a culture of ownership, knowledge-sharing, and high performance.",
+            "Built Haptiq's AI team and first AI infrastructure from the ground up; recruited and led seven people across ML engineering, MLOps, and backend development.",
             "Led technical delivery and client conversations for the company's first AI product, helping sell AI solutions to companies and contributing to more than $2M in new revenue.",
-            "Worked directly with clients and executives to turn business needs into product direction, architecture, delivery plans, risk assessments, and performance reporting.",
-            "Standardized reviews, documentation, release management, sprint planning, and ownership to turn a new team into a reliable delivery system.",
+            "Worked with clients and executives on product direction, architecture, delivery plans, risk assessments, and performance reporting.",
+            "Established ownership, knowledge-sharing, reviews, documentation, release management, and sprint planning for reliable delivery.",
         ],
+    ),
+    Spacer(1, 3),
+    job(
+        "Senior Tech Lead", "Quotograph.io", "Waterloo, Ontario, Canada (Remote) | Jul 2025 - Present",
+        [],
+    ),
+    job(
+        "Chief Technology Officer", "Quotograph.io", "Waterloo, Ontario, Canada (Remote) | Jan 2024 - Jul 2025",
+        [],
     ),
     Spacer(1, 3),
     job(

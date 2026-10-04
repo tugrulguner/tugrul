@@ -1,4 +1,6 @@
 import { readFile, access } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
 const styles = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
@@ -130,4 +132,5 @@ if (!title || title.length > 60) {
 for (const path of ['../public/styles.css', '../public/favicon.svg', '../public/robots.txt', '../public/sitemap.xml', '../public/llms.txt', '../public/tugrul-guner.jpg', '../public/social-card.png', '../public/tugrul-guner-resume.pdf']) {
   await access(new URL(path, import.meta.url));
 }
+execFileSync('python3', [fileURLToPath(new URL('./check-career-sync.py', import.meta.url))], { stdio: 'inherit' });
 console.log(`Site checks passed (${required.length} content assertions, 8 required assets).`);
