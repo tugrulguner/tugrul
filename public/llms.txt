@@ -18,6 +18,7 @@ ModePot is where he builds tools and systems he wants to exist. Passionately Cur
 
 - AI Engineering Manager, CDAI (2026–present): directly manages four people and provides technical and cross-functional leadership across two separate pods of five and seven. In under six months, he led one pod to a 2.5x increase in delivery velocity and helped the team launch three products. The first pod’s delivery improvement led to responsibility for the second pod. He now manages a portfolio of more than six products across both pods and contributed to a recommendation system that improved menu-item attachment rate 4x. Initiated the AI & Science channel, co-hosts the company-wide AI Center of Excellence meeting, and created recurring social events.
 - Technical Manager and AI Architect, Haptiq (2025–2026): built the AI team and first AI infrastructure, created its high-performance engineering culture, led client and executive conversations, and helped sell the company's first AI product to businesses as part of more than $2 million in new revenue.
+- Quotograph.io, Waterloo, Ontario, Canada (Remote): Senior Tech Lead (Jul 2025–present); Chief Technology Officer (Jan 2024–Jul 2025).
 - Lead MLOps Engineer, Arteria AI (2024–2025)
 - Senior MLOps Engineer, Arteria AI (2022–2024)
 
