@@ -6,6 +6,7 @@ on:
     paths:
       - "public/**"
       - "scripts/**"
+      - "tests/**"
       - "career-data.json"
       - "requirements-career.txt"
       - "package.json"
@@ -17,6 +18,7 @@ on:
     paths:
       - "public/**"
       - "scripts/**"
+      - "tests/**"
       - "career-data.json"
       - "requirements-career.txt"
       - "package.json"

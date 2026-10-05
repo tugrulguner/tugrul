@@ -50,7 +50,10 @@ class CareerPipelineTests(unittest.TestCase):
             self.assertIn(role["title"], resume_text)
         self.assertIn("&lt;", html)
 
-    def test_resume_is_one_page_and_contains_condensed_roles(self):
+    def test_resume_is_reproducible_one_page_and_contains_condensed_roles(self):
+        first = (ROOT / "public/tugrul-guner-resume.pdf").read_bytes()
+        subprocess.run([PYTHON, "scripts/build-resume.py"], cwd=ROOT, check=True)
+        self.assertEqual(first, (ROOT / "public/tugrul-guner-resume.pdf").read_bytes())
         result = subprocess.run([PYTHON, "scripts/validate-resume.py"], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 

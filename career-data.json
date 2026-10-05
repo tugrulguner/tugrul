@@ -6,7 +6,6 @@
       "company": "CDAI",
       "dates": "Jan 2026–present",
       "location": "Toronto, Ontario, Canada",
-      "resume_dates": "Toronto, ON | Jan 2026 - Present",
       "website_bullets": [
         "Lead two separate cross-functional pods of five and seven people across a portfolio of more than six products, with responsibility for technical direction, cross-team alignment, and delivery.",
         "In under six months, led one pod to a 2.5× increase in delivery velocity and helped the team launch three products.",
@@ -17,10 +16,11 @@
         "Lead stakeholders at every level and build high-performing teams around ownership, strong engineering standards, and fast delivery."
       ],
       "resume_bullets": [
-        "Lead two separate cross-functional pods of five and seven across more than six products, owning technical direction, alignment, and delivery.",
-        "In under six months, one pod achieved 2.5× delivery velocity and the team launched three products; the result led to responsibility for a second, separate pod.",
-        "Helped deliver a recommendation system that improved menu-item attachment rate 4×.",
-        "Remain hands-on across architecture and production work; co-host the company-wide AI Center of Excellence meeting."
+        "Lead two separate cross-functional pods of five and seven people across a portfolio of more than six products, with responsibility for technical direction, cross-team alignment, and delivery.",
+        "In under six months, led one pod to a 2.5× increase in delivery velocity and helped the team launch three products. That delivery improvement led to responsibility for the second, separate pod.",
+        "Helped deliver a recommendation system that improved menu-item attachment rate by 4×.",
+        "Remain hands-on: prototype ideas, make architectural changes, deliver production work, and build shared platforms that reduce redundancy and improve scalability.",
+        "Build high-performing teams around ownership and engineering standards; started the AI & Science channel and co-host the company-wide AI Center of Excellence meeting."
       ]
     },
     {
@@ -28,7 +28,6 @@
       "company": "Haptiq",
       "dates": "May 2025–Jan 2026",
       "location": "Toronto, Ontario, Canada",
-      "resume_dates": "Toronto, ON | May 2025 - Jan 2026",
       "website_bullets": [
         "Built Haptiq’s AI team and first AI infrastructure, establishing the modular architecture, roadmap, and engineering practices from the ground up.",
         "Recruited and led a seven-person team across ML engineering, MLOps, and backend development, creating a culture of ownership, knowledge-sharing, and high performance.",
@@ -37,9 +36,10 @@
         "Standardized reviews, documentation, release management, sprint planning, and ownership to turn a new team into a reliable delivery system."
       ],
       "resume_bullets": [
-        "Built the AI team and first AI infrastructure, recruiting and leading seven ML, MLOps, and backend engineers.",
-        "Led technical delivery and client conversations for the first AI product, contributing to more than $2M in new revenue.",
-        "Shaped product direction, architecture, delivery plans, and engineering practices with clients and executives."
+        "Built Haptiq's AI team and first AI infrastructure from the ground up; recruited and led seven people across ML engineering, MLOps, and backend development.",
+        "Led technical delivery and client conversations for the company's first AI product, helping sell AI solutions to companies and contributing to more than $2M in new revenue.",
+        "Worked with clients and executives on product direction, architecture, delivery plans, risk assessments, and performance reporting.",
+        "Established ownership, knowledge-sharing, reviews, documentation, release management, and sprint planning for reliable delivery."
       ]
     },
     {
@@ -47,7 +47,6 @@
       "company": "Quotograph.io",
       "dates": "Jul 2025 – Present",
       "location": "Waterloo, Ontario, Canada · Remote",
-      "resume_dates": "Waterloo, Ontario, Canada (Remote) | Jul 2025 - Present",
       "website_bullets": [],
       "resume_bullets": []
     },
@@ -56,7 +55,6 @@
       "company": "Quotograph.io",
       "dates": "Jan 2024 – Jul 2025",
       "location": "Waterloo, Ontario, Canada · Remote",
-      "resume_dates": "Waterloo, Ontario, Canada (Remote) | Jan 2024 - Jul 2025",
       "website_bullets": [],
       "resume_bullets": []
     },
@@ -65,14 +63,13 @@
       "company": "Arteria AI",
       "dates": "Dec 2024–May 2025",
       "location": "Toronto, Ontario, Canada",
-      "resume_dates": "Toronto, ON | Dec 2024 - May 2025",
       "website_bullets": [
         "Architected scalable AI and backend systems and integrated Ray with Kubernetes.",
         "Led cross-functional delivery, mentoring, cost optimization, availability, and fault-tolerance work."
       ],
       "resume_bullets": [
-        "Architected scalable AI and backend systems and integrated Ray with Kubernetes.",
-        "Led cross-functional delivery, mentoring, cost optimization, availability, and fault tolerance."
+        "Architected scalable AI and backend systems aligned with business goals and integrated Ray with Kubernetes.",
+        "Led cross-functional delivery, mentoring, cost optimization, availability, and fault-tolerance work."
       ]
     },
     {
@@ -80,7 +77,6 @@
       "company": "Arteria AI",
       "dates": "Sep 2022–Dec 2024",
       "location": "Toronto, Ontario, Canada",
-      "resume_dates": "Toronto, ON | Sep 2022 - Dec 2024",
       "website_bullets": [
         "Automated backend systems for model integration and scaling, and built user-friendly APIs for rapid experimentation and deployment.",
         "Reduced Kubernetes infrastructure costs by 60% with KServe.",
@@ -88,9 +84,9 @@
         "Built CI/CD pipelines with GitHub Actions and Databricks to streamline the machine-learning lifecycle."
       ],
       "resume_bullets": [
-        "Automated model integration/scaling and built APIs for experimentation and deployment.",
-        "Cut Kubernetes costs 60% with KServe; improved model performance 10× with quantization and ONNX.",
-        "Built ML lifecycle CI/CD with GitHub Actions and Databricks."
+        "Automated backend systems for model integration and scaling, and built user-friendly APIs for rapid experimentation and deployment.",
+        "Reduced Kubernetes infrastructure costs by 60% with KServe and improved model performance 10× with quantization and ONNX.",
+        "Built CI/CD pipelines with GitHub Actions and Databricks to streamline the machine-learning lifecycle."
       ]
     }
   ]
