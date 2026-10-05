@@ -92,8 +92,12 @@ const required = [
   '<h3>Chief Technology Officer</h3><p>Jan 2024 – Jul 2025</p>',
   'Waterloo, Ontario, Canada · Remote',
   'Agentic engineering, from harnesses to production systems.',
-  'I configure and orchestrate agents such as Hermes Agent and Claude Code',
-  'verify results through tests, review, and execution evidence',
+  'I design and operate agentic workflows across Hermes Agent, Claude Code, and Cursor’s agent capabilities',
+  'CLI-based execution',
+  'task-appropriate model routing',
+  'coordinate multiple agents across distinct tasks',
+  'delegate focused work to subagents',
+  'verification through tests, review, and execution evidence',
   'My experience spans agent orchestration, reusable skills, evaluation, low-level LLM optimization',
   'Hermes Agent and Claude Code: configuring high-level agent environments',
   'deepagents: building custom agents with a programmable harness library.',
@@ -143,7 +147,7 @@ if (JSON.stringify(groupNames) !== JSON.stringify(expectedGroups)) {
   throw new Error('Technical range must retain the eight distinct capability layers.');
 }
 const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
-for (const token of ['Hermes Agent and Claude Code are high-level agent environments', 'deepagents is a programmable agent-harness library', 'Superpowers is a collection', 'MCP is the Model Context Protocol', 'FastMCP is the Python framework', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
+for (const token of ["Cursor's agent capabilities", 'CLI-based execution', 'task-appropriate model routing', 'coordinates multiple agents across distinct tasks', 'delegates focused work to subagents', 'Hermes Agent and Claude Code are high-level agent environments', 'deepagents is a programmable agent-harness library', 'Superpowers is a collection', 'MCP is the Model Context Protocol', 'FastMCP is the Python framework', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
   if (!llms.includes(token)) throw new Error(`Machine-readable technical range is missing: ${token}`);
 }
 for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {
@@ -152,7 +156,7 @@ for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {
   }
 }
 const resumeSource = await readFile(new URL('../scripts/build-resume.py', import.meta.url), 'utf8');
-for (const token of ['Hermes Agent (high-level)', 'deepagents (programmable library)', '<b>Skills:</b> Superpowers', '<b>Protocol:</b> MCP', '<b>MCP framework:</b> FastMCP', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
+for (const token of ['Hermes Agent', 'Claude Code', 'Cursor Agent', 'deepagents', 'CLI execution', 'model routing', 'multi-agent coordination', 'subagents', '<b>Skills:</b> Superpowers', '<b>Protocol:</b> MCP', '<b>MCP framework:</b> FastMCP', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
   if (!resumeSource.includes(token)) throw new Error(`Resume source technical range missing: ${token}`);
 }
 for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {
