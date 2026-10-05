@@ -15,6 +15,8 @@ for role in roles:
     assert role['location'] in text, f"Missing location: {role['location']}"
 for term in ['2.5×','three products','4×','60%','10×']:
     assert term in text, f'Missing outcome: {term}'
+for term in ['Hermes Agent', 'Claude Code', 'Cursor Agent', 'deepagents', 'CLI execution', 'model routing', 'multi-agent coordination', 'subagents']:
+    assert term in text, f'Missing agentic capability: {term}'
 assert 'more than $2M' in text
 assert 'four direct reports' not in text.lower()
 print(f'Resume validation passed ({len(pdf)} page; {len(roles)} roles; expected metrics present).')
