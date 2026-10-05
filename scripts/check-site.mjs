@@ -92,9 +92,17 @@ const required = [
   '<h3>Chief Technology Officer</h3><p>Jan 2024 – Jul 2025</p>',
   'Waterloo, Ontario, Canada · Remote',
   'From models and agents to the infrastructure that makes them reliable.',
-  'I design agent workflows, reusable skills, execution and evaluation harnesses, and multi-agent systems',
-  'Hermes Agent, Deep Agents, Pydantic AI, LangGraph',
-  'Superpowers, Agent Skills, MCP, FastMCP',
+  'My experience spans agent orchestration, reusable skills, evaluation, low-level LLM optimization',
+  'Hermes Agent: a high-level autonomous-agent harness.',
+  'deepagents: a programmable agent-harness library',
+  'Pydantic AI for typed agents; LangGraph for stateful workflows and durable execution; DSPy for composing and optimizing LLM programs.',
+  'Superpowers: a collection of reusable software-development skills.',
+  'MCP: the Model Context Protocol.',
+  'FastMCP: the Python framework for implementing MCP servers and clients.',
+  'PyTorch, TensorFlow, Hugging Face, llama.cpp, vLLM',
+  'LLM inference optimization, quantization, and ONNX optimization.',
+  'FastAPI, Django',
+  'PostgreSQL, DynamoDB, MongoDB, Qdrant, Redis, RabbitMQ',
   'I began coding and working with machine learning during my master’s degree in 2012.',
   'computer vision with microscope images during my first postdoc',
   'image reconstruction during my second',
@@ -121,6 +129,34 @@ const required = [
 for (const token of required) {
   if (!html.includes(token)) throw new Error(`Missing required site content: ${token}`);
 }
+const technicalRange = html.match(/<section class="skills"[\s\S]*?<\/section>/)?.[0];
+const groupNames = [...technicalRange.matchAll(/<dt>([^<]+)<\/dt>/g)].map(match => match[1]);
+const expectedGroups = [
+  'Agent harnesses', 'Agent &amp; LLM application development',
+  'Skills, protocols &amp; tool integration', 'Models &amp; low-level inference',
+  'Model serving &amp; ML operations', 'Backend engineering',
+  'Databases &amp; messaging', 'Languages, cloud &amp; delivery',
+];
+if (JSON.stringify(groupNames) !== JSON.stringify(expectedGroups)) {
+  throw new Error('Technical range must retain the eight distinct capability layers.');
+}
+const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
+for (const token of ['Hermes Agent is a high-level autonomous-agent harness', 'deepagents is a programmable agent-harness library', 'Superpowers is a collection', 'MCP is the Model Context Protocol', 'FastMCP is the Python framework', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
+  if (!llms.includes(token)) throw new Error(`Machine-readable technical range is missing: ${token}`);
+}
+for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {
+  if (technicalRange.includes(stale) || llms.includes(stale)) {
+    throw new Error(`Stale or conflated technology wording: ${stale}`);
+  }
+}
+const resumeSource = await readFile(new URL('../scripts/build-resume.py', import.meta.url), 'utf8');
+for (const token of ['Hermes Agent (high-level)', 'deepagents (programmable library)', '<b>Skills:</b> Superpowers', '<b>Protocol:</b> MCP', '<b>MCP framework:</b> FastMCP', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
+  if (!resumeSource.includes(token)) throw new Error(`Resume source technical range missing: ${token}`);
+}
+for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {
+  if (resumeSource.includes(stale)) throw new Error(`Stale resume technology wording: ${stale}`);
+}
+console.log('Technical range checks passed (8 capability layers; HTML, llms.txt, resume source).');
 const description = html.match(/<meta name="description" content="([^"]+)">/)?.[1];
 if (!description || description.length > 160) {
   throw new Error(`Meta description must be present and at most 160 characters; got ${description?.length ?? 0}`);

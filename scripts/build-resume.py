@@ -177,9 +177,11 @@ story = [
     ),
 
     p("TECHNICAL RANGE", section_style),
-    p("<b>Languages:</b> Python, SQL, Bash, Git &nbsp; | &nbsp; <b>ML:</b> PyTorch, TensorFlow, Hugging Face, DSPy, vLLM", skill_style),
-    p("<b>Agents:</b> Hermes Agent, Superpowers, Deep Agents, Pydantic AI, LangGraph, MCP/FastMCP &nbsp; | &nbsp; <b>MLOps:</b> KServe, MLflow, Ray Serve, LitServe", skill_style),
-    p("<b>Platforms:</b> AWS, Azure, GCP, Docker, Kubernetes, Databricks, GitHub Actions &nbsp; | &nbsp; <b>Systems:</b> FastAPI, Django, PostgreSQL, Qdrant, MongoDB, Redis, RabbitMQ", skill_style),
+    p("<b>Agent harnesses:</b> Hermes Agent (high-level), deepagents (programmable library) &nbsp; | &nbsp; <b>Agent/LLM development:</b> Pydantic AI, LangGraph, DSPy", skill_style),
+    p("<b>Skills:</b> Superpowers, custom skills &nbsp; | &nbsp; <b>Protocol:</b> MCP &nbsp; | &nbsp; <b>MCP framework:</b> FastMCP", skill_style),
+    p("<b>Models/inference:</b> PyTorch, TensorFlow, Hugging Face, llama.cpp, vLLM; low-level LLM optimization, quantization, ONNX", skill_style),
+    p("<b>ML operations:</b> KServe, MLflow, Ray Serve, LitServe, Databricks &nbsp; | &nbsp; <b>Backend/data:</b> FastAPI, Django, PostgreSQL, DynamoDB, MongoDB, Qdrant, Redis, RabbitMQ", skill_style),
+    p("<b>Languages/platforms:</b> Python, SQL, Bash, Git; AWS, Azure, GCP, Docker, Kubernetes, GitHub Actions", skill_style),
 
     p("EDUCATION &amp; RESEARCH", section_style),
     p("<b>Postdoctoral Fellow</b>, University of Ottawa, 2021–2022 — deep learning for quantum optics and beam shaping", skill_style),
