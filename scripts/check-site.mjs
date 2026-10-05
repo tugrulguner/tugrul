@@ -91,10 +91,12 @@ const required = [
   '<h3>Senior Tech Lead</h3><p>Jul 2025 – Present</p>',
   '<h3>Chief Technology Officer</h3><p>Jan 2024 – Jul 2025</p>',
   'Waterloo, Ontario, Canada · Remote',
-  'From models and agents to the infrastructure that makes them reliable.',
+  'Agentic engineering, from harnesses to production systems.',
+  'I configure and orchestrate agents such as Hermes Agent and Claude Code',
+  'verify results through tests, review, and execution evidence',
   'My experience spans agent orchestration, reusable skills, evaluation, low-level LLM optimization',
-  'Hermes Agent: a high-level autonomous-agent harness.',
-  'deepagents: a programmable agent-harness library',
+  'Hermes Agent and Claude Code: configuring high-level agent environments',
+  'deepagents: building custom agents with a programmable harness library.',
   'Pydantic AI for typed agents; LangGraph for stateful workflows and durable execution; DSPy for composing and optimizing LLM programs.',
   'Superpowers: a collection of reusable software-development skills.',
   'MCP: the Model Context Protocol.',
@@ -141,7 +143,7 @@ if (JSON.stringify(groupNames) !== JSON.stringify(expectedGroups)) {
   throw new Error('Technical range must retain the eight distinct capability layers.');
 }
 const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
-for (const token of ['Hermes Agent is a high-level autonomous-agent harness', 'deepagents is a programmable agent-harness library', 'Superpowers is a collection', 'MCP is the Model Context Protocol', 'FastMCP is the Python framework', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
+for (const token of ['Hermes Agent and Claude Code are high-level agent environments', 'deepagents is a programmable agent-harness library', 'Superpowers is a collection', 'MCP is the Model Context Protocol', 'FastMCP is the Python framework', 'Django', 'DynamoDB', 'MongoDB', 'llama.cpp', 'low-level LLM optimization']) {
   if (!llms.includes(token)) throw new Error(`Machine-readable technical range is missing: ${token}`);
 }
 for (const stale of ['Deep Agents', 'Agent Skills', 'MCP/FastMCP']) {

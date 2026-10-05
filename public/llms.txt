@@ -6,11 +6,11 @@ Tugrul Guner is an AI Engineering Manager at CDAI in Toronto, Canada. He leads t
 
 He created ModePot, an open-source family of frameworks, tools, engines, and games built around simpler APIs, modern runtimes, performance, and explicit boundaries between deterministic software and agent-owned decisions.
 
-He also contributes to Hermes Agent and Superpowers. His public work includes a merged Hermes Kanban reliability fix and submitted improvements across agent skills, harness support, MCP, and tooling. His experience spans agent orchestration, reusable skills, evaluation, low-level LLM optimization, backend architecture, and production infrastructure.
+He also contributes to Hermes Agent and Superpowers. His public work includes a merged Hermes Kanban reliability fix and submitted improvements across agent skills, harness support, MCP, and tooling. His experience spans agent orchestration, reusable skills, evaluation, low-level LLM optimization, backend architecture, and production infrastructure. He configures and orchestrates agents such as Hermes Agent and Claude Code with project context, reusable skills, executable tools, and clear boundaries. He designs workflows combining agent-driven decisions with deterministic software, delegates focused tasks, and verifies results through tests, review, and execution evidence.
 
 ## Technical range
 
-- Agent harnesses: Hermes Agent is a high-level autonomous-agent harness; deepagents is a programmable agent-harness library for custom agents, at a lower level than a complete agent application.
+- Agent harnesses: Hermes Agent and Claude Code are high-level agent environments configured with project context, tool access, and focused delegation; deepagents is a programmable agent-harness library for building custom agents.
 - Agent and LLM application development: Pydantic AI for typed agents, LangGraph for stateful workflows and durable execution, and DSPy for composing and optimizing LLM programs.
 - Skills, protocols, and tool integration: Superpowers is a collection of reusable software-development skills; MCP is the Model Context Protocol; FastMCP is the Python framework for implementing MCP servers and clients. Custom skill authoring and tool integration are capabilities, not additional framework names.
 - Models and low-level inference: PyTorch, TensorFlow, Hugging Face, llama.cpp, vLLM; LLM inference optimization, quantization, and ONNX optimization.

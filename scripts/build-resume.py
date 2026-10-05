@@ -177,7 +177,7 @@ story = [
     ),
 
     p("TECHNICAL RANGE", section_style),
-    p("<b>Agent harnesses:</b> Hermes Agent (high-level), deepagents (programmable library) &nbsp; | &nbsp; <b>Agent/LLM development:</b> Pydantic AI, LangGraph, DSPy", skill_style),
+    p("<b>Agent harnesses:</b> Hermes Agent (high-level), Claude Code, deepagents (programmable library) &nbsp; | &nbsp; <b>Agent/LLM development:</b> Pydantic AI, LangGraph, DSPy", skill_style),
     p("<b>Skills:</b> Superpowers, custom skills &nbsp; | &nbsp; <b>Protocol:</b> MCP &nbsp; | &nbsp; <b>MCP framework:</b> FastMCP", skill_style),
     p("<b>Models/inference:</b> PyTorch, TensorFlow, Hugging Face, llama.cpp, vLLM; low-level LLM optimization, quantization, ONNX", skill_style),
     p("<b>ML operations:</b> KServe, MLflow, Ray Serve, LitServe, Databricks &nbsp; | &nbsp; <b>Backend/data:</b> FastAPI, Django, PostgreSQL, DynamoDB, MongoDB, Qdrant, Redis, RabbitMQ", skill_style),
