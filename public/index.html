@@ -122,7 +122,7 @@
   <footer><p>© <span id="year">2026</span> Tugrul Guner</p><div><a class="ph-no-autocapture" href="https://x.com/Tugrul_Guner" rel="me" data-posthog-event="social_profile_clicked" data-posthog-network="x" data-posthog-surface="footer">X</a><a class="ph-no-autocapture" href="https://www.linkedin.com/in/tugrulguner/" rel="me" data-posthog-event="social_profile_clicked" data-posthog-network="linkedin" data-posthog-surface="footer">LinkedIn</a><a class="ph-no-autocapture" href="https://github.com/tugrulguner" data-posthog-event="github_profile_clicked" data-posthog-surface="footer">GitHub</a><a class="ph-no-autocapture" href="https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en" data-posthog-event="scholar_clicked" data-posthog-surface="footer">Scholar</a><a class="ph-no-autocapture" href="https://tugrulguner.beehiiv.com/" data-posthog-event="newsletter_clicked" data-posthog-content="homepage" data-posthog-surface="footer">Newsletter</a><a class="ph-no-autocapture" href="https://medium.com/@tugrulguner" data-posthog-event="medium_clicked" data-posthog-content="homepage" data-posthog-surface="footer">Medium</a><a class="ph-no-autocapture" href="https://modepot.io/" data-posthog-event="modepot_clicked" data-posthog-surface="footer">ModePot</a></div></footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.addEventListener('click', (event) => {
+    const captureConversion = (event) => {
       if (!(event.target instanceof Element)) return;
       const link = event.target.closest('[data-posthog-event]');
       if (!link || !window.posthog) return;
@@ -138,6 +138,10 @@
         transport: 'sendBeacon',
         send_instantly: true,
       });
+    };
+    document.addEventListener('click', captureConversion);
+    document.addEventListener('auxclick', (event) => {
+      if (event.button === 1) captureConversion(event);
     });
   </script>
 </body>

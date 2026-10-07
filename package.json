@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "check": "python3 scripts/build-career.py --check && python3 scripts/check-career-sync.py && python3 scripts/validate-resume.py && python3 -m unittest discover -s tests -v && node scripts/check-site.mjs",
+    "check": "python3 scripts/build-career.py --check && python3 scripts/check-career-sync.py && python3 scripts/validate-resume.py && python3 -m unittest discover -s tests -v && node tests/posthog-conversion-runtime.test.mjs && node scripts/check-site.mjs",
     "career:build": "python3 scripts/build-career.py && python3 scripts/build-resume.py",
     "career:check": "python3 scripts/build-career.py --check && python3 scripts/check-career-sync.py && python3 scripts/validate-resume.py",
     "preview": "wrangler dev",
