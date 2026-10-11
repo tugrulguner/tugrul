@@ -13,8 +13,28 @@ const tracked = [...html.matchAll(/<a\b([^>]*\bdata-posthog-event="[^"]+"[^>]*)>
   return { source, dataset, href: attr('href') };
 });
 assert.ok(tracked.length > 0, 'marked conversion links should exist');
-for (const { source } of tracked) {
+const expectedEvents = [
+  'email_clicked', 'github_profile_clicked', 'medium_article_clicked', 'medium_clicked',
+  'modepot_clicked', 'modepot_project_clicked', 'newsletter_article_clicked',
+  'newsletter_clicked', 'newsletter_subscribe_clicked', 'resume_downloaded',
+  'scholar_clicked', 'social_profile_clicked',
+];
+const eventsByName = new Map();
+for (const { source, dataset, href } of tracked) {
   assert.match(source, /\bclass="[^"]*\bph-no-autocapture\b/, 'all tracked links exclude autocapture');
+  assert.ok(dataset.posthogSurface, 'every event has a placement surface');
+  assert.ok(href, 'every event has a destination');
+  eventsByName.set(dataset.posthogEvent, (eventsByName.get(dataset.posthogEvent) ?? 0) + 1);
+}
+assert.deepEqual([...eventsByName.keys()].sort(), [...expectedEvents].sort(), 'keep the complete established profile event contract');
+const placements = (event, surface) => tracked.filter(({ dataset }) => dataset.posthogEvent === event && dataset.posthogSurface === surface).length;
+for (const [event, surface, minimum] of [
+  ['resume_downloaded', 'header', 1], ['resume_downloaded', 'hero', 1], ['resume_downloaded', 'career', 1],
+  ['newsletter_clicked', 'hero', 1], ['newsletter_clicked', 'writing', 1], ['newsletter_clicked', 'footer', 1],
+  ['modepot_project_clicked', 'personal_profile', 4],
+  ['email_clicked', 'contact', 1], ['newsletter_subscribe_clicked', 'writing', 1],
+]) {
+  assert.ok(placements(event, surface) >= minimum, `${event} must remain reported at ${surface}`);
 }
 
 const listeners = {};
@@ -51,6 +71,11 @@ for (const link of tracked) {
   assert.deepEqual(JSON.parse(JSON.stringify(captures.pop())), expectedCapture);
 }
 assert.equal(captures.length, 0);
+const keyboardLink = tracked.find(({ dataset }) => dataset.posthogEvent === 'resume_downloaded');
+listeners.click({ target: new Element({ ...keyboardLink, dataset: keyboardLink.dataset }), detail: 0 });
+assert.equal(captures.length, 1, 'a click event with detail: 0 records exactly one conversion (unit simulation; not a real keyboard activation)');
+assert.equal(captures[0][0], 'resume_downloaded');
+captures.length = 0;
 const sample = new Element({ dataset: { posthogEvent: 'test' }, href: 'https://example.com' });
 listeners.auxclick({ target: sample, button: 2 });
 listeners.auxclick({ target: sample, button: 0 });
