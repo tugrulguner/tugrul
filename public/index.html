@@ -27,7 +27,8 @@
       const campaignKey = /^(?:utm_|gclid|dclid|gbraid|wbraid|fbclid|msclkid|ttclid|twclid|li_fat_id|epik|mc_cid|mc_eid|campaign|adgroup|ad_id|creative|keyword|matchtype|network)/i;
       const isCampaignKey = (key) => {
         const normalized = key.toLowerCase();
-        return campaignKey.test(normalized) || ['$utm_', '$initial_utm_', '$session_entry_utm_', '$session_exit_'].some((prefix) => normalized.startsWith(prefix));
+        const acquisitionKey = normalized.replace(/^\$(?:initial|session_entry|session_exit)_/, '');
+        return campaignKey.test(acquisitionKey) || ['utm_'].some((prefix) => acquisitionKey.startsWith(prefix));
       };
       const canonicalUrl = (value) => {
         try {
@@ -61,7 +62,7 @@
       defaults: '2026-05-30',
       person_profiles: 'identified_only',
       save_campaign_params: false,
-      disable_feature_flags: true,
+      advanced_disable_flags: true,
       before_send: sanitizePosthogEvent,
       capture_pageview: true,
       capture_pageleave: true,
