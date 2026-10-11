@@ -73,7 +73,7 @@ for (const link of tracked) {
 assert.equal(captures.length, 0);
 const keyboardLink = tracked.find(({ dataset }) => dataset.posthogEvent === 'resume_downloaded');
 listeners.click({ target: new Element({ ...keyboardLink, dataset: keyboardLink.dataset }), detail: 0 });
-assert.equal(captures.length, 1, 'keyboard-generated primary click records exactly one conversion');
+assert.equal(captures.length, 1, 'a click event with detail: 0 records exactly one conversion (unit simulation; not a real keyboard activation)');
 assert.equal(captures[0][0], 'resume_downloaded');
 captures.length = 0;
 const sample = new Element({ dataset: { posthogEvent: 'test' }, href: 'https://example.com' });
