@@ -10,7 +10,7 @@ const tracked = [...html.matchAll(/<a\b([^>]*\bdata-posthog-event="[^"]+"[^>]*)>
     const prop = key.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     dataset[`posthog${prop[0].toUpperCase()}${prop.slice(1)}`] = value;
   }
-  return { source, dataset, href: attr('href') };
+  return { source, dataset, href: new URL(attr('href'), 'https://tugrul.modepot.io').href };
 });
 assert.ok(tracked.length > 0, 'marked conversion links should exist');
 const expectedEvents = [
@@ -51,15 +51,47 @@ const context = {
   },
   window: { posthog: { capture: (...args) => captures.push(args) } },
   Date,
+  URL,
 };
 const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
 vm.runInNewContext(scripts.at(-1)[1], context);
 assert.equal(typeof listeners.click, 'function');
 assert.equal(typeof listeners.auxclick, 'function');
 
+// Execute the exact self-contained sanitizer emitted before SDK initialization.
+const sanitizerSource = scripts[0][1].match(/function sanitizePosthogEvent\(event\) \{[\s\S]*?\n    \}/)?.[0];
+assert.ok(sanitizerSource, 'sanitizer must be defined before posthog.init');
+assert.ok(scripts[0][1].indexOf(sanitizerSource) < scripts[0][1].indexOf('posthog.init('), 'hook must be initialized before SDK init');
+const sanitizerContext = { URL, Date };
+vm.runInNewContext(`${sanitizerSource}; this.sanitize = sanitizePosthogEvent;`, sanitizerContext);
+const stamp = new Date('2026-10-11T12:00:00.000Z');
+const privateSentinel = 'PRIVATE_CAMPAIGN_SENTINEL';
+const cleanEvent = sanitizerContext.sanitize({
+  event: '$pageview', distinct_id: 'public-distinct-id', properties: {
+    token: 'phc_qXkp5FBQfrqHQwkqf3ys8iSoGoMYw2tpTHXGugXJhP8V', $current_url: 'https://example.com/path?utm_source=PRIVATE_CAMPAIGN_SENTINEL&gclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    custom_url: 'https://example.com/cta?fbclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    nested: [{ renamed: 'https://example.org/route?campaign=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL', $session_entry_utm_source: privateSentinel, wbraid: privateSentinel }],
+    $initial_referrer: 'https://ref.example/entry?msclkid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    timestamp: stamp, api_key: 'PRIVATE_API_SENTINEL', authorization: 'PRIVATE_AUTH_SENTINEL',
+    distinct_id: 'preserved-identity', $session_entry_utm_campaign: privateSentinel,
+  }, $set: { $initial_utm_source: privateSentinel, campaign_id: privateSentinel },
+  $set_once: { $session_exit_url: 'https://exit.example/path?ttclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL' },
+});
+const serializedCleanEvent = JSON.stringify(cleanEvent);
+assert.equal(cleanEvent.properties.token, 'phc_qXkp5FBQfrqHQwkqf3ys8iSoGoMYw2tpTHXGugXJhP8V', 'public project token survives');
+assert.equal(cleanEvent.distinct_id, 'public-distinct-id', 'event identity survives');
+assert.equal(cleanEvent.properties.distinct_id, 'preserved-identity', 'nested identity survives');
+assert.equal(cleanEvent.properties.timestamp, stamp, 'Date object is preserved');
+assert.equal(cleanEvent.properties.$current_url, 'https://example.com/path', 'current URL query and hash stripped');
+assert.equal(cleanEvent.properties.custom_url, 'https://example.com/cta', 'URLs sanitized regardless of key');
+assert.equal(cleanEvent.properties.nested[0].renamed, 'https://example.org/route', 'nested URL sanitized');
+for (const forbidden of ['PRIVATE_CAMPAIGN_SENTINEL', 'PRIVATE_API_SENTINEL', 'PRIVATE_AUTH_SENTINEL']) assert.ok(!serializedCleanEvent.includes(forbidden), `${forbidden} must not leak`);
+assert.ok(cleanEvent.$set && cleanEvent.$set_once, 'non-campaign SDK envelope updates survive');
+
 for (const link of tracked) {
   const target = new Element({ ...link, dataset: link.dataset });
-  const expectedProperties = { surface: link.dataset.posthogSurface, destination: link.href };
+  const destination = new URL(link.href);
+  const expectedProperties = { surface: link.dataset.posthogSurface, destination: `${destination.origin}${destination.pathname}` };
   for (const property of ['project', 'network', 'content']) {
     const value = link.dataset[`posthog${property[0].toUpperCase()}${property.slice(1)}`];
     if (value) expectedProperties[property] = value;
