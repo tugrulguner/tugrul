@@ -54,6 +54,7 @@ jobs:
       - run: python scripts/build-career.py
       - run: python scripts/build-resume.py
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: npm run check
   deploy:
     if: github.event_name != 'pull_request'
@@ -80,5 +81,6 @@ jobs:
       - run: python scripts/build-career.py
       - run: python scripts/build-resume.py
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: npm run check
       - run: npx wrangler deploy
