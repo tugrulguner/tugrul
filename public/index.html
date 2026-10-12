@@ -24,11 +24,12 @@
   <link rel="stylesheet" href="/styles.css">
   <script>
     function sanitizePosthogEvent(event) {
-      const campaignKey = /^(?:utm_|campaign)|^(?:gclid|dclid|gbraid|wbraid|fbclid|fbc|fbp|msclkid|ttclid|twclid|li_fat_id|epik|mc_cid|mc_eid|gad_source|gclsrc|igshid|rdt_cid|qclid|sccid|irclid|irclickid|_kx|adgroup|ad_id|creative|keyword|matchtype|network)$/i;
+      const campaignKey = /^(?:utm_|campaign)|^(?:gclid|dclid|gbraid|wbraid|fbclid|fbc|fbp|msclkid|ttclid|twclid|li_fat_id|epik|mc_cid|mc_eid|gad_source|gclsrc|igshid|rdt_cid|qclid|sccid|irclid|irclickid|_kx|adgroup|ad_id|creative|keyword|matchtype)$/i;
       const isCampaignKey = (key) => {
         const acquisitionKey = key.toLowerCase().replace(/^\$/, '').replace(/^(?:initial|session_entry|session_exit)_/, '');
         return campaignKey.test(acquisitionKey);
       };
+      const isCredentialKey = (key) => /^(?:password|passwd|client_secret|access_token|refresh_token|secret)$/i.test(key.toLowerCase().replace(/^\$/, '').replace(/^(?:initial|session_entry|session_exit)_/, ''));
       const canonicalUrl = (value) => {
         try {
           const url = new URL(value, 'https://tugrul.modepot.io');
@@ -44,8 +45,9 @@
         if (value && typeof value === 'object') {
           const result = {};
           for (const [childKey, child] of Object.entries(value)) {
+            if (isCredentialKey(childKey)) continue;
             if (/^(?:api_key|authorization)$/i.test(childKey)) continue;
-            if (/^token$/i.test(childKey) && !(childKey === 'token' && typeof child === 'string' && /^phc_[A-Za-z0-9]+$/.test(child))) continue;
+            if (/^token$/i.test(childKey) && !(key === 'properties' && typeof child === 'string' && /^phc_[A-Za-z0-9]+$/.test(child))) continue;
             const sanitized = clean(child, childKey);
             if (sanitized !== undefined) result[childKey] = sanitized;
           }

@@ -75,9 +75,11 @@ const cleanEvent = sanitizerContext.sanitize({
     nested_relative: [{ link: '//example.org/nested?PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL' }],
     nested: [{ renamed: 'https://example.org/route?campaign=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL', $session_entry_utm_source: privateSentinel, wbraid: privateSentinel }],
     $initial_referrer: 'https://ref.example/entry?msclkid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    $initial_adgroup: privateSentinel, $session_entry_adgroup: privateSentinel,
+    client_secret: 'PRIVATE_CLIENT_SECRET', password: 'PRIVATE_PASSWORD', access_token: 'PRIVATE_ACCESS_TOKEN',
     timestamp: stamp, api_key: 'PRIVATE_API_SENTINEL', authorization: 'PRIVATE_AUTH_SENTINEL',
     distinct_id: 'preserved-identity', $session_entry_utm_campaign: privateSentinel,
-  }, $set: { $initial_utm_source: privateSentinel, campaign_id: privateSentinel },
+  }, $set: { $initial_utm_source: privateSentinel, campaign_id: privateSentinel, client_secret: 'PRIVATE_NESTED_CLIENT_SECRET', password: 'PRIVATE_NESTED_PASSWORD', access_token: 'PRIVATE_NESTED_ACCESS_TOKEN' },
   $set_once: { $session_exit_url: 'https://exit.example/path?ttclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL' },
 });
 const serializedCleanEvent = JSON.stringify(cleanEvent);
@@ -91,7 +93,9 @@ assert.equal(cleanEvent.properties.timestamp, stamp, 'Date object is preserved')
 assert.equal(cleanEvent.properties.$current_url, 'https://example.com/path', 'current URL query and hash stripped');
 assert.equal(cleanEvent.properties.custom_url, 'https://example.com/cta', 'URLs sanitized regardless of key');
 assert.equal(cleanEvent.properties.nested[0].renamed, 'https://example.org/route', 'nested URL sanitized');
-for (const forbidden of ['PRIVATE_CAMPAIGN_SENTINEL', 'PRIVATE_API_SENTINEL', 'PRIVATE_AUTH_SENTINEL']) assert.ok(!serializedCleanEvent.includes(forbidden), `${forbidden} must not leak`);
+for (const forbidden of ['PRIVATE_CAMPAIGN_SENTINEL', 'PRIVATE_API_SENTINEL', 'PRIVATE_AUTH_SENTINEL', 'PRIVATE_CLIENT_SECRET', 'PRIVATE_PASSWORD', 'PRIVATE_ACCESS_TOKEN', 'PRIVATE_NESTED_CLIENT_SECRET', 'PRIVATE_NESTED_PASSWORD', 'PRIVATE_NESTED_ACCESS_TOKEN']) assert.ok(!serializedCleanEvent.includes(forbidden), `${forbidden} must not leak`);
+assert.ok(!('client_secret' in cleanEvent.properties) && !('password' in cleanEvent.properties) && !('access_token' in cleanEvent.properties));
+assert.ok(!('$initial_adgroup' in cleanEvent.properties) && !('$session_entry_adgroup' in cleanEvent.properties));
 assert.ok(cleanEvent.$set && cleanEvent.$set_once, 'non-campaign SDK envelope updates survive');
 
 for (const link of tracked) {
