@@ -24,15 +24,14 @@
   <link rel="stylesheet" href="/styles.css">
   <script>
     function sanitizePosthogEvent(event) {
-      const campaignKey = /^(?:utm_|gclid|dclid|gbraid|wbraid|fbclid|msclkid|ttclid|twclid|li_fat_id|epik|mc_cid|mc_eid|campaign|adgroup|ad_id|creative|keyword|matchtype|network)/i;
+      const campaignKey = /^(?:utm_|campaign)|^(?:gclid|dclid|gbraid|wbraid|fbclid|fbc|fbp|msclkid|ttclid|twclid|li_fat_id|epik|mc_cid|mc_eid|gad_source|gclsrc|igshid|rdt_cid|qclid|sccid|irclid|irclickid|_kx|adgroup|ad_id|creative|keyword|matchtype|network)$/i;
       const isCampaignKey = (key) => {
-        const normalized = key.toLowerCase();
-        const acquisitionKey = normalized.replace(/^\$(?:initial|session_entry|session_exit)_/, '');
-        return campaignKey.test(acquisitionKey) || ['utm_'].some((prefix) => acquisitionKey.startsWith(prefix));
+        const acquisitionKey = key.toLowerCase().replace(/^\$/, '').replace(/^(?:initial|session_entry|session_exit)_/, '');
+        return campaignKey.test(acquisitionKey);
       };
       const canonicalUrl = (value) => {
         try {
-          const url = new URL(value);
+          const url = new URL(value, 'https://tugrul.modepot.io');
           if (url.protocol !== 'http:' && url.protocol !== 'https:') return undefined;
           return `${url.origin}${url.pathname}`;
         } catch { return undefined; }
@@ -40,7 +39,7 @@
       const clean = (value, key = '') => {
         if (isCampaignKey(key)) return undefined;
         if (value instanceof Date) return value;
-        if (typeof value === 'string') return /^https?:\/\//i.test(value) ? canonicalUrl(value) : value;
+        if (typeof value === 'string') return /^(?:https?:)?\/\//i.test(value) ? canonicalUrl(value) : value;
         if (Array.isArray(value)) return value.map((item) => clean(item)).filter((item) => item !== undefined);
         if (value && typeof value === 'object') {
           const result = {};

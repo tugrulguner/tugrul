@@ -70,6 +70,9 @@ const cleanEvent = sanitizerContext.sanitize({
   event: '$pageview', distinct_id: 'public-distinct-id', properties: {
     token: 'phc_qXkp5FBQfrqHQwkqf3ys8iSoGoMYw2tpTHXGugXJhP8V', $current_url: 'https://example.com/path?utm_source=PRIVATE_CAMPAIGN_SENTINEL&gclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
     custom_url: 'https://example.com/cta?fbclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    protocol_relative: '//example.org/path?gclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
+    network_name: 'x', $gclid: privateSentinel, $initial_fbc: privateSentinel,
+    nested_relative: [{ link: '//example.org/nested?PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL' }],
     nested: [{ renamed: 'https://example.org/route?campaign=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL', $session_entry_utm_source: privateSentinel, wbraid: privateSentinel }],
     $initial_referrer: 'https://ref.example/entry?msclkid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL',
     timestamp: stamp, api_key: 'PRIVATE_API_SENTINEL', authorization: 'PRIVATE_AUTH_SENTINEL',
@@ -78,6 +81,9 @@ const cleanEvent = sanitizerContext.sanitize({
   $set_once: { $session_exit_url: 'https://exit.example/path?ttclid=PRIVATE_CAMPAIGN_SENTINEL#PRIVATE_CAMPAIGN_SENTINEL' },
 });
 const serializedCleanEvent = JSON.stringify(cleanEvent);
+assert.equal(cleanEvent.properties.network_name, 'x');
+assert.equal(cleanEvent.properties.protocol_relative, 'https://example.org/path');
+assert.equal(cleanEvent.properties.nested_relative[0].link, 'https://example.org/nested');
 assert.equal(cleanEvent.properties.token, 'phc_qXkp5FBQfrqHQwkqf3ys8iSoGoMYw2tpTHXGugXJhP8V', 'public project token survives');
 assert.equal(cleanEvent.distinct_id, 'public-distinct-id', 'event identity survives');
 assert.equal(cleanEvent.properties.distinct_id, 'preserved-identity', 'nested identity survives');
