@@ -16,7 +16,11 @@ def career_html():
         bullets="".join(f"<li>{html.escape(x)}</li>" for x in role["website_bullets"])
         parts.append(f'<article class="timeline-item"><div class="timeline-meta"><span>{html.escape(role["dates"])}</span><span>{html.escape(role["location"])}</span></div><div><h3>{html.escape(role["title"])}</h3><p class="organization">{html.escape(role["company"])}</p></div><ul>{bullets}</ul></article>')
     group_dates = q[-1]['dates'].split('–')[0].strip() + ' – ' + q[0]['dates'].split('–')[-1].strip()
-    parts.insert(2,'<article class="timeline-item"><div class="timeline-meta"><span>'+html.escape(group_dates)+'</span><span>'+html.escape(q[0]["location"])+'</span></div><div><p class="organization">Quotograph.io</p>'+''.join(f'<h3>{html.escape(r["title"])}</h3><p>{html.escape(r["dates"])}</p>' for r in q)+'</div></article>')
+    grouped_roles = []
+    for r in q:
+        bullets = ''.join(f'<li>{html.escape(x)}</li>' for x in r['website_bullets'])
+        grouped_roles.append('<section class="timeline-role"><div><h3>'+html.escape(r['title'])+'</h3><p>'+html.escape(r['dates'])+'</p></div><ul>'+bullets+'</ul></section>')
+    parts.insert(2,'<article class="timeline-item timeline-item--group"><div class="timeline-meta"><span>'+html.escape(group_dates)+'</span><span>'+html.escape(q[0]["location"])+'</span></div><div class="timeline-roles"><p class="organization">Quotograph.io</p>'+''.join(grouped_roles)+'</div></article>')
     return '\n          '.join(parts)
 def career_text():
     out=[]
