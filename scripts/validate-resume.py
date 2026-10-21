@@ -24,6 +24,6 @@ uris = {link.get('uri') for link in pdf[0].get_links()}
 assert 'https://tugrul.modepot.io/' in uris, 'Personal profile must be a clickable PDF link'
 assert 'https://modepot.io/' in uris, 'ModePot must be a clickable PDF link'
 assert 'https://x.com/Tugrul_Guner' in uris, 'Writing must link to the canonical X profile'
-assert 'articles on X and Medium' in text, 'Writing must include X Articles'
+assert 'X Articles and Medium essays' in text, 'Writing must include X Articles'
 assert 'four direct reports' not in text.lower()
 print(f'Resume validation passed ({len(pdf)} page; {len(roles)} roles; expected metrics present).')
