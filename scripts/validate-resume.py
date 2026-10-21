@@ -13,7 +13,7 @@ for role in roles:
     assert role['company'] in text, f"Missing employer: {role['company']}"
     assert role['dates'] in text, f"Missing dates: {role['dates']}"
     assert role['location'] in text, f"Missing location: {role['location']}"
-for term in ['2.5×','three products','4×','60%','10×']:
+for term in ['2.5×','three products','4×','60%','model latency by a factor of 10']:
     assert term in text, f'Missing outcome: {term}'
 for term in ['Hermes Agent', 'Claude Code', 'Cursor Agent', 'deepagents', 'CLI execution', 'model routing', 'multi-agent coordination', 'subagents']:
     assert term in text, f'Missing agentic capability: {term}'
