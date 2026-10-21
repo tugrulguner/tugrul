@@ -26,7 +26,10 @@ nav { display: flex; gap: 2.25rem; }
 nav a, .header-link { font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; }
 .header-link { justify-self: end; }
 main { overflow: hidden; }
-.hero { width: min(var(--max), calc(100% - 64px)); min-height: calc(100vh - 88px); margin: auto; display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; padding: 5rem 0 6rem; }
+.hero { width: min(var(--max), calc(100% - 64px)); margin: auto; display: grid; grid-template-columns: 1.25fr .75fr; grid-template-areas: "copy portrait" "results results"; gap: 3rem clamp(3rem, 7vw, 7rem); align-items: center; padding: 3rem 0 5rem; }
+.hero-copy { grid-area: copy; }
+.hero .portrait-frame { grid-area: portrait; }
+.hero .leadership-spotlight { grid-area: results; width: 100%; margin: 0; scroll-margin-top: 1rem; }
 .eyebrow { display: flex; align-items: center; gap: .75rem; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 750; color: var(--muted); }
 .eyebrow span { width: 30px; height: 1px; background: var(--terracotta); }
 h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.035em; margin: 0; }
@@ -93,6 +96,9 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .organization { margin: .25rem 0 0; color: var(--terracotta-dark); font-size: .82rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 .timeline ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
 .timeline li + li { margin-top: .45rem; }
+.timeline-roles { grid-column: 2 / -1; min-width: 0; }
+.timeline-role { display: grid; grid-template-columns: minmax(190px, .75fr) 1.25fr; gap: 2rem; margin-top: 1.5rem; }
+.timeline-role > div > p { margin: .5rem 0 0; color: var(--muted); font-size: .85rem; }
 .resume-actions { margin-top: 2.5rem; }
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 3rem 0 1rem; background: var(--line); border: 1px solid var(--line); }
 .metrics div { min-height: 150px; padding: 1.4rem; background: var(--ivory); display: flex; flex-direction: column; justify-content: space-between; }
@@ -133,8 +139,10 @@ footer div { display: flex; gap: 1.5rem; }
 @media (max-width: 850px) {
   .site-header { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr auto auto; gap: .45rem; }
   .site-header nav { display: none; }
-  .hero { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; min-height: auto; padding-top: 4rem; }
-  h1 { font-size: clamp(3.5rem, 15vw, 6rem); }
+  .hero { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; grid-template-areas: "copy" "results" "portrait"; gap: 2rem; padding-top: 2rem; }
+  h1 { font-size: clamp(2.75rem, 12vw, 5.4rem); }
+  .hero-intro { margin-top: 1.5rem; font-size: 1.1rem; }
+  .hero-actions { margin-top: 1.25rem; }
   .portrait-frame { width: min(100%, 520px); margin: 2rem auto 0; }
   .leadership-spotlight { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr; gap: 1.25rem; }
   .leadership-spotlight > a { justify-self: start; }
@@ -145,7 +153,10 @@ footer div { display: flex; gap: 1.5rem; }
   .newsletter-story { grid-template-columns: 1fr; gap: .5rem; }
   .project { grid-template-columns: 42px 1fr auto; gap: 1rem; padding: 1.5rem 0; }
   .project-description { grid-column: 2 / 4; }
+  .project .arrow { grid-column: 3; grid-row: 1; }
   .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+  .timeline-roles { grid-column: auto; }
+  .timeline-role { grid-template-columns: 1fr; gap: .75rem; }
   .timeline-meta { flex-direction: row; justify-content: space-between; }
   .metrics { grid-template-columns: 1fr 1fr; }
   .education-grid, .skill-groups { grid-template-columns: 1fr; }

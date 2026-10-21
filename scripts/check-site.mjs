@@ -67,7 +67,7 @@ const required = [
   'class="leadership-spotlight"',
   'Tugrul Guner · AI Engineering Manager at CDAI · Toronto',
   'I lead AI engineering and <em>architect the systems behind it.</em>',
-  'build high-performing teams, operate well under pressure, and make difficult decisions without lowering engineering standards',
+  'build high-performing teams. I operate well under pressure, making difficult decisions without lowering engineering standards while staying hands-on',
   'scalable, robust backend, AI, and agentic systems designed to adapt',
   'ModePot creator',
   'Contributor to Hermes Agent and Superpowers',
