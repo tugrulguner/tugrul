@@ -17,8 +17,12 @@ class QuotographProfileTests(unittest.TestCase):
         uris = {link.get('uri') for link in doc[0].get_links()}
         self.assertIn('https://tugrul.modepot.io/', uris)
         self.assertIn('https://modepot.io/', uris)
+        self.assertIn('https://x.com/Tugrul_Guner', uris)
+        self.assertIn('articles on X and Medium', text)
         html = (ROOT / 'public/index.html').read_text()
         llms = (ROOT / 'public/llms.txt').read_text()
+        self.assertIn('I also publish articles on X', html)
+        self.assertIn('He also publishes articles on X', llms)
         for name in ['Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
             self.assertIn(name, text)
             destination = f'https://{name.lower()}.modepot.io/'

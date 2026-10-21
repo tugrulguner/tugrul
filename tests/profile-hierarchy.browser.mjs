@@ -37,6 +37,8 @@ for(const viewport of [{width:320,height:800},{width:390,height:844},{width:768,
  const projects=page.locator('.project-list > a.project');assert.equal(await projects.count(),6,'current ModePot inventory');
  for(const project of await projects.all()){const box=await project.boundingBox();const desc=await project.locator('.project-description').boundingBox();const name=await project.locator('.project-name').boundingBox();const arrow=await project.locator('.arrow').boundingBox();assert.ok(box.x>=0&&box.x+box.width<=viewport.width&&box.height>=44,'project link clipping/target');assert.ok(desc.x>=0&&desc.x+desc.width<=viewport.width,'project description clipping');assert.ok(arrow.x>=name.x+name.width&&arrow.y<name.y+name.height&&arrow.y+arrow.height>name.y,'project arrow stays beside its title');}
  if(evidence){await page.locator('#hero-title').click();await page.locator('.project-list').screenshot({path:resolve(evidence,`modepot-${viewport.width}.png`)});}
+ const writingX=page.locator('#writing a[data-posthog-network="x"]');assert.equal(await writingX.count(),1);assert.equal(await writingX.getAttribute('href'),'https://x.com/Tugrul_Guner');const writingBox=await writingX.boundingBox();assert.ok(writingBox.height>=44&&writingBox.x>=0&&writingBox.x+writingBox.width<=viewport.width,'writing X link target/clipping');
+ if(evidence){await writingX.screenshot({path:resolve(evidence,`writing-x-${viewport.width}.png`)});}
  await page.goto(url);
  console.log(`Profile hierarchy ${viewport.width}px: passed; primary actions ${JSON.stringify(await buttons.evaluateAll(els=>els.map(e=>({label:e.textContent.trim(),bottom:e.getBoundingClientRect().bottom}))))}`);
  await context.close();
