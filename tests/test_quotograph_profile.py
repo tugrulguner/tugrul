@@ -8,6 +8,25 @@ import pymupdf
 ROOT = Path(__file__).resolve().parents[1]
 
 class QuotographProfileTests(unittest.TestCase):
+    def test_profile_link_and_current_modepot_projects(self):
+        subprocess.run([sys.executable, 'scripts/build-resume.py'], cwd=ROOT, check=True)
+        doc = pymupdf.open(ROOT / 'public/tugrul-guner-resume.pdf')
+        self.assertEqual(len(doc), 1)
+        text = ' '.join(doc[0].get_text().split())
+        self.assertIn('tugrul.modepot.io', text)
+        uris = {link.get('uri') for link in doc[0].get_links()}
+        self.assertIn('https://tugrul.modepot.io/', uris)
+        self.assertIn('https://modepot.io/', uris)
+        html = (ROOT / 'public/index.html').read_text()
+        llms = (ROOT / 'public/llms.txt').read_text()
+        for name in ['Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
+            self.assertIn(name, text)
+            destination = f'https://{name.lower()}.modepot.io/'
+            self.assertIn(f'data-posthog-project="{name.lower()}"', html)
+            self.assertIn(destination, llms)
+        projects = re.findall(r'<a class="project ph-no-autocapture"', html)
+        self.assertEqual(len(projects), 6)
+
     def test_confirmed_scope_and_collaborative_attribution(self):
         roles = json.loads((ROOT / 'career-data.json').read_text())['roles']
         q = {r['title']: r for r in roles if r['company'] == 'Quotograph.io'}

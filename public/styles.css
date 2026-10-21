@@ -153,6 +153,7 @@ footer div { display: flex; gap: 1.5rem; }
   .newsletter-story { grid-template-columns: 1fr; gap: .5rem; }
   .project { grid-template-columns: 42px 1fr auto; gap: 1rem; padding: 1.5rem 0; }
   .project-description { grid-column: 2 / 4; }
+  .project .arrow { grid-column: 3; grid-row: 1; }
   .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
   .timeline-roles { grid-column: auto; }
   .timeline-role { grid-template-columns: 1fr; gap: .75rem; }

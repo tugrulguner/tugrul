@@ -18,5 +18,10 @@ for term in ['2.5×','three products','4×','60%','10×']:
 for term in ['Hermes Agent', 'Claude Code', 'Cursor Agent', 'deepagents', 'CLI execution', 'model routing', 'multi-agent coordination', 'subagents']:
     assert term in text, f'Missing agentic capability: {term}'
 assert 'more than $2M' in text
+for term in ['tugrul.modepot.io', 'Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
+    assert term in text, f'Missing profile/ModePot evidence: {term}'
+uris = {link.get('uri') for link in pdf[0].get_links()}
+assert 'https://tugrul.modepot.io/' in uris, 'Personal profile must be a clickable PDF link'
+assert 'https://modepot.io/' in uris, 'ModePot must be a clickable PDF link'
 assert 'four direct reports' not in text.lower()
 print(f'Resume validation passed ({len(pdf)} page; {len(roles)} roles; expected metrics present).')
