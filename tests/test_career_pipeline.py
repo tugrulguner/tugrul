@@ -62,11 +62,12 @@ class CareerPipelineTests(unittest.TestCase):
             links = {link["uri"] for link in page.get_links() if link.get("uri")}
         hermes = ["fba73a60e36a84e94736d309d6777bf2247a23eb", "614e43d3d95773778b838c751e3aa2b880231395", "44665783a936d173aba639ecd74483e0a6a016ce"]
         superpowers = ["0a4d60db4faf3628abc3e6be4fc3e1a0697c69de", "a0415daa1f33b00f3fe300f5c250a5beefafce4d"]
-        self.assertIn("three of my original changes are credited in landed", html)
+        self.assertIn("my landed contributions to", html)
         self.assertIn("Two original Superpowers changes have landed on its dev branch", llms)
         self.assertIn("Three original Hermes Agent changes have landed upstream", llms)
-        self.assertIn("Superpowers: two changes landed on its dev branch", text)
-        self.assertIn("Hermes Agent: three original changes landed upstream", text)
+        contribution_text = text.split("OPEN SOURCE & WRITING", 1)[1]
+        self.assertIn("Landed contributions to Hermes Agent and Superpowers (dev branch)", " ".join(contribution_text.split()))
+        self.assertNotIn("Original PRs", contribution_text)
         for sha in hermes + superpowers:
             self.assertIn(sha, html)
             self.assertIn(sha, llms)
@@ -74,7 +75,8 @@ class CareerPipelineTests(unittest.TestCase):
         self.assertTrue(any(f"/commit/{sha}" in uri for sha in superpowers for uri in links))
         self.assertIn("https://x.com/Tugrul_Guner", links)
         self.assertIn("X Articles", text)
-        self.assertIn("not five merged PRs", llms)
+        self.assertIn("other submissions remain under review", llms)
+        self.assertNotIn("five merged PRs", html + llms + text)
         self.assertNotIn("submitted improvements across", html + llms + text)
 
     def test_resume_is_reproducible_one_page_and_contains_condensed_roles(self):
