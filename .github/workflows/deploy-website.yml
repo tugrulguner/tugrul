@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "public/**"
+      - "worker/**"
       - "scripts/**"
       - "tests/**"
       - "career-data.json"
@@ -17,6 +18,7 @@ on:
     branches: [main]
     paths:
       - "public/**"
+      - "worker/**"
       - "scripts/**"
       - "tests/**"
       - "career-data.json"
@@ -56,6 +58,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run check
+      - run: npm run articles:build
   deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -83,4 +86,5 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run check
+      - run: npm run articles:build
       - run: npx wrangler deploy

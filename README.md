@@ -20,6 +20,10 @@ npm run preview
 - Google Scholar: `https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en`
 - Newsletter: `https://tugrulguner.beehiiv.com/`
 
+## X Article showcase
+
+The Writing section uses a real-article seed and a cached Worker/KV feed, with bounded incremental discovery once daily at 09:00 UTC. No paid Workers plan is configured. Production sync requires separately provisioned OAuth secrets; local xurl login does not activate it. See [setup, cost bounds and verification](docs/x-articles.md). Run `npm run articles:check` and `npm run articles:build` before deployment.
+
 ## Deployment
 
 ```bash

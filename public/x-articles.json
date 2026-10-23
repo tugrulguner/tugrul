@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-23T02:51:07.704794+00:00",
+  "articles": [
+    {
+      "id": "2113450673068965888",
+      "postId": "2113455187515916724",
+      "title": "TorchTPU Makes Moving a Model Easier. Optimization Comes Next.",
+      "excerpt": "AI models run through software that turns instructions into calculations on a chip. PyTorch is one of the frameworks developers use to write those instructions. Changing the chip can mean changing the",
+      "publishedAt": "2026-10-23T02:19:17.000Z",
+      "url": "https://x.com/i/article/2113450673068965888",
+      "cover": {
+        "url": "https://pbs.twimg.com/media/HVR8WXMXkAA33tw.jpg",
+        "alt": "",
+        "width": 1600,
+        "height": 640
+      }
+    },
+    {
+      "id": "2113083507429797889",
+      "postId": "2113085657786556484",
+      "title": "An AI Rewrite Can Run and Still Change the Answer",
+      "excerpt": "Older software can carry rules that its owners still need, even when they want to replace the language it was written in. A rewrite has to preserve those rules. OpenAI’s October 19 announcement",
+      "publishedAt": "2026-10-22T01:50:54.000Z",
+      "url": "https://x.com/i/article/2113083507429797889",
+      "cover": {
+        "url": "https://pbs.twimg.com/media/HVMuYsGWIAAlV5d.png",
+        "alt": "",
+        "width": 1600,
+        "height": 640
+      }
+    },
+    {
+      "id": "2112866456417263616",
+      "postId": "2112868095513522419",
+      "title": "Anthropic’s AI Coding Boom Made Moving Code a Bottleneck",
+      "excerpt": "Software teams need more than code.[1] They need a shared record of changes, a way to combine contributions, and automated checks before those changes reach users.[1] Git, the widely used system for",
+      "publishedAt": "2026-10-21T11:26:23.000Z",
+      "url": "https://x.com/i/article/2112866456417263616",
+      "cover": {
+        "url": "https://pbs.twimg.com/media/HVJo-ykWAAINBiV.png",
+        "alt": "",
+        "width": 1600,
+        "height": 640
+      }
+    }
+  ]
+}

@@ -1,0 +1,559 @@
+{
+  "data": [
+    {
+      "created_at": "2026-10-23T02:19:56.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 260,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2113455187515916724",
+            "start": 237,
+            "url": "https://t.co/SHoEprC6Su"
+          }
+        ]
+      },
+      "id": "2113455349868921062"
+    },
+    {
+      "article": {
+        "cover_media": "3_2113450848768462848",
+        "entities": {
+          "urls": [
+            {
+              "text": "https://github.com/google-pytorch/torch_tpu"
+            },
+            {
+              "text": "https://huggingface.co/docs/diffusers/main/optimization/tpu"
+            },
+            {
+              "text": "https://pytorch.org/blog/introducing-torchtpu"
+            },
+            {
+              "text": "https://cloud.google.com/blog/topics/ai-infrastructure/torchtpu-is-now-open-source-run-native-pytorch-on-tpus"
+            },
+            {
+              "text": "https://huggingface.co/blog/hf-torchtpu"
+            }
+          ]
+        },
+        "media_entities": [
+          "3_2113454509494030336"
+        ],
+        "preview_text": "AI models run through software that turns instructions into calculations on a chip. PyTorch is one of the frameworks developers use to write those instructions. Changing the chip can mean changing the",
+        "title": "TorchTPU Makes Moving a Model Easier. Optimization Comes Next."
+      },
+      "created_at": "2026-10-23T02:19:17.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2113\u2026",
+            "end": 188,
+            "expanded_url": "https://x.com/i/article/2113450673068965888",
+            "start": 165,
+            "status": 404,
+            "unwound_url": "https://x.com/i/article/2113450673068965888",
+            "url": "https://t.co/7Jk4vIcBgt"
+          }
+        ]
+      },
+      "id": "2113455187515916724"
+    },
+    {
+      "created_at": "2026-10-23T01:34:21.000Z",
+      "id": "2113443880444309753"
+    },
+    {
+      "created_at": "2026-10-23T01:19:36.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 30,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2113391729038537000",
+            "start": 7,
+            "url": "https://t.co/CscVtmVfJR"
+          }
+        ]
+      },
+      "id": "2113440169340567667"
+    },
+    {
+      "created_at": "2026-10-22T23:20:27.000Z",
+      "id": "2113410181119746058"
+    },
+    {
+      "created_at": "2026-10-22T22:08:29.000Z",
+      "id": "2113392070517829922"
+    },
+    {
+      "created_at": "2026-10-22T22:07:07.000Z",
+      "id": "2113391729038537000"
+    },
+    {
+      "created_at": "2026-10-22T18:53:23.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "pic.x.com/X1B1fn2bkp",
+            "end": 300,
+            "expanded_url": "https://x.com/Tugrul_Guner/status/2113342971433152909/photo/1",
+            "media_key": "3_2113342962574770176",
+            "start": 277,
+            "url": "https://t.co/X1B1fn2bkp"
+          }
+        ]
+      },
+      "id": "2113342971433152909"
+    },
+    {
+      "created_at": "2026-10-22T15:48:36.000Z",
+      "id": "2113296468974899334"
+    },
+    {
+      "created_at": "2026-10-22T15:11:32.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "pic.x.com/HAkmoLNbp8",
+            "end": 304,
+            "expanded_url": "https://x.com/Tugrul_Guner/status/2113287142809969086/photo/1",
+            "media_key": "3_2113287136673705984",
+            "start": 281,
+            "url": "https://t.co/HAkmoLNbp8"
+          }
+        ]
+      },
+      "id": "2113287142809969086"
+    },
+    {
+      "created_at": "2026-10-22T14:07:33.000Z",
+      "id": "2113271042831454536"
+    },
+    {
+      "created_at": "2026-10-22T13:27:20.000Z",
+      "id": "2113260919463530654"
+    },
+    {
+      "created_at": "2026-10-22T12:56:58.000Z",
+      "id": "2113253276502097954"
+    },
+    {
+      "created_at": "2026-10-22T12:55:56.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 33,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2113230697280204973",
+            "start": 10,
+            "url": "https://t.co/xxpQN3SfmQ"
+          }
+        ]
+      },
+      "id": "2113253017185124362"
+    },
+    {
+      "created_at": "2026-10-22T11:44:56.000Z",
+      "id": "2113235148854411484"
+    },
+    {
+      "created_at": "2026-10-22T11:27:14.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 136,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2113085657786556484",
+            "start": 113,
+            "url": "https://t.co/juOcaryIf0"
+          }
+        ]
+      },
+      "id": "2113230697280204973"
+    },
+    {
+      "article": {
+        "cover_media": "3_2113083651856408576",
+        "entities": {
+          "urls": [
+            {
+              "text": "https://openai.com/index/low-resource-programming-languages"
+            },
+            {
+              "text": "https://github.com/openai/MultiLangBench"
+            },
+            {
+              "text": "https://openai.com/index/low-resource-programming-languages"
+            },
+            {
+              "text": "https://github.com/openai/MultiLangBench"
+            }
+          ]
+        },
+        "media_entities": [
+          "3_2113084518361960448"
+        ],
+        "preview_text": "Older software can carry rules that its owners still need, even when they want to replace the language it was written in. A rewrite has to preserve those rules. OpenAI\u2019s October 19 announcement",
+        "title": "An AI Rewrite Can Run and Still Change the Answer"
+      },
+      "created_at": "2026-10-22T01:50:54.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2113\u2026",
+            "end": 221,
+            "expanded_url": "https://x.com/i/article/2113083507429797889",
+            "start": 198,
+            "status": 404,
+            "unwound_url": "https://x.com/i/article/2113083507429797889",
+            "url": "https://t.co/GdY952IqhS"
+          }
+        ]
+      },
+      "id": "2113085657786556484"
+    },
+    {
+      "created_at": "2026-10-21T21:49:32.000Z",
+      "id": "2113024913363599845"
+    },
+    {
+      "created_at": "2026-10-21T21:44:32.000Z",
+      "id": "2113023655269798059"
+    },
+    {
+      "created_at": "2026-10-21T20:24:47.000Z",
+      "id": "2113003586150105176"
+    },
+    {
+      "created_at": "2026-10-21T16:52:13.000Z",
+      "id": "2112950092877500830"
+    },
+    {
+      "created_at": "2026-10-21T16:48:00.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 70,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2112868095513522419",
+            "start": 47,
+            "url": "https://t.co/gTBjhYSQzD"
+          }
+        ]
+      },
+      "id": "2112949033476018250"
+    },
+    {
+      "created_at": "2026-10-21T15:43:24.000Z",
+      "id": "2112932773421789437"
+    },
+    {
+      "created_at": "2026-10-21T13:43:36.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "pic.x.com/q7zQLcQvXs",
+            "end": 304,
+            "expanded_url": "https://x.com/Tugrul_Guner/status/2112902625901314066/photo/1",
+            "media_key": "3_2112902619635019776",
+            "start": 281,
+            "url": "https://t.co/q7zQLcQvXs"
+          }
+        ]
+      },
+      "id": "2112902625901314066"
+    },
+    {
+      "created_at": "2026-10-21T13:33:19.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "pic.x.com/KoA19uUPam",
+            "end": 299,
+            "expanded_url": "https://x.com/Tugrul_Guner/status/2112900038871408957/photo/1",
+            "media_key": "3_2112900034454769664",
+            "start": 276,
+            "url": "https://t.co/KoA19uUPam"
+          }
+        ]
+      },
+      "id": "2112900038871408957"
+    },
+    {
+      "created_at": "2026-10-21T12:41:23.000Z",
+      "id": "2112886968065335795"
+    },
+    {
+      "created_at": "2026-10-21T11:52:48.000Z",
+      "id": "2112874742680039924"
+    },
+    {
+      "article": {
+        "cover_media": "3_2112866603125571586",
+        "entities": {
+          "urls": [
+            {
+              "text": "https://www.anthropic.com/engineering/redesigning-source-control"
+            },
+            {
+              "text": "https://sunshowers.io/posts/anthropic-mononoke"
+            },
+            {
+              "text": "https://sunshowers.io/posts/anthropic-mononoke-2"
+            },
+            {
+              "text": "https://git-scm.com/docs/partial-clone"
+            },
+            {
+              "text": "https://git-scm.com/docs/partial-clone"
+            },
+            {
+              "text": "https://www.anthropic.com/engineering/redesigning-source-control"
+            },
+            {
+              "text": "https://sunshowers.io/posts/anthropic-mononoke"
+            },
+            {
+              "text": "https://sunshowers.io/posts/anthropic-mononoke-2"
+            }
+          ]
+        },
+        "media_entities": [
+          "3_2112866685677899776"
+        ],
+        "preview_text": "Software teams need more than code.[1] They need a shared record of changes, a way to combine contributions, and automated checks before those changes reach users.[1] Git, the widely used system for",
+        "title": "Anthropic\u2019s AI Coding Boom Made Moving Code a Bottleneck"
+      },
+      "created_at": "2026-10-21T11:26:23.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2112\u2026",
+            "end": 233,
+            "expanded_url": "https://x.com/i/article/2112866456417263616",
+            "start": 210,
+            "status": 404,
+            "unwound_url": "https://x.com/i/article/2112866456417263616",
+            "url": "https://t.co/E8vaC9NLnM"
+          }
+        ]
+      },
+      "id": "2112868095513522419"
+    },
+    {
+      "created_at": "2026-10-20T21:33:01.000Z",
+      "id": "2112658370377175290"
+    },
+    {
+      "created_at": "2026-10-20T21:29:51.000Z",
+      "id": "2112657572335645015"
+    },
+    {
+      "created_at": "2026-10-20T21:29:40.000Z",
+      "id": "2112657527544389916"
+    },
+    {
+      "created_at": "2026-10-20T19:30:11.000Z",
+      "id": "2112627459925438927"
+    },
+    {
+      "created_at": "2026-10-20T17:53:47.000Z",
+      "id": "2112603197634158744"
+    },
+    {
+      "created_at": "2026-10-20T17:33:02.000Z",
+      "id": "2112597976119955900"
+    },
+    {
+      "created_at": "2026-10-20T16:05:39.000Z",
+      "id": "2112575984662679849"
+    },
+    {
+      "created_at": "2026-10-20T15:56:56.000Z",
+      "id": "2112573794367746301"
+    },
+    {
+      "created_at": "2026-10-20T15:30:28.000Z",
+      "id": "2112567130797322376"
+    },
+    {
+      "created_at": "2026-10-20T13:17:31.000Z",
+      "id": "2112533675875176609"
+    },
+    {
+      "created_at": "2026-10-20T12:58:03.000Z",
+      "id": "2112528776286331309"
+    },
+    {
+      "created_at": "2026-10-20T12:18:52.000Z",
+      "id": "2112518913812537729"
+    },
+    {
+      "created_at": "2026-10-20T11:51:57.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 299,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 276,
+            "url": "https://t.co/c4p3i9Kebh"
+          }
+        ]
+      },
+      "id": "2112512141274083354"
+    },
+    {
+      "created_at": "2026-10-20T11:47:57.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 303,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2112151520632353278",
+            "start": 280,
+            "url": "https://t.co/c4p3i9Kebh"
+          }
+        ]
+      },
+      "id": "2112511133626073393"
+    },
+    {
+      "created_at": "2026-10-20T11:26:31.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 303,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 280,
+            "url": "https://t.co/nCOdHuBuBT"
+          }
+        ]
+      },
+      "id": "2112505741554647441"
+    },
+    {
+      "created_at": "2026-10-20T10:51:05.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 304,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2112151520632353278",
+            "start": 281,
+            "url": "https://t.co/c4p3i9Kebh"
+          }
+        ]
+      },
+      "id": "2112496821440303283"
+    },
+    {
+      "created_at": "2026-10-20T02:06:47.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 302,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 279,
+            "url": "https://t.co/nCOdHuBuBT"
+          }
+        ]
+      },
+      "id": "2112364879214494095"
+    },
+    {
+      "created_at": "2026-10-20T00:59:12.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 303,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 280,
+            "url": "https://t.co/nCOdHuBuBT"
+          }
+        ]
+      },
+      "id": "2112347871248777518"
+    },
+    {
+      "created_at": "2026-10-20T00:49:41.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 304,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 281,
+            "url": "https://t.co/nCOdHuBuBT"
+          }
+        ]
+      },
+      "id": "2112345476468981763"
+    },
+    {
+      "created_at": "2026-10-20T00:40:30.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/Tugrul_Guner/s\u2026",
+            "end": 299,
+            "expanded_url": "https://twitter.com/Tugrul_Guner/status/2112151520632353278",
+            "start": 276,
+            "url": "https://t.co/nCOdHuBuBT"
+          }
+        ]
+      },
+      "id": "2112343165743030535"
+    },
+    {
+      "created_at": "2026-10-19T21:38:52.000Z",
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/tugrul_guner/s\u2026",
+            "end": 298,
+            "expanded_url": "https://twitter.com/tugrul_guner/status/2112151520632353278",
+            "start": 275,
+            "url": "https://t.co/c4p3i9Kebh"
+          }
+        ]
+      },
+      "id": "2112297456994001076"
+    }
+  ],
+  "includes": {
+    "media": [
+      {
+        "height": 640,
+        "media_key": "3_2113450848768462848",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVR8WXMXkAA33tw.jpg",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2113083651856408576",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVMuYsGWIAAlV5d.png",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2112866603125571586",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVJo-ykWAAINBiV.png",
+        "width": 1600
+      }
+    ]
+  },
+  "meta": {
+    "newest_id": "2113455349868921062",
+    "next_token": "7140dibdnow9c7btwp0g71ph77lixk58qoxx9icy0scom",
+    "oldest_id": "2112297456994001076",
+    "result_count": 49
+  }
+}
