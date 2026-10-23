@@ -1,0 +1,221 @@
+{
+  "provenance": {
+    "pagesRead": 5,
+    "returnedPosts": 454,
+    "finalHasMore": false,
+    "coverage": "Provider-available timeline inventory audit; unrelated Posts and bodies omitted. Search sync is tested separately."
+  },
+  "data": [
+    {
+      "id": "2113455187515916724",
+      "created_at": "2026-10-23T02:19:17.000Z",
+      "article": {
+        "title": "TorchTPU Makes Moving a Model Easier. Optimization Comes Next.",
+        "preview_text": "AI models run through software that turns instructions into calculations on a chip. PyTorch is one of the frameworks developers use to write those instructions. Changing the chip can mean changing the",
+        "cover_media": "3_2113450848768462848"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2113450673068965888"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2113085657786556484",
+      "created_at": "2026-10-22T01:50:54.000Z",
+      "article": {
+        "title": "An AI Rewrite Can Run and Still Change the Answer",
+        "preview_text": "Older software can carry rules that its owners still need, even when they want to replace the language it was written in. A rewrite has to preserve those rules. OpenAI\u2019s October 19 announcement",
+        "cover_media": "3_2113083651856408576"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2113083507429797889"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2112868095513522419",
+      "created_at": "2026-10-21T11:26:23.000Z",
+      "article": {
+        "title": "Anthropic\u2019s AI Coding Boom Made Moving Code a Bottleneck",
+        "preview_text": "Software teams need more than code.[1] They need a shared record of changes, a way to combine contributions, and automated checks before those changes reach users.[1] Git, the widely used system for",
+        "cover_media": "3_2112866603125571586"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2112866456417263616"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2111593330886779244",
+      "created_at": "2026-10-17T23:00:56.000Z",
+      "article": {
+        "title": "Claude Traced a Cryptographic Mystery Back to a 1997 Clock",
+        "preview_text": "Digital signatures let computers check that data was signed using a particular secret key and that its contents have not changed. One widely used method, ECDSA, performs its calculations on",
+        "cover_media": "3_2111592866795405312"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2111592745689034752"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2111195920952152186",
+      "created_at": "2026-10-16T20:41:46.000Z",
+      "article": {
+        "title": "Give Hermes a Research Job You Can Run Again",
+        "preview_text": "A useful research briefing gives you a reason to investigate something and a clear next check. Its findings connect to a decision you actually need to make.\nThat starts with the assignment. Tell",
+        "cover_media": "3_2111178436257497088"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2111178293131329536"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2110148280545886412",
+      "created_at": "2026-10-13T23:18:49.000Z",
+      "article": {
+        "title": "I build with AI every day. Why do I still feel behind?",
+        "preview_text": "We finish something that works, then start considering what would make it more capable. Could the architecture be simpler? Could the agents pursue a harder problem? Could this become the foundation",
+        "cover_media": "3_2110147671323222016"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2109840980299902976"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2109679448119538127",
+      "created_at": "2026-10-12T16:15:51.000Z",
+      "article": {
+        "title": "My Hermes Setup: A Strong Main Model, Cheaper Workers, and Proof Before \u201cDone\u201d",
+        "preview_text": "I configured Hermes so the main model handles planning and final decisions while a cheaper model does narrowly defined work. Then I pinned the reviewer separately, because saving money on execution is",
+        "cover_media": "3_2109669536106422273"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2109669379579211776"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2109408939976675468",
+      "created_at": "2026-10-11T22:20:56.000Z",
+      "article": {
+        "title": "My AI Agent Audited My Dashboard. I Needed It.",
+        "preview_text": "`I connected Hermes to PostHog and asked it to review my dashboard. It found that a homepage-click chart included activity from another website, several different homepages were combined into one row,",
+        "cover_media": "3_2109367856756387840"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2109367769074716672"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2108564058005713140",
+      "created_at": "2026-10-09T14:23:41.000Z",
+      "article": {
+        "title": "One Neuron, Many Meanings: Two Papers, One Result ",
+        "preview_text": "A Nature study of the mouse cortex and a Nature Machine Intelligence framework for artificial networks independently reach the same conclusion: meaning is carried by populations of neurons, not by",
+        "cover_media": "3_2108563970940448768"
+      },
+      "entities": {
+        "urls": [
+          {
+            "expanded_url": "https://x.com/i/article/2108560725366951936"
+          }
+        ]
+      }
+    }
+  ],
+  "includes": {
+    "media": [
+      {
+        "height": 640,
+        "media_key": "3_2113450848768462848",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVR8WXMXkAA33tw.jpg",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2113083651856408576",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVMuYsGWIAAlV5d.png",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2112866603125571586",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HVJo-ykWAAINBiV.png",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2111592866795405312",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HU3ihk-WwAA8oGO.jpg",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2111178436257497088",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HUxpmi6XwAAtUel.jpg",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2110147671323222016",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HUjAIITWoAA9QyJ.png",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2109669536106422273",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HUcNQ_0WIAEsTvV.jpg",
+        "width": 1600
+      },
+      {
+        "height": 640,
+        "media_key": "3_2109367856756387840",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HUX648qXcAA3YfN.jpg",
+        "width": 1600
+      },
+      {
+        "height": 960,
+        "media_key": "3_2108563970940448768",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HUMfwooXsAAy_ne.jpg",
+        "width": 2400
+      }
+    ]
+  }
+}
