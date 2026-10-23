@@ -1,0 +1,36 @@
+{
+  "publication": "Passionately Curious",
+  "source": "Verified published, free, web-visible Beehiiv post metadata; three total published posts on 2026-10-23. Covers are local WebP derivatives of the published thumbnail assets.",
+  "issues": [
+    {
+      "title": "What Is Space Made Of?",
+      "url": "https://tugrulguner.beehiiv.com/p/what-is-space-made-of",
+      "content": "what-is-space-made-of",
+      "publishedAt": "2026-08-17T12:30:00Z",
+      "excerpt": "Physicists changed nothing but quantum information and the space itself changed shape. If that sounds backwards, it may be because we’ve been thinking about what space is the wrong way around.",
+      "cover": "/newsletter/space.webp",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "title": "When Learning Happens All at Once",
+      "url": "https://tugrulguner.beehiiv.com/p/when-learning-happens-all-at-oncest",
+      "content": "when-learning-happens-all-at-once",
+      "publishedAt": "2026-07-24T01:31:49Z",
+      "excerpt": "In AI, sudden \"grokking\" is being formalized as a physics phase transition. In the brain, learning often arrives in abrupt jumps, not only smooth curves. Learning that arrives as a switch, not a slope.",
+      "cover": "/newsletter/learning.webp",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "title": "One Neuron, Many Meanings: Two Papers, One Result",
+      "url": "https://tugrulguner.beehiiv.com/p/one-neuron-many-meanings-two-papers-one-result",
+      "content": "one-neuron-many-meanings",
+      "publishedAt": "2026-07-22T03:22:23Z",
+      "excerpt": "A Nature study of the mouse cortex and a Nature Machine Intelligence framework for artificial networks independently reach the same conclusion: meaning is carried by populations of neurons, not by single cells.",
+      "cover": "/newsletter/neurons.webp",
+      "width": 1280,
+      "height": 720
+    }
+  ]
+}
