@@ -2,3 +2,9 @@ node_modules/
 .wrangler/
 lighthouse*.json
 .DS_Store
+# Worker OAuth secrets stay local or in the deployment secret store.
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
