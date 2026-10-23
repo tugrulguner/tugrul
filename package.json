@@ -7,7 +7,7 @@
     "articles:seed": "node scripts/build-x-articles.mjs",
     "science:seed": "node scripts/build-science-issues.mjs",
     "science:check": "node scripts/build-science-issues.mjs --check && node --test tests/science-newsletter.test.mjs && node tests/science-newsletter.browser.mjs",
-    "articles:check": "node scripts/build-x-articles.mjs --check && node --test tests/x-articles-config.test.mjs tests/x-articles-worker.test.mjs tests/x-articles-cursor.test.mjs tests/x-articles-bootstrap.test.mjs tests/x-articles-limits.test.mjs tests/x-articles-inventory.test.mjs tests/x-articles-backfill.test.mjs tests/x-articles-search.test.mjs && node tests/x-articles.browser.mjs && node --test tests/x-articles-stack.test.mjs",
+    "articles:check": "node scripts/build-x-articles.mjs --check && node --test tests/x-articles-config.test.mjs tests/x-articles-worker.test.mjs tests/x-articles-cursor.test.mjs tests/x-articles-bootstrap.test.mjs tests/x-articles-limits.test.mjs tests/x-articles-inventory.test.mjs tests/x-articles-backfill.test.mjs tests/x-articles-search.test.mjs tests/x-articles-bearer.test.mjs && node tests/x-articles.browser.mjs && node --test tests/x-articles-stack.test.mjs",
     "articles:build": "wrangler deploy --dry-run --outdir .wrangler/article-build",
     "career:build": "python3 scripts/build-career.py && python3 scripts/build-resume.py",
     "career:check": "python3 scripts/build-career.py --check && python3 scripts/check-career-sync.py && python3 scripts/validate-resume.py",

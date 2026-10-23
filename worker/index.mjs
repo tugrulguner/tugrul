@@ -115,6 +115,10 @@ async function jsonFetch(fetcher, url, init, label) {
 }
 
 async function getAccessToken(env, kv, fetcher, now) {
+  if (env.X_BEARER_TOKEN !== undefined) {
+    if (typeof env.X_BEARER_TOKEN !== 'string' || !/^[A-Za-z0-9._~+/%=-]{1,8192}$/.test(env.X_BEARER_TOKEN)) throw new Error('Bearer token configuration invalid');
+    return env.X_BEARER_TOKEN;
+  }
   let stored = null;
   try { const raw = await kv.get(OAUTH_KEY); if (raw && raw.length <= 8192) stored = JSON.parse(raw); } catch { /* bootstrap from secret */ }
   if (stored?.accessToken && stored.expiresAt > now.getTime() + 60_000 && typeof stored.refreshToken === 'string') return stored.accessToken;
