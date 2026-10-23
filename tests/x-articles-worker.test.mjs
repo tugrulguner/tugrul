@@ -26,8 +26,8 @@ test('missing KV and seed safely yields a valid empty feed', async () => {
   assert.equal(res.status, 200); assert.deepEqual((await res.json()).articles, []);
 });
 
-test('refresh rotation persists tokens privately and scheduled sync publishes bounded timeline data', async () => {
-  const writes = new Map([['x-articles:sync-state', JSON.stringify({historyDone:true})]]); let calls = 0;
+test('refresh rotation persists tokens privately and scheduled sync publishes bounded Article search data', async () => {
+  const writes = new Map([['x-articles:sync-state', JSON.stringify({source:'article-search-v1',historyDone:true})]]); let calls = 0;
   const kv = { get: async k => writes.get(k) ?? null, put: async (k,v) => writes.set(k,v) };
   const fetcher = async (url, init) => {
     calls++;
@@ -61,15 +61,15 @@ test('other static paths pass through assets', async () => {
   assert.equal(await (await worker.fetch(new Request('https://site.test/about'), env)).text(), '/about');
 });
 
-test('timeline paging deduplicates articles and ignores ordinary posts', async () => {
-  const values = new Map([['x-articles:sync-state', JSON.stringify({historyDone:true})]]); const kv = { get: async k => values.get(k) ?? null, put: async (k,v) => values.set(k,v) };
+test('search paging deduplicates articles and ignores non-Article references', async () => {
+  const values = new Map([['x-articles:sync-state', JSON.stringify({source:'article-search-v1',historyDone:true})]]); const kv = { get: async k => values.get(k) ?? null, put: async (k,v) => values.set(k,v) };
   const mk = (id, pid, title) => ({ id: pid, created_at: '2026-10-23T02:00:00Z', article: { id, title, preview_text: 'Excerpt' }, entities: { urls: [{ expanded_url: `https://x.com/i/article/${id}` }] } });
   let timelines = 0;
   const fetcher = async url => {
     if (String(url).includes('/oauth2/token')) return response({ access_token: 'a', refresh_token: 'r', expires_in: 3600 });
     timelines++;
     if (timelines === 1) return response({ data: [mk('2113450673068965888','2113455187515916724','New'), { id: '2113460000000000001', created_at: '2026-10-23T03:00:00Z', text: 'ordinary post' }], meta: { next_token: 'next' } });
-    assert.equal(new URL(url).searchParams.get('pagination_token'), 'next');
+    assert.equal(new URL(url).searchParams.get('next_token'), 'next');
     return response({ data: [mk('2113450673068965888','2113455187515916724','New'), mk('2113083507429797889','2113083651856408576','Older')], meta: {} });
   };
   await syncArticles({ ARTICLES_KV: kv, X_CLIENT_ID: 'id', X_CLIENT_SECRET: 'secret', X_REFRESH_TOKEN: 'seed' }, { fetch: fetcher, now: new Date('2026-10-23T04:00:00Z') });

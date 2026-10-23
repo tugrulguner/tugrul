@@ -4,6 +4,8 @@ const MAX_PAGES = 3;
 const PAGE_SIZE = 20;
 const MAX_POSTS = 60;
 const SYNC_KEY = 'x-articles:sync-state';
+const SEARCH_SOURCE = 'article-search-v1';
+const ARTICLE_QUERY = 'from:Tugrul_Guner url:"https://x.com/i/article/" -is:retweet -is:reply';
 const MAX_ARTICLES = 100;
 const MAX_FEED_BYTES = 256_000;
 const FEED_TTL = 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400';
@@ -57,6 +59,10 @@ function sortedArticles(records) {
 function includeArticles(records, articles) {
   for (const incoming of articles) {
     const old = records.get(incoming.id);
+    if (old && BigInt(incoming.postId) < BigInt(old.postId)) {
+      if (!old.cover && incoming.cover) records.set(incoming.id, { ...old, cover: incoming.cover });
+      continue;
+    }
     records.set(incoming.id, { ...incoming, cover: incoming.cover ?? old?.cover ?? null });
   }
 }
@@ -135,6 +141,8 @@ export async function syncArticles(env, options = {}) {
   const isCursor = value => typeof value === 'string' && value.length > 0 && value.length <= 2048;
   let state = {};
   try { const raw = await kv.get(SYNC_KEY); if (raw && raw.length <= 8192) { const parsed = JSON.parse(raw); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) state = parsed; } } catch { /* conservatively replay, never skip unseen content */ }
+  // Timeline cursors and ordinary-Post watermarks are incompatible with Article search.
+  if (state.source !== SEARCH_SOURCE) state = {};
   const newestKnown = previous.articles.reduce((id, article) => !id || BigInt(article.postId) > BigInt(id) ? article.postId : id, null);
   let paginationToken = isCursor(state.nextToken) ? state.nextToken : null;
   let sinceId = isId(state.sinceId) ? state.sinceId : paginationToken ? null : newestKnown;
@@ -146,24 +154,24 @@ export async function syncArticles(env, options = {}) {
   let historyDeferred = false;
   let requestCount = 0, returnedPosts = 0;
   const fetchPage = async ({ since, until, token }) => {
-    if (requestCount >= MAX_PAGES || returnedPosts + PAGE_SIZE > MAX_POSTS) throw new Error('Timeline run budget exhausted');
+    if (requestCount >= MAX_PAGES || returnedPosts + PAGE_SIZE > MAX_POSTS) throw new Error('Search run budget exhausted');
     requestCount++;
-    const url = new URL('https://api.x.com/2/users/90198388/tweets');
+    const url = new URL('https://api.x.com/2/tweets/search/all');
     url.searchParams.set('max_results', String(PAGE_SIZE));
-    url.searchParams.set('exclude', 'replies,retweets');
+    url.searchParams.set('query', ARTICLE_QUERY);
     url.searchParams.set('tweet.fields', 'article,created_at,entities');
     url.searchParams.set('expansions', 'article.cover_media');
     url.searchParams.set('media.fields', 'url,alt_text,width,height');
     if (since) url.searchParams.set('since_id', since);
     if (until) url.searchParams.set('until_id', until);
-    if (token) url.searchParams.set('pagination_token', token);
-    const data = await jsonFetch(fetcher, url, { headers: { authorization: 'Bearer ' + accessToken } }, 'Timeline');
-    if (!data.meta || typeof data.meta !== 'object' || Array.isArray(data.meta) || (!Array.isArray(data.data) && !(data.data === undefined && data.meta.result_count === 0)) || (data.meta.next_token !== undefined && !isCursor(data.meta.next_token))) throw new Error('Timeline response invalid');
+    if (token) url.searchParams.set('next_token', token);
+    const data = await jsonFetch(fetcher, url, { headers: { authorization: 'Bearer ' + accessToken } }, 'Article search');
+    if (!data.meta || typeof data.meta !== 'object' || Array.isArray(data.meta) || (!Array.isArray(data.data) && !(data.data === undefined && data.meta.result_count === 0)) || (data.meta.next_token !== undefined && !isCursor(data.meta.next_token))) throw new Error('Search response invalid');
     const posts = data.data ?? [];
-    if (posts.length > PAGE_SIZE || posts.some(post => !post || !isId(post.id))) throw new Error('Timeline post bounds invalid');
+    if (posts.length > PAGE_SIZE || posts.some(post => !post || !isId(post.id))) throw new Error('Search post bounds invalid');
     returnedPosts += posts.length;
     const next = data.meta.next_token ?? null;
-    if (next && next === token) throw new Error('Timeline pagination did not advance');
+    if (next && next === token) throw new Error('Search pagination did not advance');
     return { posts, media: Array.isArray(data.includes?.media) ? data.includes.media : [], next };
   };
   const foregroundPages = historyDone ? MAX_PAGES : MAX_PAGES - 1;
@@ -190,7 +198,7 @@ export async function syncArticles(env, options = {}) {
   const articles = sortedArticles(records);
   await putFeed(kv, { schemaVersion: 1, updatedAt: now.toISOString(), articles });
   // Both progress tracks commit only after all successfully discovered content is durable.
-  await kv.put(SYNC_KEY, JSON.stringify({ sinceId: paginationToken ? sinceId : newestId ?? sinceId, nextToken: paginationToken, newestId: paginationToken ? newestId : null, historyUntilId, historyToken, historyDone }));
+  await kv.put(SYNC_KEY, JSON.stringify({ source: SEARCH_SOURCE, sinceId: paginationToken ? sinceId : newestId ?? sinceId, nextToken: paginationToken, newestId: paginationToken ? newestId : null, historyUntilId, historyToken, historyDone }));
   return { synced: true, count: articles.length, historyDeferred };
 }
 
