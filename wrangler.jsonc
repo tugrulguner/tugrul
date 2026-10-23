@@ -13,7 +13,7 @@
     { "binding": "ARTICLES_KV" }
   ],
   "triggers": {
-    "crons": ["0 9 * * *"]
+    "crons": ["0 14 * * *"]
   },
   "routes": [
     {

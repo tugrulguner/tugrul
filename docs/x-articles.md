@@ -6,7 +6,7 @@ The personal site shows one lead Article and up to five recent entries, with the
 
 The existing `tugrul-site` Worker serves static assets normally and runs code for `/api/x-articles` paths. `GET /api/x-articles` returns a validated public snapshot from Workers KV, or the bundled seed if storage is absent/corrupt/unavailable. HTTP cache headers advertise a 60-second browser and five-minute shared-cache lifetime; the durable snapshot itself is in KV. There is no public refresh endpoint, so visitors cannot trigger billed provider reads.
 
-`wrangler.jsonc` declares one daily Cron Trigger: `0 9 * * *` (09:00 UTC). Building or running locally does not activate a production schedule. No paid Workers configuration or paid-plan upgrade is included. Free-plan CPU limits still need confirmation on the deployed runtime; local workerd tests and a deploy dry-run are not a production CPU measurement.
+`wrangler.jsonc` declares one daily Cron Trigger: `0 14 * * *` (09:00 EST / 14:00 UTC, fixed UTC−05:00 year-round; this does not shift with daylight saving time). Building or running locally does not activate a production schedule. No paid Workers configuration or paid-plan upgrade is included. Free-plan CPU limits still need confirmation on the deployed runtime; local workerd tests and a deploy dry-run are not a production CPU measurement.
 
 The `ARTICLES_KV` binding uses Wrangler automatic provisioning instead of a fabricated namespace ID. On an authorized deployment, Wrangler can create/reuse the namespace. The deployment token must allow Workers KV provisioning as well as Worker deployment. Verify that permission before merging into an auto-deploying branch.
 
@@ -53,7 +53,7 @@ If `X_BEARER_TOKEN` is absent, the original user-context OAuth path remains supp
 
 If neither authentication method is configured, Cron makes no provider calls and serves the seed/last successful snapshot. Secret creation is a separate authorized operation, not part of a build/dry-run.
 
-Failures retain last successful content and produce fixed, credential-free Worker log messages. Provider requests reject redirects, have a 15-second fetch deadline, and stream at most 512 KB before parsing JSON. There is no public metered admin route. Local credential files are ignored by git.
+Failures retain last successful content and produce fixed, credential-free Worker log messages. Provider requests use Worker-supported `redirect: manual` and reject every non-2xx response (including redirects), have a 15-second fetch deadline, and stream at most 512 KB before parsing JSON. There is no public metered admin route. Local credential files are ignored by git.
 
 ## Verification and operation
 
