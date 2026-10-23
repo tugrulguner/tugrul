@@ -27,7 +27,7 @@ test('missing KV and seed safely yields a valid empty feed', async () => {
 });
 
 test('refresh rotation persists tokens privately and scheduled sync publishes bounded timeline data', async () => {
-  const writes = new Map(); let calls = 0;
+  const writes = new Map([['x-articles:sync-state', JSON.stringify({historyDone:true})]]); let calls = 0;
   const kv = { get: async k => writes.get(k) ?? null, put: async (k,v) => writes.set(k,v) };
   const fetcher = async (url, init) => {
     calls++;
@@ -62,7 +62,7 @@ test('other static paths pass through assets', async () => {
 });
 
 test('timeline paging deduplicates articles and ignores ordinary posts', async () => {
-  const values = new Map(); const kv = { get: async k => values.get(k) ?? null, put: async (k,v) => values.set(k,v) };
+  const values = new Map([['x-articles:sync-state', JSON.stringify({historyDone:true})]]); const kv = { get: async k => values.get(k) ?? null, put: async (k,v) => values.set(k,v) };
   const mk = (id, pid, title) => ({ id: pid, created_at: '2026-10-23T02:00:00Z', article: { id, title, preview_text: 'Excerpt' }, entities: { urls: [{ expanded_url: `https://x.com/i/article/${id}` }] } });
   let timelines = 0;
   const fetcher = async url => {

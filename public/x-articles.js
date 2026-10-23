@@ -22,8 +22,10 @@
           !Number.isInteger(item.cover.width) || item.cover.width < 1 || item.cover.width > 10000 ||
           !Number.isInteger(item.cover.height) || item.cover.height < 1 || item.cover.height > 10000)) return false;
       seen.add(item.id); return true;
-    }).sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, 6);
+    }).sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, 100);
   };
+  let baseline = [];
+  try { baseline = validate(JSON.parse(section.querySelector('[data-article-baseline]')?.textContent || 'null')); } catch { /* existing HTML stays usable */ }
   const excerptLabel = (value) => {
     const text = value.replace(/\[\d+\]/g, '').replace(/\s+/g, ' ').trim();
     if (/[.!?…]$/.test(text)) return text;
@@ -43,6 +45,9 @@
   const makeTime = (article) => { const time = el('time', '', dateLabel(article.publishedAt)); time.dateTime = article.publishedAt; return time; };
   const render = (articles) => {
     if (!articles.length) return;
+    const active = document.activeElement;
+    const archiveWasOpen = section.querySelector('.x-archive')?.open ?? false;
+    const summaryWasFocused = active === section.querySelector('.x-archive summary');
     const layout = el('div', 'x-article-layout');
     const featured = el('article', 'x-featured'); featured.dataset.articleId = articles[0].id;
     if (articles[0].cover) { const cover = articleLink(articles[0], '', 'x-cover-link'); cover.setAttribute('aria-label', `Read ${articles[0].title}`); const img = makeImage(articles[0]); if (img) cover.append(img); featured.append(cover); }
@@ -50,7 +55,7 @@
     const heading = el('h4'); heading.append(articleLink(articles[0], articles[0].title)); copy.append(heading, el('p', '', excerptLabel(articles[0].excerpt)), articleLink(articles[0], 'Read article ↗', 'x-read-link')); featured.append(copy); layout.append(featured);
     if (articles.length > 1) {
       const list = el('ol', 'x-recent');
-      for (const article of articles.slice(1)) {
+      for (const article of articles.slice(1, 6)) {
         const item = el('li'); item.dataset.articleId = article.id;
         if (article.cover) { const cover = articleLink(article, '', 'x-recent-cover'); cover.tabIndex = -1; cover.setAttribute('aria-hidden', 'true'); const img = makeImage(article, true); if (img) cover.append(img); item.append(cover); }
         const body = el('div'); body.append(makeTime(article)); const heading = el('h4'); heading.append(articleLink(article, article.title)); body.append(heading, el('p', '', excerptLabel(article.excerpt))); item.append(body); list.append(item);
@@ -58,10 +63,31 @@
       layout.append(list);
     }
     section.querySelector('.x-article-layout')?.replaceWith(layout);
+    section.querySelector('.x-archive')?.remove();
+    if (articles.length > 6) {
+      const archive = el('details', 'x-archive'); archive.open = archiveWasOpen;
+      archive.append(el('summary', '', 'Older articles'));
+      const list = el('ol', 'x-archive-list');
+      for (const article of articles.slice(6)) {
+        const item = el('li'); item.dataset.articleId = article.id;
+        item.append(makeTime(article), articleLink(article, article.title)); list.append(item);
+      }
+      archive.append(list); section.append(archive);
+    }
+    if (active && !active.isConnected) {
+      const replacement = summaryWasFocused ? section.querySelector('.x-archive summary') : [...section.querySelectorAll('a')].find(link => link.href === active.href && link.textContent === active.textContent);
+      replacement?.focus({ preventScroll: true });
+    }
     section.dataset.feedState = 'live';
   };
   fetch('/api/x-articles', { headers: { Accept: 'application/json' }, cache: 'no-store' })
     .then((response) => { if (!response.ok) throw new Error('Article feed unavailable'); return response.json(); })
-    .then((payload) => { const articles = validate(payload); if (articles.length) render(articles); })
+    .then((payload) => {
+      const articles = validate(payload);
+      if (!articles.length) return;
+      const records = new Map(baseline.map(article => [article.id, article]));
+      for (const article of articles) records.set(article.id, article);
+      render([...records.values()].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, 100));
+    })
     .catch(() => { section.dataset.feedState = 'seed'; });
 })();

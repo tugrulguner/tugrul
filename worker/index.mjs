@@ -35,6 +35,7 @@ export function normalizeFeed(posts, media = [], now = new Date()) {
   const articles = [];
   const seen = new Set();
   for (const post of Array.isArray(posts) ? posts : []) {
+    if (!post?.article || typeof post.article !== 'object') continue;
     const id = articleId(post);
     const postId = typeof post?.id === 'string' && /^\d{15,20}$/.test(post.id) ? post.id : null;
     const url = post?.entities?.urls?.find(u => typeof u?.expanded_url === 'string' && /^https:\/\/x\.com\/i\/article\/\d{1,30}(?:\?.*)?$/.test(u.expanded_url))?.expanded_url;
@@ -50,22 +51,33 @@ export function normalizeFeed(posts, media = [], now = new Date()) {
   return { schemaVersion: 1, updatedAt: now.toISOString(), articles: articles.slice(0, MAX_ARTICLES) };
 }
 
+function sortedArticles(records) {
+  return [...records.values()].sort((a, b) => BigInt(a.id) > BigInt(b.id) ? -1 : BigInt(a.id) < BigInt(b.id) ? 1 : Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, MAX_ARTICLES);
+}
+function includeArticles(records, articles) {
+  for (const incoming of articles) {
+    const old = records.get(incoming.id);
+    records.set(incoming.id, { ...incoming, cover: incoming.cover ?? old?.cover ?? null });
+  }
+}
 async function readFeed(env) {
-  try {
-    const raw = await env.ARTICLES_KV?.get(FEED_KEY);
-    if (raw && raw.length <= MAX_FEED_BYTES) {
-      const parsed = JSON.parse(raw);
-      if (validFeed(parsed)) return parsed;
-    }
-  } catch { /* serve the last bundled good feed instead */ }
+  let baseline = EMPTY(), cached = null;
   try {
     const response = await env.ASSETS?.fetch(new Request('https://assets.invalid/x-articles.json'));
     if (response?.ok) {
-      const text = await response.text();
-      if (text.length <= MAX_FEED_BYTES) { const feed = JSON.parse(text); if (validFeed(feed)) return feed; }
+      const raw = await response.text();
+      if (raw.length <= MAX_FEED_BYTES) { const value = JSON.parse(raw); if (validFeed(value)) baseline = value; }
     }
-  } catch { /* no seed available */ }
-  return EMPTY();
+  } catch { /* the private cache remains independently usable */ }
+  try {
+    const raw = await env.ARTICLES_KV?.get(FEED_KEY);
+    if (raw && raw.length <= MAX_FEED_BYTES) { const value = JSON.parse(raw); if (validFeed(value)) cached = value; }
+  } catch { /* serve the bundled inventory */ }
+  if (!cached) return baseline;
+  const newer = Date.parse(cached.updatedAt) >= Date.parse(baseline.updatedAt) ? cached : baseline;
+  const older = newer === cached ? baseline : cached;
+  const records = new Map(); includeArticles(records, older.articles); includeArticles(records, newer.articles);
+  return { schemaVersion: 1, updatedAt: newer.updatedAt, articles: sortedArticles(records) };
 }
 
 async function putFeed(kv, feed) {
@@ -76,7 +88,7 @@ async function putFeed(kv, feed) {
 
 async function jsonFetch(fetcher, url, init, label) {
   const response = await fetcher(url, { ...init, redirect: 'error', signal: AbortSignal.timeout(15_000) });
-  if (!response.ok) throw new Error(`${label} request failed (${response.status})`);
+  if (!response.ok) { const error = new Error(`${label} request failed (${response.status})`); error.status = response.status; throw error; }
   if (!response.body) throw new Error(`${label} response invalid`);
   const reader = response.body.getReader();
   const decoder = new TextDecoder('utf-8', { fatal: true });
@@ -115,62 +127,71 @@ export async function syncArticles(env, options = {}) {
   if (!kv || typeof kv.get !== 'function' || typeof kv.put !== 'function') return { synced: false, reason: 'storage unavailable' };
   const fetcher = options.fetch ?? env.fetch ?? fetch;
   const now = options.now ?? new Date();
-  let previous = EMPTY();
-  try { const raw = await kv.get(FEED_KEY); if (raw && raw.length <= MAX_FEED_BYTES) { const v = JSON.parse(raw); if (validFeed(v)) previous = v; } } catch { /* replace corrupt value only after fully successful sync */ }
-  if (!previous.articles.length) { try { const seed = await env.ASSETS?.fetch(new Request('https://assets.invalid/x-articles.json')); if (seed?.ok) { const raw = await seed.text(); if (raw.length <= MAX_FEED_BYTES) { const parsed = JSON.parse(raw); if (validFeed(parsed)) previous = parsed; } } } catch { /* seed is optional */ } }
+  const previous = await readFeed(env);
   const accessToken = await getAccessToken(env, kv, fetcher, now);
   if (!accessToken) return { synced: false, reason: 'credentials unavailable' };
   const records = new Map(previous.articles.map(a => [a.id, a]));
-  let paginationToken, sinceId = null, newestId = null;
-  try {
-    const raw = await kv.get(SYNC_KEY);
-    const state = raw && raw.length <= 8192 ? JSON.parse(raw) : null;
-    if (state) {
-      if (typeof state.sinceId === 'string' && /^\d{15,20}$/.test(state.sinceId)) sinceId = state.sinceId;
-      if (typeof state.newestId === 'string' && /^\d{15,20}$/.test(state.newestId)) newestId = state.newestId;
-      if (typeof state.nextToken === 'string' && state.nextToken.length <= 2048) paginationToken = state.nextToken;
-    }
-  } catch { /* restart conservatively without advancing over unseen posts */ }
-  if (!paginationToken && !sinceId && previous.articles.length) {
-    // Bootstrap from the oldest bundled article, not the account's entire posting history.
-    const oldest = previous.articles.reduce((id, article) => BigInt(article.postId) < BigInt(id) ? article.postId : id, previous.articles[0].postId);
-    sinceId = (BigInt(oldest) - 1n).toString();
-  }
-  let postsCount = 0;
-  let continuation = null;
-  for (let page = 0; page < MAX_PAGES && postsCount < MAX_POSTS; page++) {
+  const isId = value => typeof value === 'string' && /^\d{15,20}$/.test(value);
+  const isCursor = value => typeof value === 'string' && value.length > 0 && value.length <= 2048;
+  let state = {};
+  try { const raw = await kv.get(SYNC_KEY); if (raw && raw.length <= 8192) { const parsed = JSON.parse(raw); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) state = parsed; } } catch { /* conservatively replay, never skip unseen content */ }
+  const newestKnown = previous.articles.reduce((id, article) => !id || BigInt(article.postId) > BigInt(id) ? article.postId : id, null);
+  let paginationToken = isCursor(state.nextToken) ? state.nextToken : null;
+  let sinceId = isId(state.sinceId) ? state.sinceId : paginationToken ? null : newestKnown;
+  let newestId = isId(state.newestId) ? state.newestId : null;
+  let historyDone = state.historyDone === true;
+  let historyToken = isCursor(state.historyToken) ? state.historyToken : null;
+  // Start history immediately below the newest baseline Post, covering gaps as well as older entries.
+  let historyUntilId = isId(state.historyUntilId) ? state.historyUntilId : newestKnown ?? sinceId;
+  let historyDeferred = false;
+  let requestCount = 0, returnedPosts = 0;
+  const fetchPage = async ({ since, until, token }) => {
+    if (requestCount >= MAX_PAGES || returnedPosts + PAGE_SIZE > MAX_POSTS) throw new Error('Timeline run budget exhausted');
+    requestCount++;
     const url = new URL('https://api.x.com/2/users/90198388/tweets');
-    url.searchParams.set('max_results', String(Math.min(PAGE_SIZE, MAX_POSTS - postsCount)));
+    url.searchParams.set('max_results', String(PAGE_SIZE));
     url.searchParams.set('exclude', 'replies,retweets');
     url.searchParams.set('tweet.fields', 'article,created_at,entities');
     url.searchParams.set('expansions', 'article.cover_media');
     url.searchParams.set('media.fields', 'url,alt_text,width,height');
-    if (sinceId) url.searchParams.set('since_id', sinceId);
-    if (paginationToken) url.searchParams.set('pagination_token', paginationToken);
-    const data = await jsonFetch(fetcher, url, { headers: { authorization: `Bearer ${accessToken}` } }, 'Timeline');
-    if (!data.meta || (!Array.isArray(data.data) && !(data.data === undefined && data.meta.result_count === 0)) || (data.meta.next_token !== undefined && (typeof data.meta.next_token !== 'string' || !data.meta.next_token || data.meta.next_token.length > 2048))) throw new Error('Timeline response invalid');
+    if (since) url.searchParams.set('since_id', since);
+    if (until) url.searchParams.set('until_id', until);
+    if (token) url.searchParams.set('pagination_token', token);
+    const data = await jsonFetch(fetcher, url, { headers: { authorization: 'Bearer ' + accessToken } }, 'Timeline');
+    if (!data.meta || typeof data.meta !== 'object' || Array.isArray(data.meta) || (!Array.isArray(data.data) && !(data.data === undefined && data.meta.result_count === 0)) || (data.meta.next_token !== undefined && !isCursor(data.meta.next_token))) throw new Error('Timeline response invalid');
     const posts = data.data ?? [];
-    if (posts.length > PAGE_SIZE || posts.some(p => !p || typeof p.id !== 'string' || !/^\d{15,20}$/.test(p.id))) throw new Error('Timeline post bounds invalid');
-    for (const post of posts) if (!newestId || BigInt(post.id) > BigInt(newestId)) newestId = post.id;
-    postsCount += posts.length;
-    const media = Array.isArray(data.includes?.media) ? data.includes.media : [];
-    const normalized = normalizeFeed(posts, media, now);
-    for (const incoming of normalized.articles) {
-      const old = records.get(incoming.id);
-      if (old && incoming.cover === null && old.cover) incoming.cover = old.cover;
-      records.set(incoming.id, incoming);
-    }
-    const next = data.meta?.next_token;
-    if (!next) break;
-    if (page === MAX_PAGES - 1 || postsCount >= MAX_POSTS) { continuation = next; break; }
-    paginationToken = next;
+    if (posts.length > PAGE_SIZE || posts.some(post => !post || !isId(post.id))) throw new Error('Timeline post bounds invalid');
+    returnedPosts += posts.length;
+    const next = data.meta.next_token ?? null;
+    if (next && next === token) throw new Error('Timeline pagination did not advance');
+    return { posts, media: Array.isArray(data.includes?.media) ? data.includes.media : [], next };
+  };
+  const foregroundPages = historyDone ? MAX_PAGES : MAX_PAGES - 1;
+  for (let page = 0; page < foregroundPages; page++) {
+    const data = await fetchPage({ since: sinceId, token: paginationToken });
+    for (const post of data.posts) if (!newestId || BigInt(post.id) > BigInt(newestId)) newestId = post.id;
+    includeArticles(records, normalizeFeed(data.posts, data.media, now).articles);
+    paginationToken = data.next;
+    if (!paginationToken) break;
   }
-  const articles = [...records.values()].sort((a, b) => BigInt(a.id) > BigInt(b.id) ? -1 : BigInt(a.id) < BigInt(b.id) ? 1 : Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, MAX_ARTICLES);
-  const feed = { schemaVersion: 1, updatedAt: now.toISOString(), articles };
-  await putFeed(kv, feed);
-  // Commit progress only after public content is durable; a failed checkpoint is safe to replay.
-  await kv.put(SYNC_KEY, JSON.stringify(continuation ? { sinceId, nextToken: continuation, newestId } : { sinceId: newestId ?? sinceId, nextToken: null, newestId: null }));
-  return { synced: true, count: articles.length };
+  if (!historyUntilId) historyUntilId = newestId;
+  if (!historyDone && historyUntilId) {
+    try {
+      const data = await fetchPage({ until: historyUntilId, token: historyToken });
+      includeArticles(records, normalizeFeed(data.posts, data.media, now).articles);
+      historyToken = data.next;
+      historyDone = !historyToken;
+    } catch (error) {
+      // Never starve fresh discovery because a historical cursor/provider failed.
+      historyDeferred = true;
+      if (error.status === 400 && historyToken) historyToken = null;
+    }
+  } else if (!historyUntilId) historyDone = true;
+  const articles = sortedArticles(records);
+  await putFeed(kv, { schemaVersion: 1, updatedAt: now.toISOString(), articles });
+  // Both progress tracks commit only after all successfully discovered content is durable.
+  await kv.put(SYNC_KEY, JSON.stringify({ sinceId: paginationToken ? sinceId : newestId ?? sinceId, nextToken: paginationToken, newestId: paginationToken ? newestId : null, historyUntilId, historyToken, historyDone }));
+  return { synced: true, count: articles.length, historyDeferred };
 }
 
 async function handle(request, env, ctx) {
@@ -185,5 +206,5 @@ async function handle(request, env, ctx) {
 
 export default {
   fetch: handle,
-  async scheduled(controller, env, ctx) { ctx.waitUntil(syncArticles(env).then(result => { if (!result.synced) console.warn('X article sync not configured; serving cached articles.'); }).catch(() => console.error('X article sync failed; serving cached articles.'))); }
+  async scheduled(controller, env, ctx) { ctx.waitUntil(syncArticles(env).then(result => { if (!result.synced) console.warn('X article sync not configured; serving cached articles.'); else if (result.historyDeferred) console.warn('X article history deferred; fresh discovery remains available.'); }).catch(() => console.error('X article sync failed; serving cached articles.'))); }
 };
