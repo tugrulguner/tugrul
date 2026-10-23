@@ -13,7 +13,7 @@ The `ARTICLES_KV` binding uses Wrangler automatic provisioning instead of a fabr
 Private KV keys:
 
 - `x-articles:feed`: validated public feed (schema 1, at most 100 entries / 256 KB).
-- `x-articles:oauth`: access token, rotated refresh token and access expiry. Never exposed by a route.
+- `x-articles:oauth`: optional legacy user OAuth access/refresh tokens and expiry; not read or written in app-only Bearer mode. Never exposed by a route.
 - `x-articles:sync-state`: independent fresh-discovery and historical-pagination watermarks, continuation tokens and completion state. Never exposed by a route.
 
 ## Incremental discovery and cost bounds
@@ -30,17 +30,28 @@ Typical one-page discovery returns at most 20 matching Posts, and often fewer or
 
 ## Secure production activation
 
-Local `xurl` authentication is not automatically available inside a deployed Worker. Never read/copy its credential file through an agent or put tokens in chat. After the feature is approved for deployment, provision a dedicated confidential OAuth 2.0 app authorization for the intended account with `tweet.read users.read offline.access`. Obtain its refresh token through the provider's authorization flow outside the agent session.
+### Preferred: one app-only Bearer secret
 
-Enter the following Worker secrets interactively, outside chat:
+Public Article search supports app-only Bearer authentication. Reuse the existing X developer app; a separate app, OAuth browser callback, Client ID/Secret pair and user refresh token are not required for this mode. Obtain its **app-only Bearer Token** from the app's Keys and Tokens section or your password manager—not an API Key, OAuth Client ID, or the rotating user access token managed by xurl. Avoid regenerating/revoking a token used by other consumers without checking first.
+
+After the Bearer-capable Worker is approved and deployed, enter the value in Cloudflare's encrypted secret form or run the following **in your own terminal, outside the agent/chat**, from this repository:
 
 ```sh
-npx wrangler secret put X_CLIENT_ID
-npx wrangler secret put X_CLIENT_SECRET
-npx wrangler secret put X_REFRESH_TOKEN
+npx wrangler secret put X_BEARER_TOKEN --name tugrul-site
+npx wrangler secret list --name tugrul-site
 ```
 
-These commands modify the deployed Worker; do not run them as part of an unapproved build. The first successful refresh stores the rotated refresh token privately in KV. Access tokens are reused until near expiry. Do not share one rotating refresh-token chain with another consumer such as local xurl. If configuration is absent, Cron makes no provider calls and serves the seed/last successful snapshot. OAuth renewal is covered by deterministic tests, but has not been live-provisioned for production.
+The first command modifies the deployed Worker and prompts for the secret; never place the value inline in a command, commit it, paste it into chat, or read it from `~/.xurl` through an agent. The second command verifies names/types only. Use a Worker **Secret**, not a plaintext environment variable. Do not URL-decode, re-encode or trim the token in application code; paste the exact token value without surrounding whitespace.
+
+When `X_BEARER_TOKEN` is configured, it takes precedence. The Worker neither reads nor writes `x-articles:oauth`, calls the OAuth token endpoint, nor falls back to user OAuth if the Bearer is rejected. Empty, non-string, whitespace-containing or oversized explicit Bearer configuration fails closed with credential-free logging. A revoked/invalid token leaves the last successful feed intact. The token remains in the Worker secret store, not KV, the browser or public feed. Rotate it deliberately if revoked or compromised; there is no user-token refresh chain in this mode.
+
+Actual app-only provider authorization remains an activation gate until the real secret is installed and a provider-backed Worker run succeeds. Existing local xurl/OAuth integration evidence does not prove the app-only token's access or billing eligibility.
+
+### Optional legacy OAuth compatibility
+
+If `X_BEARER_TOKEN` is absent, the original user-context OAuth path remains supported with private `X_CLIENT_ID`, `X_CLIENT_SECRET` and `X_REFRESH_TOKEN` secrets. It persists rotated access/refresh tokens and expiry in `x-articles:oauth`. Do not share another consumer's rotating refresh-token chain. These legacy credentials are not needed for the preferred app-only setup, and this update does not delete them or their private KV value. Removing the Bearer secret re-enables this fallback if legacy credentials are present.
+
+If neither authentication method is configured, Cron makes no provider calls and serves the seed/last successful snapshot. Secret creation is a separate authorized operation, not part of a build/dry-run.
 
 Failures retain last successful content and produce fixed, credential-free Worker log messages. Provider requests reject redirects, have a 15-second fetch deadline, and stream at most 512 KB before parsing JSON. There is no public metered admin route. Local credential files are ignored by git.
 
@@ -54,7 +65,7 @@ npm run articles:build  # deploy dry-run only; no publication or provisioning
 npm run preview        # local assets, Worker and KV
 ```
 
-The suite exercises actual workerd HTTP routes, native local KV writes/readback, the scheduled callback with absent secrets, provider-response validation, OAuth rotation, incremental cursor durability, and responsive browser behavior. Unit provider fixtures are labeled tests; `tests/fixtures/x-article-real-provider.json` preserves sanitized captured metadata with no fabricated Article IDs.
+The suite exercises actual workerd HTTP routes, native local KV writes/readback, the scheduled callback with absent secrets, provider-response validation, app-only Bearer precedence/privacy, optional OAuth rotation, incremental cursor durability, and responsive browser behavior. Unit provider fixtures are labeled tests; `tests/fixtures/x-article-real-provider.json` preserves sanitized captured metadata with no fabricated Article IDs.
 
 The corrected inventory was verified through five provider-available timeline pages: 454 returned Posts, nine unique Articles with matching covers, and no final continuation token. This is the provider-available timeline, not a claim about material outside provider retention. A separate real full-archive search probe matched the same nine Articles using nine returned Posts across three response pages, including the terminal empty page. Sanitized search captures drive a replay starting from the old three-item seed, recovering all nine via eight older matching records without scanning the 445 irrelevant ordinary Posts. A live local signing-adapter test also exercised the actual sync functions: nine Articles retained, historical search completed, then one incremental search returning zero new Posts. Matching references/duplicates can make returned-Post counts differ by query/page size; that local run returned 11 historical matches, not nine unique new Articles. These probes do not claim live Cloudflare Worker OAuth activation. Before calling automatic production sync operational, verify secure authorization, a successful scheduled invocation, and a later published Article appearing at the public endpoint and page.
 
