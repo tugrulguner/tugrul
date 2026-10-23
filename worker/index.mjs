@@ -93,7 +93,7 @@ async function putFeed(kv, feed) {
 }
 
 async function jsonFetch(fetcher, url, init, label) {
-  const response = await fetcher(url, { ...init, redirect: 'error', signal: AbortSignal.timeout(15_000) });
+  const response = await fetcher(url, { ...init, redirect: 'manual', signal: AbortSignal.timeout(15_000) });
   if (!response.ok) { const error = new Error(`${label} request failed (${response.status})`); error.status = response.status; throw error; }
   if (!response.body) throw new Error(`${label} response invalid`);
   const reader = response.body.getReader();
