@@ -40,21 +40,12 @@ for(const viewport of [{width:320,height:800},{width:390,height:844},{width:768,
  if(evidence){await page.locator('#hero-title').click();await page.locator('.project-list').screenshot({path:resolve(evidence,`modepot-${viewport.width}.png`)});}
  const writingX=page.locator('#writing a[data-posthog-network="x"]');assert.equal(await writingX.count(),1);assert.equal(await writingX.getAttribute('href'),'https://x.com/Tugrul_Guner');const writingBox=await writingX.boundingBox();assert.ok(writingBox.height>=44&&writingBox.x>=0&&writingBox.x+writingBox.width<=viewport.width,'writing X link target/clipping');
  if(evidence){await writingX.screenshot({path:resolve(evidence,`writing-x-${viewport.width}.png`)});}
- const substack=page.locator('#substack-writing');assert.equal(await substack.count(),1,'dedicated Substack writing section');
- assert.equal(await substack.locator('..').getAttribute('class'),'writing-content','Substack is a sibling publication');
- assert.equal(await substack.locator('h3').innerText(),'AI, science, and how things work');
+ assert.equal(await page.locator('#substack-writing').count(),0,'Substack is part of the unified AI article shelf');
+ const shelf=page.locator('#x-articles');assert.equal(await shelf.count(),1);assert.equal(await shelf.locator('h3').innerText(),'AI & agentic systems');
+ assert.equal(await shelf.locator('[data-article-id="2114331968296939520"] a[data-posthog-event="substack_article_clicked"]').count(),3);
  const schema=await page.locator('script[type="application/ld+json"]').textContent();assert.ok(JSON.parse(schema).mainEntity.sameAs.includes('https://substack.com/@tugrulguner'));
- const substackLinks=page.locator('a[data-posthog-network="substack"]');assert.equal(await substackLinks.count(),3,'hero, writing and footer links');
- await page.evaluate(()=>{window.__substackCaptures=[];window.posthog={capture:(...args)=>window.__substackCaptures.push(args)};document.addEventListener('click',e=>{if(e.target.closest('a[data-posthog-network="substack"]'))e.preventDefault();},true);});
- for(const link of await substackLinks.all()){
-  assert.equal(await link.getAttribute('href'),'https://tugrulguner.substack.com/');assert.match(await link.getAttribute('class'),/ph-no-autocapture/);
-  const box=await link.boundingBox();assert.ok(box.height>=44&&box.x>=0&&box.x+box.width<=viewport.width,'Substack target/clipping');
-  await link.click();
- }
- assert.deepEqual(await page.evaluate(()=>window.__substackCaptures.map(([event,props])=>[event,props.network,props.surface,props.destination])),['hero','writing','footer'].map(surface=>['social_profile_clicked','substack',surface,'https://tugrulguner.substack.com/']));
- const substackRead=substack.locator('a');await substackRead.focus();await page.keyboard.press('Enter');
- assert.equal(await page.evaluate(()=>window.__substackCaptures.length),4,'keyboard activation captures once');
- if(evidence)await substack.screenshot({path:resolve(evidence,`substack-${viewport.width}.png`)});
+ const substackLinks=page.locator('a[data-posthog-network="substack"]');assert.equal(await substackLinks.count(),2,'hero and footer links remain');
+ for(const link of await substackLinks.all()){assert.equal(await link.getAttribute('href'),'https://tugrulguner.substack.com/');assert.match(await link.getAttribute('class'),/ph-no-autocapture/);const box=await link.boundingBox();assert.ok(box.height>=44&&box.x>=0&&box.x+box.width<=viewport.width,'Substack target/clipping');}
  await page.goto(url);
  console.log(`Profile hierarchy ${viewport.width}px: passed; primary actions ${JSON.stringify(await buttons.evaluateAll(els=>els.map(e=>({label:e.textContent.trim(),bottom:e.getBoundingClientRect().bottom}))))}`);
  await context.close();

@@ -24,8 +24,9 @@ class QuotographProfileTests(unittest.TestCase):
         html = (ROOT / 'public/index.html').read_text()
         llms = (ROOT / 'public/llms.txt').read_text()
         self.assertIn('id="x-articles"', html)
-        self.assertIn('Writing on X', html)
+        self.assertIn('AI &amp; agentic systems', html)
         self.assertIn('All articles on X', html)
+        self.assertIn('substack_article_clicked', html)
         self.assertIn('He also publishes articles on X', llms)
         for name in ['Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
             self.assertIn(name, text)

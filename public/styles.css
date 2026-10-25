@@ -123,10 +123,9 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .issue-list strong { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; }
 .issue-list i { color: var(--terracotta); font-style: normal; }
 .writing-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-.substack-writing { max-width: 900px; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); }
-.substack-writing h3 { max-width: 780px; margin: .8rem 0 1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; line-height: 1.15; }
-.substack-writing > p:not(.writing-kicker) { max-width: 760px; color: var(--muted); }
-.substack-writing .text-link { display: inline-flex; align-items: center; min-height: 44px; gap: .5rem; }
+.article-reading-links { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.x-archive-list .article-reading-links { grid-column: 1 / -1; }
+.x-archive-list .article-reading-links a { font: 750 .78rem/1.4 Inter, sans-serif; letter-spacing: .055em; }
 .essay-spotlight { max-width: 900px; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); }
 .essay-spotlight h3 { max-width: 780px; margin: .8rem 0 1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; line-height: 1.15; }
 .essay-spotlight > p:not(.writing-kicker) { max-width: 760px; color: var(--muted); }

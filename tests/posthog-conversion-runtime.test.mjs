@@ -17,7 +17,7 @@ const expectedEvents = [
   'email_clicked', 'github_profile_clicked', 'medium_article_clicked', 'medium_clicked',
   'modepot_clicked', 'modepot_project_clicked', 'newsletter_article_clicked',
   'newsletter_clicked', 'newsletter_subscribe_clicked', 'resume_downloaded',
-  'scholar_clicked', 'social_profile_clicked', 'x_article_clicked',
+  'scholar_clicked', 'social_profile_clicked', 'substack_article_clicked', 'x_article_clicked',
 ];
 const eventsByName = new Map();
 for (const { source, dataset, href } of tracked) {
