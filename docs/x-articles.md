@@ -1,6 +1,6 @@
 # X Article showcase and daily sync
 
-The personal site shows one lead article and up to five recent entries, with the remainder accessible through an “Older articles” disclosure. The bundled seed contains 12 verified X articles; two have verified Substack counterparts. Each story appears once with its original X date. Paired stories link primarily to Substack and offer a separate X reading action. Both destinations work in static HTML without JavaScript. Passionately Curious and Medium remain separate and unchanged. One same-origin `/api/articles` request reconciles newer cached content; visitors never trigger provider requests. Images use X's public image CDN.
+The personal site shows one lead article and up to five recent entries, with the remainder accessible through an “Older articles” disclosure. The bundled seed contains 12 verified X articles; four have verified Substack counterparts. Each story appears once with its original X date. Paired stories link primarily to Substack and offer a separate X reading action. Both destinations work in static HTML without JavaScript. Passionately Curious and Medium remain separate and unchanged. One same-origin `/api/articles` request reconciles newer cached content; visitors never trigger provider requests. Images use X's public image CDN.
 
 ## Runtime and schedule
 
