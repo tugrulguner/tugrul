@@ -62,12 +62,13 @@ try {
     await page.locator('#x-articles').screenshot({path:resolve(evidence, `paired-${width}.png`),style:'.skip-link:not(:focus){visibility:hidden}'});
     await context.close();
   }
-  for (const mode of ['nojs', 'failure', 'legacy', 'unsafe', 'archive']) {
+  for (const mode of ['nojs', 'failure', 'legacy', 'unsafe', 'wrong-pair', 'archive']) {
     const context = await browser.newContext({javaScriptEnabled:mode !== 'nojs', viewport:{width:320,height:1000}});
     await context.route('**/*posthog.com/**', r => r.abort());
     let payload = structuredClone(merged);
     if (mode === 'legacy') payload = feed;
     if (mode === 'unsafe') payload.articles = payload.articles.map(a => ({...a, title:'MALICIOUS REPLACEMENT', substackUrl:'javascript:alert(1)'}));
+    if (mode === 'wrong-pair') payload.articles = payload.articles.map(a => a.substackUrl ? {...a,substackUrl:'https://tugrulguner.substack.com/p/attacker-chosen'} : a);
     if (mode === 'archive') payload.articles = payload.articles.map(a => pairs.some(p => p.xArticleId === a.id) ? {...a,publishedAt:'2026-01-01T00:00:00.000Z'} : a);
     await context.route('**/api/articles', r => mode === 'failure' ? r.fulfill({status:503,body:''}) : r.fulfill({json:payload}));
     const page = await context.newPage(); await page.goto(origin); await page.waitForLoadState('networkidle');

@@ -92,7 +92,10 @@
       const articles = validate(payload);
       if (!articles.length) return;
       const records = new Map(baseline.map(article => [article.id, article]));
-      for (const article of articles) records.set(article.id, { ...article, ...(baseline.find(a => a.id === article.id)?.substackUrl && !article.substackUrl ? { substackUrl: baseline.find(a => a.id === article.id).substackUrl } : {}) });
+      for (const article of articles) {
+        const verified = records.get(article.id)?.substackUrl;
+        records.set(article.id, { ...article, ...(verified ? { substackUrl: verified } : {}) });
+      }
       render([...records.values()].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, 100));
     })
     .catch(() => { section.dataset.feedState = 'seed'; });
