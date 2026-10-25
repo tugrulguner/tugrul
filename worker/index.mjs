@@ -1,4 +1,7 @@
+import { SUBSTACK_FEED_URL, parseSubstackFeed, mergeSubstack, validateCache } from './substack.mjs';
+import PAIRS from './substack-pairs.mjs';
 const FEED_KEY = 'x-articles:feed';
+const SUBSTACK_KEY = 'substack:feed';
 const OAUTH_KEY = 'x-articles:oauth';
 const MAX_PAGES = 3;
 const PAGE_SIZE = 20;
@@ -84,6 +87,36 @@ async function readFeed(env) {
   const older = newer === cached ? baseline : cached;
   const records = new Map(); includeArticles(records, older.articles); includeArticles(records, newer.articles);
   return { schemaVersion: 1, updatedAt: newer.updatedAt, articles: sortedArticles(records) };
+}
+
+async function withSubstack(feed, env) {
+  let rss = []; try { const raw = await env.ARTICLES_KV?.get(SUBSTACK_KEY); if (raw && raw.length <= 32000) { const parsed = JSON.parse(raw); if (Array.isArray(parsed)) rss = parsed; } } catch { /* pairing manifest remains available; RSS cache is optional */ }
+  try { return mergeSubstack(feed, rss, PAIRS); }
+  catch { return mergeSubstack(feed, [], PAIRS); }
+}
+async function syncSubstack(env, fetcher = env.fetch ?? fetch) {
+  const kv = env.ARTICLES_KV; if (!kv) return false;
+  try { const response = await fetcher(SUBSTACK_FEED_URL, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: { accept: 'application/rss+xml, application/xml, text/xml' } });
+    if (!response.ok || response.status >= 300) throw new Error('RSS unavailable');
+    const declared = Number(response.headers.get('content-length') || 0); if (declared > 512000) throw new Error('RSS too large');
+    if (!response.body) throw new Error('RSS body missing');
+    const reader = response.body.getReader(); const chunks = []; let bytes = 0;
+    try {
+      while (true) {
+        const { done, value } = await reader.read(); if (done) break;
+        bytes += value.byteLength; if (bytes > 512000) { await reader.cancel(); throw new Error('RSS too large'); }
+        chunks.push(value);
+      }
+    } finally { reader.releaseLock(); }
+    const buffer = new Uint8Array(bytes); let offset = 0;
+    for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.byteLength; }
+    const text = new TextDecoder('utf-8', { fatal: true }).decode(buffer);
+    const previous = await kv.get(SUBSTACK_KEY); let records = [];
+    try { records = previous && previous.length <= 32000 ? validateCache(JSON.parse(previous), PAIRS) : []; } catch { records = []; }
+    const fresh = parseSubstackFeed(text, PAIRS); const byId = new Map(records.map(r => [r.xArticleId, r]));
+    for (const record of fresh) byId.set(record.xArticleId, { ...record, title: record.title || byId.get(record.xArticleId)?.title || '' });
+    await kv.put(SUBSTACK_KEY, JSON.stringify([...byId.values()])); return true;
+  } catch { return false; }
 }
 
 async function putFeed(kv, feed) {
@@ -208,6 +241,10 @@ export async function syncArticles(env, options = {}) {
 
 async function handle(request, env, ctx) {
   const url = new URL(request.url);
+  if (url.pathname === '/api/articles' && request.method === 'GET') {
+    return Response.json(await withSubstack(await readFeed(env), env), { headers: { 'cache-control': FEED_TTL, 'x-content-type-options': 'nosniff' } });
+  }
+  if (url.pathname.startsWith('/api/articles')) return new Response('Not found', { status: 404, headers: { 'cache-control': 'no-store' } });
   if (url.pathname === '/api/x-articles' && request.method === 'GET') {
     const feed = await readFeed(env);
     return Response.json(feed, { headers: { 'cache-control': FEED_TTL, 'x-content-type-options': 'nosniff' } });
@@ -218,5 +255,5 @@ async function handle(request, env, ctx) {
 
 export default {
   fetch: handle,
-  async scheduled(controller, env, ctx) { ctx.waitUntil(syncArticles(env).then(result => { if (!result.synced) console.warn('X article sync not configured; serving cached articles.'); else if (result.historyDeferred) console.warn('X article history deferred; fresh discovery remains available.'); }).catch(() => console.error('X article sync failed; serving cached articles.'))); }
+  async scheduled(controller, env, ctx) { ctx.waitUntil(Promise.allSettled([syncSubstack(env), syncArticles(env)]).then(([rss, x]) => { if (x.status !== 'fulfilled' || !x.value.synced) console.warn('X article sync not configured; serving cached articles.'); else if (x.value.historyDeferred) console.warn('X article history deferred; fresh discovery remains available.'); if (rss.status !== 'fulfilled' || !rss.value) console.warn('Substack sync failed; serving cached articles.'); })); }
 };

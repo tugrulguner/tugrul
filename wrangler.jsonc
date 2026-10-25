@@ -6,7 +6,7 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/x-articles", "/api/x-articles/*"],
+    "run_worker_first": ["/api/x-articles", "/api/x-articles/*", "/api/articles", "/api/articles/*"],
     "not_found_handling": "404-page"
   },
   "kv_namespaces": [

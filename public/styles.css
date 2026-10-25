@@ -123,6 +123,9 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .issue-list strong { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; }
 .issue-list i { color: var(--terracotta); font-style: normal; }
 .writing-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.article-reading-links { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.x-archive-list .article-reading-links { grid-column: 1 / -1; }
+.x-archive-list .article-reading-links a { font: 750 .78rem/1.4 Inter, sans-serif; letter-spacing: .055em; }
 .essay-spotlight { max-width: 900px; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); }
 .essay-spotlight h3 { max-width: 780px; margin: .8rem 0 1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; line-height: 1.15; }
 .essay-spotlight > p:not(.writing-kicker) { max-width: 760px; color: var(--muted); }
@@ -134,7 +137,8 @@ h1 em { color: var(--terracotta); font-weight: 400; }
 .contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
 .contact-links a { font-family: Georgia, serif; font-size: clamp(1.15rem, 2.5vw, 2rem); }
 footer { min-height: 120px; padding: 2rem max(32px, calc((100% - var(--max)) / 2)); background: var(--night); color: var(--night-muted); display: flex; justify-content: space-between; align-items: center; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
-footer div { display: flex; gap: 1.5rem; }
+footer div { display: flex; gap: 1.5rem; align-items: center; }
+footer a[data-posthog-network="substack"] { display: inline-flex; align-items: center; min-height: 44px; }
 
 @media (max-width: 850px) {
   .site-header { width: min(100% - 32px, var(--max)); grid-template-columns: 1fr auto auto; gap: .45rem; }

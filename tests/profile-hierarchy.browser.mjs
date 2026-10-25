@@ -20,7 +20,7 @@ for(const viewport of [{width:320,height:800},{width:390,height:844},{width:768,
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
  const buttons=page.locator('.hero-actions a');assert.equal(await buttons.count(),2);
  for(const button of await buttons.all()){const box=await button.boundingBox();assert.ok(box&&box.y>=0&&box.y+box.height<=viewport.height,`${viewport.width}px primary action below first fold: ${JSON.stringify(box)}`);assert.ok(box.height>=44,'action hit target');}
- const socials=page.locator('.hero-social a');assert.deepEqual(await socials.allTextContents(),['X','LinkedIn','GitHub','Newsletter']);
+ const socials=page.locator('.hero-social a');assert.deepEqual(await socials.allTextContents(),['X','LinkedIn','GitHub','Newsletter','Substack']);
  for(const social of await socials.all()){const box=await social.boundingBox();assert.ok(box&&box.height>=44&&box.y+box.height<=viewport.height,'social visibility/target');}
  const results=page.locator('#leadership-results');assert.equal(await results.count(),1);
  const proof=await results.boundingBox();const portrait=await page.locator('.portrait-frame').boundingBox();
@@ -40,6 +40,12 @@ for(const viewport of [{width:320,height:800},{width:390,height:844},{width:768,
  if(evidence){await page.locator('#hero-title').click();await page.locator('.project-list').screenshot({path:resolve(evidence,`modepot-${viewport.width}.png`)});}
  const writingX=page.locator('#writing a[data-posthog-network="x"]');assert.equal(await writingX.count(),1);assert.equal(await writingX.getAttribute('href'),'https://x.com/Tugrul_Guner');const writingBox=await writingX.boundingBox();assert.ok(writingBox.height>=44&&writingBox.x>=0&&writingBox.x+writingBox.width<=viewport.width,'writing X link target/clipping');
  if(evidence){await writingX.screenshot({path:resolve(evidence,`writing-x-${viewport.width}.png`)});}
+ assert.equal(await page.locator('#substack-writing').count(),0,'Substack is part of the unified AI article shelf');
+ const shelf=page.locator('#x-articles');assert.equal(await shelf.count(),1);assert.equal(await shelf.locator('h3').innerText(),'AI & agentic systems');
+ assert.equal(await shelf.locator('[data-article-id="2114331968296939520"] a[data-posthog-event="substack_article_clicked"]').count(),3);
+ const schema=await page.locator('script[type="application/ld+json"]').textContent();assert.ok(JSON.parse(schema).mainEntity.sameAs.includes('https://substack.com/@tugrulguner'));
+ const substackLinks=page.locator('a[data-posthog-network="substack"]');assert.equal(await substackLinks.count(),2,'hero and footer links remain');
+ for(const link of await substackLinks.all()){assert.equal(await link.getAttribute('href'),'https://tugrulguner.substack.com/');assert.match(await link.getAttribute('class'),/ph-no-autocapture/);const box=await link.boundingBox();assert.ok(box.height>=44&&box.x>=0&&box.x+box.width<=viewport.width,'Substack target/clipping');}
  await page.goto(url);
  console.log(`Profile hierarchy ${viewport.width}px: passed; primary actions ${JSON.stringify(await buttons.evaluateAll(els=>els.map(e=>({label:e.textContent.trim(),bottom:e.getBoundingClientRect().bottom}))))}`);
  await context.close();

@@ -19,6 +19,7 @@ npm run preview
 - Resume: `public/tugrul-guner-resume.pdf` (generated; do not edit directly)
 - Google Scholar: `https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en`
 - Newsletter: `https://tugrulguner.beehiiv.com/`
+- Substack: `https://tugrulguner.substack.com/`. AI articles share one Writing shelf with X, using explicit cross-publication URL pairs and a cached daily official-RSS check. Passionately Curious remains independent; its Substack copies are not imported. See `docs/x-articles.md` for pairing new articles.
 
 ## X Article showcase
 
