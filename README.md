@@ -19,6 +19,7 @@ npm run preview
 - Resume: `public/tugrul-guner-resume.pdf` (generated; do not edit directly)
 - Google Scholar: `https://scholar.google.com.tr/citations?user=RznlT4AAAAAJ&hl=en`
 - Newsletter: `https://tugrulguner.beehiiv.com/`
+- Substack: `https://tugrulguner.substack.com/` (AI, agentic systems, and science writing; separate from Passionately Curious). Linked from the hero, Writing section, and footer. This is a publication link, not an automated Substack feed.
 
 ## X Article showcase
 
