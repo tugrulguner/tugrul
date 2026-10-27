@@ -1,6 +1,14 @@
 // Generated from substack-pairs.json by npm run articles:seed. Do not edit.
 export default [
   {
+    "xArticleId": "2114901443933278208",
+    "substackUrl": "https://tugrulguner.substack.com/p/ai-generated-proofs-could-change"
+  },
+  {
+    "xArticleId": "2113083507429797889",
+    "substackUrl": "https://tugrulguner.substack.com/p/an-ai-rewrite-can-run-and-still-change"
+  },
+  {
     "xArticleId": "2114331968296939520",
     "substackUrl": "https://tugrulguner.substack.com/p/an-agent-skill-can-travel-its-results"
   },
