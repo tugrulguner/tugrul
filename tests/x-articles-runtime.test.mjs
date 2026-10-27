@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {buildSync} from 'esbuild';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 const seed=JSON.parse(fs.readFileSync(new URL('../public/x-articles.json',import.meta.url)));
+const pairs=JSON.parse(fs.readFileSync(new URL('../worker/substack-pairs.json',import.meta.url)));
 test('actual workerd executes the unchanged scheduled handler with native fetch and publishes the feed',async()=>{
  const source=fs.readFileSync(new URL('../worker/index.mjs',import.meta.url),'utf8');let calls=0;
  const substack=buildSync({entryPoints:[new URL('../worker/substack.mjs',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'browser'}).outputFiles[0].text;
@@ -14,7 +15,7 @@ test('actual workerd executes the unchanged scheduled handler with native fetch 
  try{
   const kv=await mf.getKVNamespace('ARTICLES_KV');await kv.put('x-articles:feed',JSON.stringify(seed));await kv.put('x-articles:sync-state',JSON.stringify({source:'article-search-v1',historyDone:true}));
   const response=await mf.dispatchFetch('http://local.test/');assert.equal(response.status,200);assert.equal((await response.json()).awaited,1);assert.equal(calls,2);
-  const rss=JSON.parse(await kv.get('substack:feed'));assert.equal(rss.length,4);assert.equal(rss.filter(r=>r.available).length,2);assert.ok(rss.every(r=>Number.isFinite(Date.parse(r.checkedAt))));
+  const rss=JSON.parse(await kv.get('substack:feed'));assert.equal(rss.length,pairs.length);assert.equal(rss.filter(r=>r.available).length,2);assert.ok(rss.every(r=>Number.isFinite(Date.parse(r.checkedAt))));
   const published=JSON.parse(await kv.get('x-articles:feed'));assert.equal(published.articles.length,seed.articles.length);assert.notEqual(published.updatedAt,seed.updatedAt,'a swallowed scheduled error must not pass as a successful publication');assert.equal(await kv.get('x-articles:oauth'),null);
  }finally{await mf.dispose()}
 });
