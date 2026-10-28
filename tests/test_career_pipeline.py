@@ -60,13 +60,17 @@ class CareerPipelineTests(unittest.TestCase):
             page = doc[0]
             text = page.get_text()
             links = {link["uri"] for link in page.get_links() if link.get("uri")}
-        hermes = ["fba73a60e36a84e94736d309d6777bf2247a23eb", "614e43d3d95773778b838c751e3aa2b880231395", "44665783a936d173aba639ecd74483e0a6a016ce"]
+        lineage = "3e8e7bd3bfbffe9238d8d0684683ea08f78834e9"
+        hermes = ["fba73a60e36a84e94736d309d6777bf2247a23eb", "614e43d3d95773778b838c751e3aa2b880231395", "44665783a936d173aba639ecd74483e0a6a016ce", lineage]
         superpowers = ["0a4d60db4faf3628abc3e6be4fc3e1a0697c69de", "a0415daa1f33b00f3fe300f5c250a5beefafce4d"]
         self.assertIn("my landed contributions to", html)
         self.assertIn("Two original Superpowers changes have landed on its dev branch", llms)
-        self.assertIn("Three original Hermes Agent changes have landed upstream", llms)
+        self.assertIn("Four original Hermes Agent changes have landed upstream", llms)
+        self.assertIn("session-list performance through lineage caching", html)
+        self.assertIn("session-list performance through lineage caching", llms)
         contribution_text = text.split("OPEN SOURCE & WRITING", 1)[1]
-        self.assertIn("Landed contributions to Hermes Agent and Superpowers (dev branch)", " ".join(contribution_text.split()))
+        self.assertIn("Landed contributions to Hermes Agent (session-list performance) and Superpowers (dev branch)", " ".join(contribution_text.split()))
+        self.assertIn(f"https://github.com/NousResearch/hermes-agent/commit/{lineage}", links)
         self.assertNotIn("Original PRs", contribution_text)
         for sha in hermes + superpowers:
             self.assertIn(sha, html)
