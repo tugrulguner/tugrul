@@ -3,6 +3,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import worker from '../worker/index.mjs';
 const snapshot=JSON.parse(fs.readFileSync(new URL('../public/x-articles.json',import.meta.url)));
+const previousBaseline=JSON.parse(fs.readFileSync(new URL('./fixtures/x-articles-baseline-2026-10-27.json',import.meta.url)));
+test('refreshed static baseline preserves every field of every prior X record',()=>{
+  assert.equal(previousBaseline.articles.length,13);
+  assert.equal(snapshot.articles.length,21);
+  for(const previous of previousBaseline.articles){
+    const current=snapshot.articles.find(article=>article.id===previous.id);
+    assert.ok(current,`previous article ${previous.id} remains present`);
+    assert.deepEqual(current,previous,`all fields remain unchanged for ${previous.id}`);
+  }
+});
 const fixture=fs.readFileSync(new URL('./fixtures/substack-official-feed.xml',import.meta.url),'utf8');
 const createEnv=()=>{const data=new Map();return {data,ARTICLES_KV:{get:async key=>data.get(key)??null,put:async(key,value)=>data.set(key,value)},ASSETS:{fetch:async()=>Response.json(snapshot)}};};
 async function runSchedule(env){const tasks=[];await worker.scheduled({},env,{waitUntil:task=>tasks.push(task)});await Promise.all(tasks);}
@@ -20,3 +30,37 @@ test('manifest URL validation rejects credentials, query, hash, foreign host and
 test('RSS cache rejects malformed arrays and cannot override explicit mapping',()=>{assert.throws(()=>mergeSubstack({articles:[{id:manifest[0].xArticleId}]},[null],manifest));assert.throws(()=>mergeSubstack({articles:[{id:manifest[0].xArticleId}]},[{xArticleId:manifest[0].xArticleId,substackUrl:'https://evil.test/p/no',title:'bad',checkedAt:new Date().toISOString(),available:true}],manifest));});
 test('rolling RSS omissions preserve verified mapping and status metadata',()=>{const record={xArticleId:manifest[0].xArticleId,substackUrl:manifest[0].substackUrl,title:'',checkedAt:new Date().toISOString(),available:false};const merged=mergeSubstack({articles:[{id:manifest[0].xArticleId}]},[record],manifest);assert.equal(merged.articles[0].substackUrl,manifest[0].substackUrl);assert.equal(merged.articles[0].substackAvailable,false)});
 test('hostile XML fails closed',()=>{assert.throws(()=>parseSubstackFeed('<!DOCTYPE x [<!ENTITY a SYSTEM "file:///etc/passwd">]><rss/>',manifest));});
+
+const currentFixture=fs.readFileSync(new URL('./fixtures/substack-official-feed-2026-11-05.xml',import.meta.url),'utf8');
+const newlyVerifiedPairs=[
+  ['2117593315948257280','https://tugrulguner.substack.com/p/ai-training-opt-outs-what-a-shared'],
+  ['2117230975524474880','https://tugrulguner.substack.com/p/why-an-ai-safety-alert-may-not-stop'],
+  ['2116200983319515137','https://tugrulguner.substack.com/p/who-controls-an-ai-model-after-you'],
+  ['2115987808301047808','https://tugrulguner.substack.com/p/finding-a-software-flaw-is-only-the'],
+  ['2115764558161719297','https://tugrulguner.substack.com/p/who-makes-the-judgment-call-when'],
+  ['2115576342120968192','https://tugrulguner.substack.com/p/when-an-ai-world-needs-another-ai'],
+  ['2115268280248107008','https://tugrulguner.substack.com/p/the-gap-between-seeing-a-screen-and']
+];
+test('verified November cross-posts retain exact destinations in cached and no-JS inventories',()=>{
+  const records=parseSubstackFeed(currentFixture,manifest);
+  const merged=mergeSubstack(snapshot,records,manifest);
+  for(const [id,url] of newlyVerifiedPairs){
+    assert.equal(manifest.find(p=>p.xArticleId===id)?.substackUrl,url);
+    assert.ok(snapshot.articles.some(a=>a.id===id),'pair exists in static baseline');
+    assert.equal(records.find(r=>r.xArticleId===id)?.available,true);
+    assert.equal(merged.articles.find(a=>a.id===id)?.substackUrl,url);
+  }
+});
+test('current official feed adds no duplicate stories, unselected essays or science posts',()=>{
+  const records=parseSubstackFeed(currentFixture,manifest);
+  const merged=mergeSubstack(snapshot,records,manifest);
+  assert.equal(snapshot.articles.length,21);
+  assert.equal(merged.articles.length,21);
+  assert.equal(manifest.length,13);
+  assert.equal(records.filter(r=>r.available).length,13);
+  assert.deepEqual(merged.articles.map(a=>[a.id,a.publishedAt,a.title]),snapshot.articles.map(a=>[a.id,a.publishedAt,a.title]));
+  const flaws=merged.articles.filter(a=>a.id==='2115987808301047808');
+  assert.equal(flaws.length,1);
+  assert.ok(flaws[0].substackUrl);
+  for(const id of ['2117955035447312384','2108560725366951936']) assert.equal(merged.articles.find(a=>a.id===id)?.substackUrl,undefined,'unmatched and unselected science retain X-only links');
+});

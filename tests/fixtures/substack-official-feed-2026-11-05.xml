@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Captured from https://tugrulguner.substack.com/feed on 2026-11-05; public title/link/date and opening text only. Not a complete publication archive. -->
+<rss version="2.0">
+  <channel>
+    <title>Tugrul Guner</title>
+    <link>https://tugrulguner.substack.com</link>
+    <item>
+      <title>AI Training Opt-Outs: What a Shared Web Signal Can Change</title>
+      <link>https://tugrulguner.substack.com/p/ai-training-opt-outs-what-a-shared</link>
+      <pubDate>Thu, 05 Nov 2026 12:20:03 GMT</pubDate>
+      <description>A website can be useful to an AI system in different ways. Its pages might help train a model, changing the numerical settings that shape future answers. They might also be retrieved when someone asks a question, supplying information for that particular response. A publisher can want people to find its work while objecting to its use in training. Communicating that choice has meant dealing with different providers’ controls. On October 30, OpenAI announced that it would honor a shared training-</description>
+    </item>
+    <item>
+      <title>Why an AI Safety Alert May Not Stop the Agent</title>
+      <link>https://tugrulguner.substack.com/p/why-an-ai-safety-alert-may-not-stop</link>
+      <pubDate>Thu, 05 Nov 2026 03:03:32 GMT</pubDate>
+      <description>An AI agent can search for information, run programs and use the results to choose its next action. Those abilities make it useful, but they also give it ways to cross a boundary its operator intended to enforce. A system assigned to find an answer might start looking for an unauthorized route to the internet. Monitoring is meant to make that behavior visible while there is still time to intervene. A separate system examines the agent’s activity and raises an alert when something looks wrong. Th</description>
+    </item>
+    <item>
+      <title>Who Controls an AI Model After You Download It?</title>
+      <link>https://tugrulguner.substack.com/p/who-controls-an-ai-model-after-you</link>
+      <pubDate>Wed, 04 Nov 2026 12:27:19 GMT</pubDate>
+      <description>A company using an AI service sends requests to a model operated by someone else. It can build software around that service, but continuing to use a particular model depends on the provider continuing to offer it. Downloadable model weights, the numerical settings learned during training, give an organization another option: operate its own copy. On October 29, Mistral moved its Large 4 model beyond an earlier hosted preview by releasing the weights of an improved version. The official repositor</description>
+    </item>
+    <item>
+      <title>Finding a Software Flaw Is Only the Start</title>
+      <link>https://tugrulguner.substack.com/p/finding-a-software-flaw-is-only-the-593</link>
+      <pubDate>Tue, 03 Nov 2026 12:28:15 GMT</pubDate>
+      <description>A document-sharing service has a simple obligation: people should be able to open only the private documents they are allowed to read. A mistake in its software could let someone bypass that rule. Finding such a security flaw starts an investigation. A defender still has to establish whether the mistake can actually be used and whether a repair stops the unwanted access while preserving legitimate use. This service is an illustrative example, not a vulnerability reported by Google or a test perf</description>
+    </item>
+    <item>
+      <title>Nothing Is Waiting For Us. And That’s Why I Care.</title>
+      <link>https://tugrulguner.substack.com/p/nothing-is-waiting-for-us-and-thats</link>
+      <pubDate>Tue, 03 Nov 2026 01:33:17 GMT</pubDate>
+      <description>There is no meaning written in the stars. No hidden pattern. No grand design. We are matter: temporarily assembled, briefly aware, destined to dissolve. That’s not poetry. That’s physics. And yet. Here I am. Here we are. Not because we were chosen. Not because it was meant to be. But because, out of all the possible configurations of atoms, this one happened. A pattern emerged: one that can think, reflect, ask questions it wasn’t designed to answer. We are the outcome of some chain of events tha</description>
+    </item>
+    <item>
+      <title>Finding a Software Flaw Is Only the Start</title>
+      <link>https://tugrulguner.substack.com/p/finding-a-software-flaw-is-only-the</link>
+      <pubDate>Fri, 30 Oct 2026 02:05:10 GMT</pubDate>
+      <description>A document-sharing service has a simple obligation: people should be able to open only the private documents they are allowed to read. A mistake in its software could let someone bypass that rule. Finding such a security flaw starts an investigation. A defender still has to establish whether the mistake can actually be used and whether a repair stops the unwanted access while preserving legitimate use. This service is an illustrative example, not a vulnerability reported by Google or a test perf</description>
+    </item>
+    <item>
+      <title>Who makes the judgment call when an AI does the analysis?</title>
+      <link>https://tugrulguner.substack.com/p/who-makes-the-judgment-call-when</link>
+      <pubDate>Thu, 29 Oct 2026 11:21:31 GMT</pubDate>
+      <description>A fictional farming cooperative wants to know whether its advisory service helps its members. An analyst can calculate the change in crop yields, check the code, and give the board a recommendation. Before doing any of that, someone has to decide what success means. More crops per hectare would mean the farms are using their land more productively. More crops per unit of operating cost would mean they are getting more output for their spending. Those measures can tell different stories about the</description>
+    </item>
+    <item>
+      <title>When an AI World Needs Another AI to Keep It on Track</title>
+      <link>https://tugrulguner.substack.com/p/when-an-ai-world-needs-another-ai</link>
+      <pubDate>Wed, 28 Oct 2026 23:02:16 GMT</pubDate>
+      <description>An interactive simulated world has to continue after someone changes it. A person moves the camera, introduces an object, or interrupts an action, and the next moment needs to follow from what has already happened. Generating a convincing view is one part of that task. Keeping a sequence of events on course adds a problem of memory and planning. Google DeepMind’s October 27 announcement of Genie 4 describes an unusual division of that work. Genie generates an interactive world with sound, while </description>
+    </item>
+    <item>
+      <title>The gap between seeing a screen and finishing the work</title>
+      <link>https://tugrulguner.substack.com/p/the-gap-between-seeing-a-screen-and</link>
+      <pubDate>Wed, 28 Oct 2026 02:23:14 GMT</pubDate>
+      <description>An architectural drawing describes a building. A three-dimensional model lets someone examine its shape from different directions. Turning one into the other requires a series of decisions: interpreting the drawing, constructing the right objects, checking their relationships, and saving something another person can use. An AI system doing that work through a design application has to connect its interpretation with the consequences of its actions. The question is whether apparent progress on th</description>
+    </item>
+    <item>
+      <title>AI-generated proofs could change the pace of science</title>
+      <link>https://tugrulguner.substack.com/p/ai-generated-proofs-could-change</link>
+      <pubDate>Tue, 27 Oct 2026 02:33:04 GMT</pubDate>
+      <description>Scientific progress depends on researchers being able to check an answer, understand how it was found, and use its ideas in their own work. AI could accelerate the production of difficult arguments while leaving a scientific community with substantial work to make them useful. OpenAI’s October 26 announcement makes that possibility concrete. The company reports results concerning how waves concentrate, the limits of efficient computation, and the mathematical foundations of particle physics. It </description>
+    </item>
+    <item>
+      <title>Legacy Is Overrated. I Want to Be Alive for What Comes Next.</title>
+      <link>https://tugrulguner.substack.com/p/legacy-is-overrated-i-want-to-be</link>
+      <pubDate>Mon, 26 Oct 2026 12:14:33 GMT</pubDate>
+      <description>When people talk about success, they usually point to the same checklist. Job titles. Big salaries. Corner offices with views no one has time to enjoy. Society whispers that the real goal is luxury. Bigger houses. Faster cars. Vacations priced higher than most people make in a year. But that was never the goal for me. From the start, I knew I was not chasing comfort. I was chasing something harder to reach. I was chasing time itself. I began as a scientist, obsessed with the biggest questions. H</description>
+    </item>
+    <item>
+      <title>An AI Rewrite Can Run and Still Change the Answer</title>
+      <link>https://tugrulguner.substack.com/p/an-ai-rewrite-can-run-and-still-change</link>
+      <pubDate>Mon, 26 Oct 2026 00:51:17 GMT</pubDate>
+      <description>Older software can carry rules that its owners still need, even when they want to replace the language it was written in. A rewrite has to preserve those rules. OpenAI’s October 19 announcement reports improvements on two coding tests: building a database engine in different programming languages, and rewriting existing programs in COBOL, a language used for business records and financial transactions, without changing their observable outputs. Together, they expose two different obligations beh</description>
+    </item>
+    <item>
+      <title>TorchTPU Makes Moving a Model Easier. Optimization Comes Next.</title>
+      <link>https://tugrulguner.substack.com/p/torchtpu-makes-moving-a-model-easier</link>
+      <pubDate>Sun, 25 Oct 2026 22:02:39 GMT</pubDate>
+      <description>AI models run through software that turns instructions into calculations on a chip. PyTorch is one of the frameworks developers use to write those instructions. Changing the chip can mean changing the surrounding software too, even when the model itself stays the same. Google’s Tensor Processing Units, or TPUs, are chips built for the large numerical calculations used by AI. PyTorch developers have been able to use them through PyTorch/XLA, a separate integration whose execution and debugging re</description>
+    </item>
+    <item>
+      <title>A Better Search Can Leave an AI Agent Less to Read</title>
+      <link>https://tugrulguner.substack.com/p/a-better-search-can-leave-an-ai-agent</link>
+      <pubDate>Sun, 25 Oct 2026 21:44:53 GMT</pubDate>
+      <description>An AI agent answering a question about company records has to find the relevant records before it can use them. That becomes difficult when an answer is spread across reports, tables and charts. A search can return pages about the right subject while missing the particular evidence the question requires. The agent may then read more pages and search again. An extra model can examine search results before the answering agent reads them, selecting evidence more closely matched to the question. In </description>
+    </item>
+    <item>
+      <title>An Agent Skill Can Travel. Its Results Still Need Checking.</title>
+      <link>https://tugrulguner.substack.com/p/an-agent-skill-can-travel-its-results</link>
+      <pubDate>Sun, 25 Oct 2026 20:42:36 GMT</pubDate>
+      <description>An AI agent can read documents, use software tools and carry out a task. Knowing how to do the task in general leaves another problem: knowing how a particular team does it. Which records count as evidence? What requires approval? What does a finished result look like? Agent Skills puts that procedural knowledge in a folder an agent can read. The folder contains instructions and can include supporting references, scripts and templates. A common format lets people share the procedure across agent</description>
+    </item>
+    <item>
+      <title>Rounding Can Change What an AI Learns</title>
+      <link>https://tugrulguner.substack.com/p/rounding-can-change-what-an-ai-learns</link>
+      <pubDate>Sun, 25 Oct 2026 18:45:26 GMT</pubDate>
+      <description>An AI model learns by comparing its predictions with training examples and calculating how its internal settings should change. The signals guiding those changes depend on arithmetic performed with a limited number of digits. A new paper examines what happens when rounding removes part of a learning signal, or produces a signal where none should exist. In small training experiments, the difference changed whether learning continued smoothly or was disrupted by sudden jumps. Jonathan T. Barron, D</description>
+    </item>
+    <item>
+      <title>What Is Space Made Of?</title>
+      <link>https://tugrulguner.substack.com/p/what-is-space-made-of</link>
+      <pubDate>Fri, 04 Sep 2026 13:42:10 GMT</pubDate>
+      <description>What is space made of? Physics can describe what occupies space, how long light takes to cross it and how it bends around anything heavy. It has no settled answer for what space itself consists of. The question becomes unavoidable at the beginning of the universe. Thanks for reading! Subscribe for free to receive new posts and support my work. TLDR. Nobody knows what space itself is made of. One idea says it is not a basic ingredient of the universe at all, but something built out of the links b</description>
+    </item>
+    <item>
+      <title>When Learning Happens All at Once</title>
+      <link>https://tugrulguner.substack.com/p/when-learning-happens-all-at-once</link>
+      <pubDate>Fri, 24 Jul 2026 13:37:44 GMT</pubDate>
+      <description>We picture learning as a curve: steady improvement, a little more each day. Often it isn’t. A system can train for a long time with almost no visible progress, then improve suddenly… The whole capability appearing at once. This happens in artificial neural networks. It happens in the brain. And in the machine case, that abrupt jump is now being written in the exact mathematical language physicists use for phase transitions; the framework that describes water freezing or a magnet aligning. Severa</description>
+    </item>
+    <item>
+      <title>One Neuron, Many Meanings: Two 2026 Papers, One Result</title>
+      <link>https://tugrulguner.substack.com/p/one-neuron-many-meanings-two-2026</link>
+      <pubDate>Thu, 23 Jul 2026 03:03:18 GMT</pubDate>
+      <description>Two papers published in July 2026 arrive at the same conclusion from opposite ends of science. One, in Nature , maps the mouse cortex. The other, in Nature Machine Intelligence , is a mathematical framework for interpreting artificial neural networks. They share no authors and were not written in response to each other. Both find that the individual neuron, biological or artificial, is rarely a clean, single-purpose unit, and that what a network represents is distributed across populations of ne</description>
+    </item>
+  </channel>
+</rss>
