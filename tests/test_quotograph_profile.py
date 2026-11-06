@@ -21,6 +21,7 @@ class QuotographProfileTests(unittest.TestCase):
         x_link = next(link for link in doc[0].get_links() if link.get('uri') == 'https://x.com/Tugrul_Guner')
         self.assertGreater(x_link['from'].width, 20, 'X Articles must have a discoverable label, not a single-letter link')
         self.assertIn('X Articles and Medium essays', text)
+        self.assertIn('SkillPot', text)
         html = (ROOT / 'public/index.html').read_text()
         llms = (ROOT / 'public/llms.txt').read_text()
         self.assertIn('id="x-articles"', html)
@@ -28,13 +29,42 @@ class QuotographProfileTests(unittest.TestCase):
         self.assertIn('All articles on X', html)
         self.assertIn('substack_article_clicked', html)
         self.assertIn('He also publishes articles on X', llms)
-        for name in ['Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
+        project_names = ['Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'SkillPot', 'UtilityPot']
+        for name in project_names:
             self.assertIn(name, text)
             destination = f'https://{name.lower()}.modepot.io/'
             self.assertIn(f'data-posthog-project="{name.lower()}"', html)
+            self.assertIn(f'href="{destination}"', html)
             self.assertIn(destination, llms)
         projects = re.findall(r'<a class="project ph-no-autocapture"', html)
-        self.assertEqual(len(projects), 6)
+        self.assertEqual(len(projects), 7)
+        utility = next(line for line in llms.splitlines() if line.startswith('- UtilityPot:'))
+        self.assertIn('eleven focused tools: eight browser-local and three AI-assisted', utility)
+        self.assertNotIn('eight focused data, text, diagram, and planning tools: five browser-local', utility)
+        inventory = json.loads((ROOT / 'public/projects.json').read_text())
+        self.assertEqual([project['name'] for project in inventory], project_names)
+        self.assertEqual(inventory[5]['latest_release'], '0.4.1')
+        self.assertEqual(inventory[5]['skill_count'], 10)
+        self.assertEqual(inventory[5]['url'], 'https://skillpot.modepot.io/')
+        self.assertIn('development', inventory[5]['status'].lower())
+        boundaries = ' '.join(inventory[5]['boundaries']).lower()
+        self.assertIn('packaging', boundaries)
+        self.assertIn('installation', boundaries)
+        self.assertIn('model-performance improvements', boundaries)
+        self.assertEqual(inventory[6]['url'], 'https://utilitypot.modepot.io/')
+        self.assertEqual(
+            (
+                inventory[6]['tool_count'],
+                inventory[6]['browser_local_tool_count'],
+                inventory[6]['ai_assisted_tool_count'],
+            ),
+            (11, 8, 3),
+        )
+        skill_card = next(line for line in html.splitlines() if 'data-posthog-project="skillpot"' in line)
+        self.assertIn('v0.4.1', skill_card)
+        self.assertIn('ten portable skills', skill_card)
+        self.assertIn('still in development', skill_card)
+        self.assertIn('general model-performance gains', skill_card)
 
     def test_confirmed_scope_and_collaborative_attribution(self):
         roles = json.loads((ROOT / 'career-data.json').read_text())['roles']
