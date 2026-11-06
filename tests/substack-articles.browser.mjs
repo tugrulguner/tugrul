@@ -43,6 +43,10 @@ try {
     await page.waitForFunction(() => document.querySelector('#x-articles').dataset.feedState === 'live');
     await assertPairLinks(page);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    const archive = page.locator('.x-archive');
+    assert.equal(await archive.getAttribute('open'), null, 'older stories remain collapsed initially');
+    await archive.locator('summary').click();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'expanded older stories do not overflow');
     await page.evaluate(() => { window.captures=[]; window.posthog={capture:(...args)=>window.captures.push(args)}; document.addEventListener('click', e => e.preventDefault(), true); });
     let clicked = 0;
     for (const pair of pairs) for (const platform of ['substack', 'x']) {

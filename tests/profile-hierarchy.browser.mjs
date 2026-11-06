@@ -42,7 +42,11 @@ for(const viewport of [{width:320,height:800},{width:390,height:844},{width:768,
  if(evidence){await writingX.screenshot({path:resolve(evidence,`writing-x-${viewport.width}.png`)});}
  assert.equal(await page.locator('#substack-writing').count(),0,'Substack is part of the unified AI article shelf');
  const shelf=page.locator('#x-articles');assert.equal(await shelf.count(),1);assert.equal(await shelf.locator('h3').innerText(),'AI & agentic systems');
- assert.equal(await shelf.locator('[data-article-id="2114331968296939520"] a[data-posthog-event="substack_article_clicked"]').count(),3);
+ // This verified story now belongs to Older articles: title + reading action, without a recent-card cover link.
+ const skillCard=shelf.locator('.x-archive [data-article-id="2114331968296939520"]');assert.equal(await skillCard.count(),1);
+ const skillLinks=skillCard.locator('a[data-posthog-event="substack_article_clicked"]');assert.equal(await skillLinks.count(),2);
+ for(const link of await skillLinks.all())assert.equal(await link.getAttribute('href'),'https://tugrulguner.substack.com/p/an-agent-skill-can-travel-its-results');
+ assert.equal(await shelf.locator('.x-recent [data-article-id="2117593315948257280"] a[data-posthog-event="substack_article_clicked"]').count(),3,'recent paired card retains cover, title and reading action');
  const schema=await page.locator('script[type="application/ld+json"]').textContent();assert.ok(JSON.parse(schema).mainEntity.sameAs.includes('https://substack.com/@tugrulguner'));
  const substackLinks=page.locator('a[data-posthog-network="substack"]');assert.equal(await substackLinks.count(),2,'hero and footer links remain');
  for(const link of await substackLinks.all()){assert.equal(await link.getAttribute('href'),'https://tugrulguner.substack.com/');assert.match(await link.getAttribute('class'),/ph-no-autocapture/);const box=await link.boundingBox();assert.ok(box.height>=44&&box.x>=0&&box.x+box.width<=viewport.width,'Substack target/clipping');}
