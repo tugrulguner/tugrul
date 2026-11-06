@@ -34,6 +34,7 @@ class QuotographProfileTests(unittest.TestCase):
             self.assertIn(name, text)
             destination = f'https://{name.lower()}.modepot.io/'
             self.assertIn(f'data-posthog-project="{name.lower()}"', html)
+            self.assertIn(f'href="{destination}"', html)
             self.assertIn(destination, llms)
         projects = re.findall(r'<a class="project ph-no-autocapture"', html)
         self.assertEqual(len(projects), 7)
@@ -44,11 +45,21 @@ class QuotographProfileTests(unittest.TestCase):
         self.assertEqual([project['name'] for project in inventory], project_names)
         self.assertEqual(inventory[5]['latest_release'], '0.4.1')
         self.assertEqual(inventory[5]['skill_count'], 10)
+        self.assertEqual(inventory[5]['url'], 'https://skillpot.modepot.io/')
         self.assertIn('development', inventory[5]['status'].lower())
         boundaries = ' '.join(inventory[5]['boundaries']).lower()
         self.assertIn('packaging', boundaries)
         self.assertIn('installation', boundaries)
         self.assertIn('model-performance improvements', boundaries)
+        self.assertEqual(inventory[6]['url'], 'https://utilitypot.modepot.io/')
+        self.assertEqual(
+            (
+                inventory[6]['tool_count'],
+                inventory[6]['browser_local_tool_count'],
+                inventory[6]['ai_assisted_tool_count'],
+            ),
+            (11, 8, 3),
+        )
         skill_card = next(line for line in html.splitlines() if 'data-posthog-project="skillpot"' in line)
         self.assertIn('v0.4.1', skill_card)
         self.assertIn('ten portable skills', skill_card)
