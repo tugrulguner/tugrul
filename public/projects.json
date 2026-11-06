@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Dexpot",
+    "url": "https://dexpot.modepot.io/",
+    "description": "Adaptive synchronous Python APIs for GIL and free-threaded runtimes."
+  },
+  {
+    "name": "Intpot",
+    "url": "https://intpot.modepot.io/",
+    "description": "One typed tool definition, served across CLI, HTTP, and MCP."
+  },
+  {
+    "name": "Summonpot",
+    "url": "https://summonpot.modepot.io/",
+    "description": "Exact operations and bounded agent-owned decisions behind one contract."
+  },
+  {
+    "name": "LifePot",
+    "url": "https://lifepot.modepot.io/",
+    "description": "An artificial-life world where agent proposals become replayable rules."
+  },
+  {
+    "name": "RefPot",
+    "url": "https://refpot.modepot.io/",
+    "description": "An experimental native C++ embedded database with Python CRUD and explicit transactions."
+  },
+  {
+    "name": "SkillPot",
+    "url": "https://skillpot.modepot.io/",
+    "description": "A released collection of ten portable skills, version 0.4.1; the project remains in development.",
+    "latest_release": "0.4.1",
+    "skill_count": 10,
+    "status": "Released collection; project remains in development.",
+    "boundaries": [
+      "Packaging and installation are available.",
+      "These checks are not evidence of general model-performance improvements."
+    ]
+  },
+  {
+    "name": "UtilityPot",
+    "url": "https://utilitypot.modepot.io/",
+    "description": "Eleven focused tools: eight browser-local and three AI-assisted.",
+    "tool_count": 11,
+    "browser_local_tool_count": 8,
+    "ai_assisted_tool_count": 3
+  }
+]

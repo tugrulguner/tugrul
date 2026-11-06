@@ -18,7 +18,7 @@ for term in ['2.5×','three products','4×','60%','model latency by a factor of 
 for term in ['Hermes Agent', 'Claude Code', 'Cursor Agent', 'deepagents', 'CLI execution', 'model routing', 'multi-agent coordination', 'subagents']:
     assert term in text, f'Missing agentic capability: {term}'
 assert 'more than $2M' in text
-for term in ['tugrul.modepot.io', 'Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot']:
+for term in ['tugrul.modepot.io', 'Dexpot', 'Intpot', 'Summonpot', 'LifePot', 'RefPot', 'UtilityPot', 'SkillPot']:
     assert term in text, f'Missing profile/ModePot evidence: {term}'
 uris = {link.get('uri') for link in pdf[0].get_links()}
 assert 'https://tugrul.modepot.io/' in uris, 'Personal profile must be a clickable PDF link'
