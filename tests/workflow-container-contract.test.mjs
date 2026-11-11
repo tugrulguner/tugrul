@@ -15,9 +15,11 @@ test('both jobs use the exact pinned browser image and skip redundant browser in
     assert.ok(job.includes("options: --init --shm-size=1g"));
     assert.ok(!job.includes('playwright install'));
     assert.ok(job.includes('git config --global --add safe.directory "$GITHUB_WORKSPACE"'));
-    assert.ok(job.includes('python -m venv .venv'));
+    assert.ok(job.includes('uv venv --managed-python --python 3.11 .venv'));
+    assert.ok(job.includes("python -c 'import ssl; print(ssl.OPENSSL_VERSION)'"));
+    assert.ok(!job.includes('actions/setup-python@'));
     assert.ok(job.includes('echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"'));
-    assert.ok(job.includes('python -m pip install --requirement requirements-career.txt'));
+    assert.ok(job.includes('uv pip install --python .venv/bin/python --requirement requirements-career.txt'));
   }
 });
 
