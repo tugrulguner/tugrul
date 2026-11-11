@@ -6,12 +6,13 @@ const workflow = fs.readFileSync(new URL('../.github/workflows/deploy-website.ym
 const jobs = workflow.split('\n  deploy:\n');
 const verify = jobs[0];
 const deploy = `  deploy:\n${jobs[1]}`;
-const image = 'mcr.microsoft.com/playwright:v1.64.0-noble@sha256:06a9939e57531807f8d5fd76ce44b53165ffb7d7501d87ab10e285c20b1e971e';
+const image = 'mcr.microsoft.com/playwright:v1.64.0-noble@sha256:06a9939e57531807f8d5fd76ce44b53165ffb7d7501d87ab10e285c20b1e971f';
 
 test('both jobs use the exact pinned browser image and skip redundant browser installation', () => {
   assert.equal(jobs.length, 2);
   for (const job of [verify, deploy]) {
     assert.ok(job.includes(`image: ${image}`));
+    assert.ok(job.includes("options: --init --shm-size=1g"));
     assert.ok(!job.includes('playwright install'));
     assert.ok(job.includes('git config --global --add safe.directory "$GITHUB_WORKSPACE"'));
     assert.ok(job.includes('python -m venv .venv'));
